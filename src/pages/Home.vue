@@ -15,33 +15,23 @@
 
     <div class="mb-4">
       <div style="text-align: start">
-        <div style="font-size: 18px; color: #4caf50; font-weight: bold">
+        <div class="fs-5 text-success fw-bold">
           <a href="/" style="color: #4caf50; text-decoration: underline"
             >머니또</a
           >
           님, 안녕하세요
         </div>
       </div>
-      <div
-        class="d-flex flex-column"
-        style="
-          border: 1px solid #e0e0e0;
-          border-radius: 8px;
-          padding: 16px;
-          background-color: #ffffff;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        ">
-        <h1 style="font-size: 18px; font-weight: bold; margin-bottom: 8px">
-          4 월 소비
-        </h1>
+      <div class="d-flex flex-column card p-3 shadow-sm">
+        <div class="fw-bold fs-4">4 월 소비</div>
         <hr />
-        <p style="color: #339f46">수입 : {{ monthlyIncome }} 원</p>
-        <p style="color: #ff5722">지출 : - {{ monthlyExpense }} 원</p>
+        <p class="text-success">수입 : {{ monthlyIncome }} 원</p>
+        <p class="text-danger">지출 : - {{ monthlyExpense }} 원</p>
       </div>
     </div>
 
     <!-- 달력 -->
-    <FullCalendar :options="calendarOptions" />
+    <Calender />
 
     <!-- 분석 탭 -->
     <div class="mt-4">
@@ -114,28 +104,10 @@
 </template>
 
 <script setup>
-import FullCalendar from '@fullcalendar/vue3';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
 import { onMounted, ref, computed } from 'vue';
 import axios from 'axios';
 import { useTradeListStore } from '@/stores/tradeList';
-
-const calendarOptions = {
-  plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-  initialView: 'dayGridMonth',
-  headerToolbar: {
-    left: 'prev',
-    center: 'title',
-    right: 'next',
-  },
-  themeSystem: 'bootstrap',
-  selectable: true,
-  weekends: true,
-  locale: 'ko',
-  select: () => {},
-};
+import Calender from '@/components/Calendar.vue';
 
 const tradeListStore = useTradeListStore();
 const tradeList = computed(() => {
