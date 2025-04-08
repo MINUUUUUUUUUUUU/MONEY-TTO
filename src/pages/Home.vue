@@ -97,50 +97,17 @@
       <!-- 카테고리 별 소비 분석 -->
       <div v-if="showCategory">
         <h3>카테고리 별 소비 분석</h3>
-        <div class="progress" style="height: 30px; position: relative">
+        <div class="progress" style="height: 3em; position: relative">
           <div
+            v-for="(category, index) in analysisExpense()"
+            :key="index"
             class="progress-bar"
             role="progressbar"
-            style="width: 22%; background-color: #ffce00"
-            aria-valuenow="22"
-            aria-valuemin="0"
-            aria-valuemax="100">
+            :style="{ width: category.percentage + '%' }">
             <span style="position: absolute; left: 5%; color: black"
-              >교육 22%</span
-            >
-          </div>
-          <div
-            class="progress-bar"
-            role="progressbar"
-            style="width: 44%; background-color: #ff8a3d"
-            aria-valuenow="44"
-            aria-valuemin="0"
-            aria-valuemax="100">
-            <span style="position: absolute; left: 30%; color: white"
-              >쇼핑 44%</span
-            >
-          </div>
-          <div
-            class="progress-bar"
-            role="progressbar"
-            style="width: 22%; background-color: #6cc24a"
-            aria-valuenow="22"
-            aria-valuemin="0"
-            aria-valuemax="100">
-            <span style="position: absolute; left: 60%; color: white"
-              >오락 22%</span
-            >
-          </div>
-          <div
-            class="progress-bar"
-            role="progressbar"
-            style="width: 22%; background-color: #ff5e57"
-            aria-valuenow="22"
-            aria-valuemin="0"
-            aria-valuemax="100">
-            <span style="position: absolute; left: 85%; color: white"
-              >교통 22%</span
-            >
+              >{{ category.category }}
+            </span>
+            <span>{{ category.percentage }}%</span>
           </div>
         </div>
       </div>
@@ -175,6 +142,10 @@ const calendarOptions = {
 const tradeListStore = useTradeListStore();
 const tradeList = computed(() => {
   return tradeListStore.tradeList;
+});
+
+const expenseList = computed(() => {
+  return tradeList.value.filter((trade) => trade.tradeType === '지출');
 });
 
 const monthlyIncome = computed(() => {
@@ -232,7 +203,34 @@ const sortedTradeList = (tradeList) => {
   });
 };
 
+const analysisExpense = () => {
+  const categories = expenseList.value.map((trade) => trade.tradeMethod);
+  const categoryCounts = {};
+  categories.forEach((category) => {
+    if (categoryCounts[category]) {
+      categoryCounts[category]++;
+    } else {
+      categoryCounts[category] = 1;
+    }
+  });
+  const totalCount = categories.length;
+  const categoryPercentages = Object.entries(categoryCounts).map(
+    ([category, count]) => {
+      return {
+        category,
+        percentage: (count / totalCount) * 100,
+      };
+    }
+  );
+  categoryPercentages.forEach((category) => {
+    category.percentage = Number(category.percentage);
+    console.log(category.percentage);
+  });
+  return categoryPercentages;
+};
+
 onMounted(async () => {
   await fetchTradeList();
+  analysisExpense();
 });
 </script>
