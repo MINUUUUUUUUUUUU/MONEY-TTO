@@ -9,5 +9,16 @@ export const useUserStore = defineStore('user', {
       return state.userId != null;
     },
   },
-  actions: {},
+  actions: {
+    hydrate() {
+      const storedUserId = sessionStorage.getItem('userId');
+      if (storedUserId) {
+        this.userId = storedUserId;
+      }
+    },
+    logout() {
+      this.userId = null;
+      sessionStorage.removeItem('userId');
+    },
+  },
 });
