@@ -17,10 +17,9 @@ button:hover {
 
 <template>
   <div
-    class="container d-flex justify-content-center align-items-center"
-    style="min-height: 100vh"
+    class="container min-vh-100 mb-5 d-flex justify-content-center align-items-center"
   >
-    <div class="w-100" style="max-width: 500px">
+    <div class="w-100">
       <div class="text-center mb-4">
         <img
           src="https://placehold.co/300x300"
@@ -28,19 +27,22 @@ button:hover {
           class="img-fluid"
         />
       </div>
-      <h2 class="text-center mb-4" @submit.prevent="handleRegister">
-        회원가입
-      </h2>
+      <h2 class="text-center mb-4">회원가입</h2>
       <form @submit.prevent="handleRegister">
         <div class="mb-3">
           <label for="email" class="form-label">이메일</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            v-model="email"
-            required
-          />
+          <div class="input-group">
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              v-model="email"
+              required
+            />
+            <button class="btn" type="button" @click="handleEmailCheck">
+              중복 확인
+            </button>
+          </div>
         </div>
 
         <div class="mb-3">
@@ -79,7 +81,7 @@ button:hover {
         <div class="mb-3">
           <label for="age" class="form-label">나이</label>
           <input
-            type="text"
+            type="number"
             id="age"
             class="form-control"
             v-model="userId"
@@ -104,7 +106,7 @@ button:hover {
 
 <script setup>
 import { ref } from 'vue';
-import { register } from '@/utils/auth-util.js';
+import { register, emailCheck } from '@/utils/auth-util.js';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -115,13 +117,18 @@ const confirmPassword = ref('');
 const nickname = ref('');
 const userId = ref('');
 
-const handleRegister = () => {
+const handleEmailCheck = async () => {
+  const result = await emailCheck(email.value);
+  alert(result.message);
+};
+
+const handleRegister = async () => {
   if (password.value !== confirmPassword.value) {
     alert('비밀번호가 일치하지 않습니다.');
     return;
   }
 
-  const result = register({
+  const result = await register({
     email: email.value,
     password: password.value,
     nickname: nickname.value,
@@ -130,7 +137,9 @@ const handleRegister = () => {
   });
 
   // 등록 처리 로직 (예: POST /users)
-  alert('회원가입 완료!');
-  router.push('/login');
+  alert(result.message);
+  if (result.success === true) {
+    router.push('/login');
+  }
 };
 </script>

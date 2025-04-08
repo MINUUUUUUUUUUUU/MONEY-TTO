@@ -34,7 +34,7 @@ a {
         <form @submit.prevent="handleLogin">
           <div class="mb-3">
             <label for="email" class="form-label">
-              <i class="fa-solid fa-user"></i> 사용자 ID:
+              <i class="fa-solid fa-user"></i> 이메일
             </label>
             <input
               id="email"
@@ -46,7 +46,7 @@ a {
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">
-              <i class="fa-solid fa-lock"></i> 비밀번호:
+              <i class="fa-solid fa-lock"></i> 비밀번호
             </label>
             <input
               id="password"

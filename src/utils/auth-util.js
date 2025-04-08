@@ -39,6 +39,29 @@ export const login = async (email, password) => {
   }
 };
 
+export const emailCheck = async (email) => {
+  const response = await axios.get(`${API_URL}/users`);
+  const users = response.data;
+
+  const emailExists = users.some((user) => user.email === email);
+  if (emailExists) {
+    return {
+      success: false,
+      message: '이미 존재하는 이메일입니다.',
+    };
+  } else {
+    return {
+      success: true,
+      message: '사용 가능한 이메일입니다.',
+    };
+  }
+} catch (error) {
+  return {
+    success: false,
+    message: '이메일 확인 중 오류가 발생했습니다.',
+  };
+};
+
 export const register = async ({ email, password, nickname, age, userId }) => {
   try {
     // 먼저 중복 사용자 체크
@@ -46,19 +69,11 @@ export const register = async ({ email, password, nickname, age, userId }) => {
     const users = response.data;
 
     const emailExists = users.some((user) => user.email === email);
-    const userIdExists = users.some((user) => user.userId === userId);
 
     if (emailExists) {
       return {
         success: false,
         message: '이미 존재하는 이메일입니다.',
-      };
-    }
-
-    if (userIdExists) {
-      return {
-        success: false,
-        message: '이미 존재하는 아이디입니다.',
       };
     }
 
@@ -68,8 +83,6 @@ export const register = async ({ email, password, nickname, age, userId }) => {
       password,
       nickname,
       age,
-      userId,
-      id: crypto.randomUUID(), // 고유 ID 생성 (JSON Server 용)
     };
 
     await axios.post(`${API_URL}/users`, newUser);

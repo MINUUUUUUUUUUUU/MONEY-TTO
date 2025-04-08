@@ -39,6 +39,20 @@
       "nickname": "사용자5",
       "age": 40,
       "id": "fdc5"
+    },
+    {
+      "userId": "6",
+      "email": "1@1",
+      "password": "1",
+      "nickname": "머니머니또",
+      "age": "20"
+    },
+    {
+      "id": "1e17",
+      "email": "user12@example.com",
+      "password": "user1@example.com",
+      "nickname": "1",
+      "age": "1"
     }
   ],
   "tradeList": [
