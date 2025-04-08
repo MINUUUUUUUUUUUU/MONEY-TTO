@@ -10,6 +10,9 @@
   >
     <div class="w-100 mt-5">
       <h2 class="text-center mb-4">회원 정보 수정</h2>
+      <p v-if="nickname" class="text-center mb-4">
+        {{ nickname }} 님, 안녕하세요.
+      </p>
       <form @submit.prevent="handleUpdate">
         <div class="mb-3">
           <label for="email" class="form-label">이메일</label>
@@ -64,7 +67,10 @@
           />
         </div>
 
-        <button type="submit" class="btn w-100">수정하기</button>
+        <div class="d-flex gap-2">
+          <router-link to="/" class="btn btn-secondary w-50">취소</router-link>
+          <button type="submit" class="btn w-50">수정하기</button>
+        </div>
       </form>
     </div>
   </div>
@@ -83,7 +89,8 @@ const router = useRouter();
 const alertMessage = ref('');
 const alertType = ref('info');
 
-const userId = ref(userStore.userId);
+const id = ref('');
+const userId = ref('');
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
@@ -98,14 +105,26 @@ const showAlert = (msg, type = 'info') => {
 // 사용자 정보 불러오기
 const fetchUserInfo = async () => {
   try {
-    console.log(userId.value);
+    userId.value = userStore.userId;
+
     const response = await axios.get(
       `http://localhost:3000/users?userId=${userId.value}`
     );
-    const user = response.data;
+
+    const user = response.data[0]; // 배열에서 첫 번째 사용자 정보 추출
+    console.log(user);
+
+    if (!user) {
+      showAlert('사용자 정보를 찾을 수 없습니다.', 'danger');
+      return;
+    }
+
+    id.value = user.id;
     email.value = user.email;
     nickname.value = user.nickname;
     age.value = user.age;
+    password.value = '';
+    confirmPassword.value = '';
   } catch (error) {
     showAlert('사용자 정보를 불러오는 데 실패했습니다.', 'danger');
   }
@@ -128,10 +147,7 @@ const handleUpdate = async () => {
       updateData.password = password.value;
     }
 
-    await axios.patch(
-      `http://localhost:3000/users/${userId.value}`,
-      updateData
-    );
+    await axios.patch(`http://localhost:3000/users/${id.value}`, updateData);
     showAlert('회원 정보가 성공적으로 수정되었습니다.', 'success');
     setTimeout(() => router.push('/'), 2000);
   } catch (error) {

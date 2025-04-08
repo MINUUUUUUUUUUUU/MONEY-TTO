@@ -5,42 +5,48 @@
       "email": "user1@example.com",
       "password": "password1",
       "nickname": "사용자1",
-      "age": 30
+      "age": 30,
+      "id": "e2c7"
     },
     {
       "userId": "2",
       "email": "user2@example.com",
       "password": "password2",
       "nickname": "사용자2",
-      "age": 25
+      "age": 25,
+      "id": "14f9"
     },
     {
       "userId": "3",
       "email": "user3@example.com",
       "password": "password3",
       "nickname": "사용자3",
-      "age": 28
+      "age": 28,
+      "id": "5068"
     },
     {
       "userId": "4",
       "email": "user4@example.com",
       "password": "password4",
       "nickname": "사용자4",
-      "age": 35
+      "age": 35,
+      "id": "0e11"
     },
     {
       "userId": "5",
       "email": "user5@example.com",
       "password": "password5",
       "nickname": "사용자5",
-      "age": 40
+      "age": 40,
+      "id": "d989"
     },
     {
       "userId": "6",
       "email": "1@1",
-      "password": "1",
-      "nickname": "머니머니또",
-      "age": "20"
+      "password": "1234",
+      "nickname": "수정된닉네임",
+      "age": "20",
+      "id": "6d33"
     },
     {
       "id": "1e17",
@@ -48,6 +54,36 @@
       "password": "user1@example.com",
       "nickname": "1",
       "age": "1"
+    },
+    {
+      "id": "4763",
+      "email": "12@1",
+      "password": "123",
+      "nickname": "1",
+      "age": "10"
+    },
+    {
+      "id": "5c29",
+      "email": "123@123",
+      "password": "1",
+      "nickname": "1",
+      "age": "1"
+    },
+    {
+      "id": "e12e",
+      "email": "1232@123",
+      "password": "123",
+      "nickname": "3123",
+      "age": "123",
+      "userId": 123
+    },
+    {
+      "id": "e2b1",
+      "email": "213@123",
+      "password": "abc1",
+      "nickname": "ㄴ기네",
+      "age": "22",
+      "userId": 22
     }
   ],
   "tradeList": [

@@ -148,7 +148,6 @@ const handleRegister = async () => {
     password: password.value,
     nickname: nickname.value,
     age: age.value,
-    userId: userId.value,
   });
 
   // 등록 처리 로직 (예: POST /users)

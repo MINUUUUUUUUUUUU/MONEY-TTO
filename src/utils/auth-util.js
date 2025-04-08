@@ -15,7 +15,7 @@ export const login = async (email, password) => {
 
     if (user) {
       // 로그인 성공: 세션 스토리지에 사용자 ID 저장
-      sessionStorage.setItem('userId', user.id);
+      sessionStorage.setItem('userId', user.userId);
       return {
         userId: user.userId,
         email: email,

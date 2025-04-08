@@ -14,6 +14,8 @@ export const useUserStore = defineStore('user', {
       const storedUserId = sessionStorage.getItem('userId');
       if (storedUserId) {
         this.userId = storedUserId;
+        console.log(storedUserId);
+        console.log(this.userId);
       }
     },
     logout() {
