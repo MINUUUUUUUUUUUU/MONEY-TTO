@@ -1,0 +1,316 @@
+{
+  "users": [
+    {
+      "userId": "1",
+      "email": "user1@example.com",
+      "password": "password1",
+      "nickname": "사용자1",
+      "age": 30
+    },
+    {
+      "userId": "2",
+      "email": "user2@example.com",
+      "password": "password2",
+      "nickname": "사용자2",
+      "age": 25
+    },
+    {
+      "userId": "3",
+      "email": "user3@example.com",
+      "password": "password3",
+      "nickname": "사용자3",
+      "age": 28
+    },
+    {
+      "userId": "4",
+      "email": "user4@example.com",
+      "password": "password4",
+      "nickname": "사용자4",
+      "age": 35
+    },
+    {
+      "userId": "5",
+      "email": "user5@example.com",
+      "password": "password5",
+      "nickname": "사용자5",
+      "age": 40
+    }
+  ],
+  "tradeList": [
+    {
+      "tradeId": "1",
+      "tradeType": "수입",
+      "tradeAmount": 500000,
+      "incomeCategory": "1",
+      "tradeDate": "2025-04-01",
+      "tradeDescription": "3월 급여 입금",
+      "userId": "1"
+    },
+    {
+      "tradeId": "2",
+      "tradeType": "지출",
+      "tradeAmount": 15000,
+      "expenseCategory": "2",
+      "tradeDate": "2025-04-02",
+      "tradeMethod": "카드",
+      "tradeDescription": "점심 식사",
+      "userId": "1"
+    },
+    {
+      "tradeId": "3",
+      "tradeType": "지출",
+      "tradeAmount": 20000,
+      "expenseCategory": "6",
+      "tradeDate": "2025-04-03",
+      "tradeMethod": "현금",
+      "tradeDescription": "택시비",
+      "userId": "2"
+    },
+    {
+      "tradeId": "4",
+      "tradeType": "수입",
+      "tradeAmount": 300000,
+      "incomeCategory": "급여",
+      "tradeDate": "2025-04-01",
+      "tradeDescription": "3월 급여 입금",
+      "userId": "3"
+    },
+    {
+      "tradeId": "5",
+      "tradeType": "지출",
+      "tradeAmount": 50000,
+      "expenseCategory": "3",
+      "tradeDate": "2025-04-04",
+      "tradeMethod": "카드",
+      "tradeDescription": "월세 납부",
+      "userId": "4"
+    },
+    {
+      "tradeId": "6",
+      "tradeType": "지출",
+      "tradeAmount": 12000,
+      "expenseCategory": "2",
+      "tradeDate": "2025-04-05",
+      "tradeMethod": "현금",
+      "tradeDescription": "저녁 식사",
+      "userId": "5"
+    },
+    {
+      "tradeId": "7",
+      "tradeType": "지출",
+      "tradeAmount": 8000,
+      "expenseCategory": "5",
+      "tradeDate": "2025-04-06",
+      "tradeMethod": "카드",
+      "tradeDescription": "영화 관람",
+      "userId": "1"
+    },
+    {
+      "tradeId": "8",
+      "tradeType": "수입",
+      "tradeAmount": 200000,
+      "incomeCategory": "상여금",
+      "tradeDate": "2025-04-07",
+      "tradeDescription": "프로젝트 보너스",
+      "userId": "2"
+    },
+    {
+      "tradeId": "9",
+      "tradeType": "지출",
+      "tradeAmount": 30000,
+      "expenseCategory": "7",
+      "tradeDate": "2025-04-08",
+      "tradeMethod": "계좌이체",
+      "tradeDescription": "인터넷 요금",
+      "userId": "3"
+    },
+    {
+      "tradeId": "10",
+      "tradeType": "지출",
+      "tradeAmount": 10000,
+      "expenseCategory": "2",
+      "tradeDate": "2025-04-09",
+      "tradeMethod": "카드",
+      "tradeDescription": "아침 식사",
+      "userId": "4"
+    },
+    {
+      "tradeId": "11",
+      "tradeType": "수입",
+      "tradeAmount": 250000,
+      "incomeCategory": "급여",
+      "tradeDate": "2025-04-01",
+      "tradeDescription": "3월 급여 입금",
+      "userId": "5"
+    },
+    {
+      "tradeId": "12",
+      "tradeType": "지출",
+      "tradeAmount": 60000,
+      "expenseCategory": "3",
+      "tradeDate": "2025-04-10",
+      "tradeMethod": "카드",
+      "tradeDescription": "관리비 납부",
+      "userId": "1"
+    },
+    {
+      "tradeId": "13",
+      "tradeType": "지출",
+      "tradeAmount": 15000,
+      "expenseCategory": "6",
+      "tradeDate": "2025-04-11",
+      "tradeMethod": "현금",
+      "tradeDescription": "버스카드 충전",
+      "userId": "2"
+    },
+    {
+      "tradeId": "14",
+      "tradeType": "수입",
+      "tradeAmount": 100000,
+      "incomeCategory": "4",
+      "tradeDate": "2025-04-12",
+      "tradeDescription": "주식 배당금",
+      "userId": "5"
+    }
+  ],
+  "tradeTotal": [
+    {
+      "tradeTotalId": "1",
+      "tradeTotalAmount": 520000,
+      "tradeTotalMonth": 4,
+      "userId": "1"
+    },
+    {
+      "tradeTotalId": "2",
+      "tradeTotalAmount": 180000,
+      "tradeTotalMonth": 4,
+      "userId": "2"
+    },
+    {
+      "tradeTotalId": "3",
+      "tradeTotalAmount": 270000,
+      "tradeTotalMonth": 4,
+      "userId": "3"
+    },
+    {
+      "tradeTotalId": "4",
+      "tradeTotalAmount": 45000,
+      "tradeTotalMonth": 4,
+      "userId": "4"
+    },
+    {
+      "tradeTotalId": "5",
+      "tradeTotalAmount": 238000,
+      "tradeTotalMonth": 4,
+      "userId": "5"
+    },
+    {
+      "tradeTotalId": "6",
+      "tradeTotalAmount": 310000,
+      "tradeTotalMonth": 3,
+      "userId": "1"
+    },
+    {
+      "tradeTotalId": "7",
+      "tradeTotalAmount": 150000,
+      "tradeTotalMonth": 3,
+      "userId": "2"
+    },
+    {
+      "tradeTotalId": "8",
+      "tradeTotalAmount": 290000,
+      "tradeTotalMonth": 3,
+      "userId": "3"
+    },
+    {
+      "tradeTotalId": "9",
+      "tradeTotalAmount": 50000,
+      "tradeTotalMonth": 3,
+      "userId": "4"
+    },
+    {
+      "tradeTotalId": "10",
+      "tradeTotalAmount": 220000,
+      "tradeTotalMonth": 3,
+      "userId": "5"
+    }
+  ],
+
+  "tradeType": [
+    {
+      "type": "수입"
+    },
+    {
+      "type": "지출"
+    }
+  ],
+
+  "tradeMethod": [
+    {
+      "method": "현금"
+    },
+    {
+      "method": "신용카드"
+    },
+    {
+      "method": "계좌이체"
+    },
+    {
+      "method": "체크카드"
+    }
+  ],
+
+  "incomeCategory": [
+    {
+      "id": "1",
+      "category": "급여"
+    },
+    {
+      "id": "2",
+      "category": "용돈"
+    },
+    {
+      "id": "3",
+      "category": "상여금"
+    },
+    {
+      "id": "4",
+      "category": "기타 수입"
+    }
+  ],
+
+  "expenseCategory": [
+    {
+      "id": "1",
+      "category": "세금"
+    },
+    {
+      "id": "2",
+      "category": "식비"
+    },
+    {
+      "id": "3",
+      "category": "주거"
+    },
+    {
+      "id": "4",
+      "category": "보건"
+    },
+    {
+      "id": "5",
+      "category": "오락"
+    },
+    {
+      "id": "6",
+      "category": "교통"
+    },
+    {
+      "id": "7",
+      "category": "통신"
+    },
+    {
+      "id": "8",
+      "category": "저축"
+    }
+  ]
+}
