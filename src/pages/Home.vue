@@ -30,8 +30,7 @@
               class="nav-link"
               :class="{ active: showMonthly }"
               href="#"
-              @click.prevent="showMonthlyAnalysis"
-            >
+              @click.prevent="showMonthlyAnalysis">
               월별 소비 분석
             </a>
           </li>
@@ -40,8 +39,7 @@
               class="nav-link"
               :class="{ active: showCategory }"
               href="#"
-              @click.prevent="showCategoryAnalysis"
-            >
+              @click.prevent="showCategoryAnalysis">
               카테고리 별 소비 분석
             </a>
           </li>
@@ -52,16 +50,14 @@
       <div v-if="showMonthly" class="list-group">
         <div
           v-if="tradeList.length === 0"
-          class="list-group-item d-flex justify-content-center align-items-center"
-        >
+          class="list-group-item d-flex justify-content-center align-items-center">
           <span>불러오는 중...</span>
         </div>
         <div
           v-else
           v-for="trade in tradeList"
           :key="trade.tradeId"
-          class="list-group-item d-flex justify-content-between align-items-center"
-        >
+          class="list-group-item d-flex justify-content-between align-items-center">
           <div>
             <h6 class="mb-1">{{ trade.tradeDate }}</h6>
             <div class="text-muted">{{ trade.tradeType }}</div>
@@ -70,8 +66,7 @@
             :class="{
               'text-success': trade.tradeType == '수입',
               'text-danger': trade.tradeType == '지출',
-            }"
-          >
+            }">
             {{ trade.tradeAmount }}
           </span>
         </div>
@@ -86,8 +81,7 @@
             :key="index"
             class="progress-bar"
             role="progressbar"
-            :style="{ width: category.percentage + '%' }"
-          >
+            :style="{ width: category.percentage + '%' }">
             <span>{{ category.category }} </span>
             <span>{{ category.percentage }}%</span>
           </div>
@@ -97,8 +91,7 @@
     <button
       class="btn btn-success btn-lg rounded-circle position-fixed fs-2 size-2 d-flex justify-content-center align-items-center z-3 shadow-sm"
       style="bottom: 3rem; right: 3rem"
-      @click="navToTradeAdd"
-    >
+      @click="navToTradeAdd">
       +
     </button>
   </div>
@@ -162,10 +155,9 @@ const fetchUserNickName = async (userId) => {
 };
 
 // 거래 내역 가져오기
-const fetchTradeList = async () => {
+const fetchTradeList = async (userId) => {
   try {
     // [FIXME] 로그인 기능 이후 userId값을 받아오는 것으로 수정 필요
-    const userId = '1';
     const response = await axios.get('http://localhost:3000/tradeList');
     const filteredTradeList = response.data.filter(
       (trade) => trade.userId === userId
@@ -221,8 +213,8 @@ const navToTradeAdd = () => {
 };
 
 onMounted(async () => {
-  await fetchTradeList();
+  await fetchTradeList('1');
   analysisExpense();
-  fetchUserNickName(1);
+  fetchUserNickName('1');
 });
 </script>
