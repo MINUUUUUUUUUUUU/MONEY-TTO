@@ -42,41 +42,7 @@
     </div>
 
     <!-- 달력 -->
-    <div class="w-100 d-flex flex-column align-items-center mb-4">
-      <div class="d-flex justify-content- align-items-center mb-2">
-        <button class="btn btn-sm btn-outline-secondary" @click="prevMonth">
-          &lt;
-        </button>
-        <h3>{{ currentMonth + 1 }} 월</h3>
-        <button class="btn btn-sm btn-outline-secondary" @click="nextMonth">
-          &gt;
-        </button>
-      </div>
-
-      <!-- 캘린더  -->
-      <table class="table table-bordered table-sm text-center">
-        <thead>
-          <th>일</th>
-          <th>월</th>
-          <th>화</th>
-          <th>수</th>
-          <th>목</th>
-          <th>금</th>
-          <th>토</th>
-        </thead>
-        <tbody>
-          <tr v-for="(week, index) in calendarRows" :key="index">
-            <td class="" v-for="(day, index) in week">
-              <div class="d-flex flex-column align-items-center">
-                <span>{{ day }}</span>
-                <span v-if="day">수입</span>
-                <span v-if="day">지출</span>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <FullCalendar :options="calendarOptions" />
 
     <!-- 분석 탭 -->
     <div>
@@ -173,7 +139,22 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import FullCalendar from '@fullcalendar/vue3'; // fullcalendar import
+import dayGridPlugin from '@fullcalendar/daygrid'; // 날짜
+import timeGridPlugin from '@fullcalendar/timegrid'; // 시간 그리드 플러그인 추가
+import interactionPlugin from '@fullcalendar/interaction';
+import { ref, reactive, onMounted } from 'vue';
+// import axios from 'axios';
+
+const calendarOptions = {
+  plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+  initialView: 'dayGridMonth',
+  headerToolbar: {
+    left: 'prev,next today',
+    center: 'title',
+    right: 'dayGridMonth,timeGridWeek,timeGridDay',
+  },
+};
 
 const showMonthly = ref(false);
 const showCategory = ref(true);
@@ -186,59 +167,4 @@ const showCategoryAnalysis = () => {
   showMonthly.value = false;
   showCategory.value = true;
 };
-
-// 캘린더 데이터 가져오기
-const date = new Date();
-const currentMonth = ref(date.getMonth());
-const currentYear = ref(date.getFullYear());
-
-const prevMonth = () => {
-  currentMonth.value = date.getMonth() - 1;
-  date.setMonth(date.getMonth() - 1);
-  if (currentMonth.value < 0) {
-    currentMonth.value = 11;
-    currentYear.value -= 1;
-  }
-  console.log(currentMonth.value);
-  console.log(calendarRows);
-  console.log(currentYear.value);
-};
-
-const nextMonth = () => {
-  currentMonth.value = date.getMonth() + 1;
-  date.setMonth(date.getMonth() + 1);
-  if (currentMonth.value > 11) {
-    currentMonth.value = 0;
-    currentYear.value += 1;
-  }
-  console.log(currentMonth.value);
-};
-
-const getDaysInMonth = (year, month) => {
-  return new Date(year, month, 0).getDate();
-};
-
-const getFirstDayOfMonth = (year, month) => {
-  return new Date(year, month - 1, 1).getDay();
-};
-
-const daysInMonth = getDaysInMonth(currentYear.value, currentMonth.value);
-
-const firstDayOfMonth = getFirstDayOfMonth(
-  currentYear.value,
-  currentMonth.value
-);
-
-const calendar = reactive({
-  days: Array.from({ length: daysInMonth }, (_, i) => i + 1),
-  firstDay: firstDayOfMonth,
-});
-
-// 매달 일 수 계산
-const calendarRows = [];
-for (let i = 0; i < Math.ceil((daysInMonth + firstDayOfMonth) / 7); i++) {
-  const weekStart = i * 7;
-  const weekEnd = weekStart + 7;
-  calendarRows.push(calendar.days.slice(weekStart, weekEnd));
-}
 </script>
