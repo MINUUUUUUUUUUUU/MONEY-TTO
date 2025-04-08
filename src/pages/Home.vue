@@ -143,17 +143,22 @@ import FullCalendar from '@fullcalendar/vue3'; // fullcalendar import
 import dayGridPlugin from '@fullcalendar/daygrid'; // 날짜
 import timeGridPlugin from '@fullcalendar/timegrid'; // 시간 그리드 플러그인 추가
 import interactionPlugin from '@fullcalendar/interaction';
-import { ref, reactive, onMounted } from 'vue';
+import { ref } from 'vue';
 // import axios from 'axios';
 
 const calendarOptions = {
   plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
   initialView: 'dayGridMonth',
   headerToolbar: {
-    left: 'prev,next today',
+    left: 'prev',
     center: 'title',
-    right: 'dayGridMonth,timeGridWeek,timeGridDay',
+    right: 'next',
   },
+  themeSystem: 'bootstrap',
+  selectable: true,
+  weekends: true,
+  locale: 'ko',
+  select: () => {},
 };
 
 const showMonthly = ref(false);
