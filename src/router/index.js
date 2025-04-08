@@ -18,11 +18,11 @@ const router = createRouter({
       name: 'login',
       component: () => import('../pages/Login.vue'),
     },
-    // {
-    //   path: '/register',
-    //   name: 'register',
-    //   component: () => import('../pages/Register.vue'),
-    // },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../pages/Register.vue'),
+    },
 
     // // 거래 추가 페이지
     // {
@@ -62,11 +62,26 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
 
-  if (to.path !== '/login' && !userStore.isLoggedIn) {
+  if (
+    (to.path === '/login' || to.path === '/register') &&
+    !userStore.isLoggedIn
+  ) {
+    next();
+  }
+  // 로그인하지 않았고, 접근하려는 경로가 로그인/회원가입이 아니면 로그인 페이지로 리다이렉트
+  else if (
+    !userStore.isLoggedIn &&
+    to.path !== '/login' &&
+    to.path !== '/register'
+  ) {
     next('/login');
-  } else if (to.path === '/login' && userStore.isLoggedIn) {
+  }
+  // 로그인한 사용자가 로그인 페이지에 접근하려고 하면 홈으로 리다이렉트
+  else if (to.path === '/login' && userStore.isLoggedIn) {
     next('/');
-  } else {
+  }
+  // 그 외는 정상 라우팅
+  else {
     next();
   }
 });

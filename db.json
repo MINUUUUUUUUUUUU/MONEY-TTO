@@ -39,61 +39,6 @@
       "nickname": "사용자5",
       "age": 40,
       "id": "fdc5"
-    },
-    {
-      "id": "26d5",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "1a3c",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "2096",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "4e05",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "7e1e",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "3c71",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "7b4b",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "8626",
-      "email": "2131",
-      "password": "123123123"
-    },
-    {
-      "id": "7f13",
-      "email": "3151",
-      "password": "1515151515"
-    },
-    {
-      "id": "cb52",
-      "email": "user1@example.com",
-      "password": "password1"
-    },
-    {
-      "id": "6f2b",
-      "email": "user1@example.com",
-      "password": "password1"
     }
   ],
   "tradeList": [

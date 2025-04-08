@@ -1,45 +1,77 @@
-<template>
-  <div class="container">
-    <div class="d-flex flex-column">
-      <div class="align-items-center">
-        <img src="https://placehold.co/300x300" alt="샘플이미지" />
-      </div>
-
-      <br />
-      <div class="col-md-6">
-        <label for="email"><i class="fa-solid fa-user"></i> 사용자 ID:</label>
-        <input
-          id="email"
-          class="form-control mt-3 mb-3 rounded"
-          v-model="email"
-        />
-        <label for="password"><i class="fa-solid fa-lock"></i> 비밀번호:</label>
-        <input
-          id="password"
-          class="form-control mb-3 rounded"
-          v-model="password"
-        />
-        <div class="d-grid gap-3">
-          <button type="button" class="btn" @click="handleLogin">
-            <i class="fa-solid fa-right-to-bracket"></i> 로그인
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
 <style scoped>
+* {
+  transition: all 0.3s ease;
+}
+
 button {
   background-color: #ff8a3d;
   color: white;
 }
 
 button:hover {
-  filter: brightness(0.8);
+  filter: brightness(1.2);
   color: white;
   background-color: #ff8a3d;
 }
+
+a {
+  text-decoration-color: #6c757d;
+}
 </style>
+<template>
+  <div
+    class="container min-vh-100 d-flex justify-content-center align-items-center"
+  >
+    <div class="row justify-content-center w-100">
+      <div class="col-8">
+        <div class="text-center mb-4">
+          <img
+            src="https://placehold.co/300x300"
+            alt="샘플이미지"
+            class="img-fluid"
+          />
+        </div>
+        <form @submit.prevent="handleLogin">
+          <div class="mb-3">
+            <label for="email" class="form-label">
+              <i class="fa-solid fa-user"></i> 사용자 ID:
+            </label>
+            <input
+              id="email"
+              type="email"
+              class="form-control"
+              v-model="email"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">
+              <i class="fa-solid fa-lock"></i> 비밀번호:
+            </label>
+            <input
+              id="password"
+              type="password"
+              class="form-control"
+              v-model="password"
+              required
+            />
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn">
+              <i class="fa-solid fa-right-to-bracket"></i> 로그인
+            </button>
+          </div>
+          <div class="mt-5 text-center">
+            <router-link to="/register" class="btn btn-link">
+              <p class="text-secondary">회원이 아니신가요?</p>
+            </router-link>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -53,8 +85,8 @@ const userStore = useUserStore();
 
 const handleLogin = async () => {
   const result = await login(email.value, password.value);
-  // console.log(result.success);
   console.log(result);
+
   if (result.success) {
     userStore.userId = result.userId;
     await router.push('/');
