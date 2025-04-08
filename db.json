@@ -5,40 +5,35 @@
       "email": "user1@example.com",
       "password": "password1",
       "nickname": "사용자1",
-      "age": 30,
-      "id": "af38"
+      "age": 30
     },
     {
       "userId": "2",
       "email": "user2@example.com",
       "password": "password2",
       "nickname": "사용자2",
-      "age": 25,
-      "id": "c037"
+      "age": 25
     },
     {
       "userId": "3",
       "email": "user3@example.com",
       "password": "password3",
       "nickname": "사용자3",
-      "age": 28,
-      "id": "6da3"
+      "age": 28
     },
     {
       "userId": "4",
       "email": "user4@example.com",
       "password": "password4",
       "nickname": "사용자4",
-      "age": 35,
-      "id": "d49b"
+      "age": 35
     },
     {
       "userId": "5",
       "email": "user5@example.com",
       "password": "password5",
       "nickname": "사용자5",
-      "age": 40,
-      "id": "fdc5"
+      "age": 40
     },
     {
       "userId": "6",

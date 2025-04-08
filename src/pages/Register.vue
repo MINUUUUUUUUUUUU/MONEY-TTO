@@ -16,10 +16,16 @@ button:hover {
 </style>
 
 <template>
+  <BaseAlert
+    v-if="alertMessage"
+    :message="alertMessage"
+    :type="alertType"
+    :duration="3000"
+  />
   <div
     class="container min-vh-100 mb-5 d-flex justify-content-center align-items-center"
   >
-    <div class="w-100">
+    <div class="w-100 mt-5">
       <div class="text-center mb-4">
         <img
           src="https://placehold.co/300x300"
@@ -108,8 +114,12 @@ button:hover {
 import { ref } from 'vue';
 import { register, emailCheck } from '@/utils/auth-util.js';
 import { useRouter } from 'vue-router';
+import BaseAlert from '@/components/BaseAlert.vue';
 
 const router = useRouter();
+
+const alertMessage = ref('');
+const alertType = ref('info');
 
 const email = ref('');
 const password = ref('');
@@ -117,14 +127,19 @@ const confirmPassword = ref('');
 const nickname = ref('');
 const userId = ref('');
 
+const showAlert = (msg, type = 'info') => {
+  alertMessage.value = msg;
+  alertType.value = type;
+};
+
 const handleEmailCheck = async () => {
   const result = await emailCheck(email.value);
-  alert(result.message);
+  showAlert(result.message);
 };
 
 const handleRegister = async () => {
   if (password.value !== confirmPassword.value) {
-    alert('비밀번호가 일치하지 않습니다.');
+    showAlert('비밀번호가 일치하지 않습니다', 'danger');
     return;
   }
 
@@ -137,7 +152,7 @@ const handleRegister = async () => {
   });
 
   // 등록 처리 로직 (예: POST /users)
-  alert(result.message);
+  showAlert(result.message, 'success');
   if (result.success === true) {
     router.push('/login');
   }

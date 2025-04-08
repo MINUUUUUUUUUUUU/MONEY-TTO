@@ -43,12 +43,12 @@ const router = createRouter({
     //   component: () => import('../pages/EditTrade.vue'),
     // },
 
-    // // 사용자 정보 수정
-    // {
-    //   path: '/profile/edit',
-    //   name: 'editProfile',
-    //   component: () => import('../pages/EditProfile.vue'),
-    // },
+    // 사용자 정보 수정
+    {
+      path: '/profile/edit',
+      name: 'editProfile',
+      component: () => import('../pages/EditProfile.vue'),
+    },
 
     // // Not Found
     // {

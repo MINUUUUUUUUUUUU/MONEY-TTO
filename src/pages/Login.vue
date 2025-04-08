@@ -19,16 +19,22 @@ a {
 }
 </style>
 <template>
+  <BaseAlert
+    v-if="alertMessage"
+    :message="alertMessage"
+    :type="alertType"
+    :duration="3000"
+  />
   <div
     class="container min-vh-100 d-flex justify-content-center align-items-center"
   >
-    <div class="row justify-content-center w-100">
+    <div class="row justify-content-center w-100 mt-5">
       <div class="col-8">
-        <div class="text-center mb-4">
+        <div class="text-center">
           <img
             src="https://placehold.co/300x300"
             alt="샘플이미지"
-            class="img-fluid"
+            class="img-fluid mb-5"
           />
         </div>
         <form @submit.prevent="handleLogin">
@@ -77,11 +83,20 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { login } from '@/utils/auth-util.js';
 import { useUserStore } from '@/stores/user-store';
+import BaseAlert from '@/components/BaseAlert.vue';
 
 const email = ref('');
 const password = ref('');
 const router = useRouter();
 const userStore = useUserStore();
+
+const alertMessage = ref('');
+const alertType = ref('info');
+
+const showAlert = (msg, type = 'info') => {
+  alertMessage.value = msg;
+  alertType.value = type;
+};
 
 const handleLogin = async () => {
   const result = await login(email.value, password.value);
@@ -91,7 +106,7 @@ const handleLogin = async () => {
     userStore.userId = result.userId;
     await router.push('/');
   } else {
-    alert('로그인 실패: ' + result.message);
+    showAlert(result.message, 'danger');
   }
 };
 </script>

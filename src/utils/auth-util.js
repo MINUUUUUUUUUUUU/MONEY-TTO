@@ -55,11 +55,6 @@ export const emailCheck = async (email) => {
       message: '사용 가능한 이메일입니다.',
     };
   }
-} catch (error) {
-  return {
-    success: false,
-    message: '이메일 확인 중 오류가 발생했습니다.',
-  };
 };
 
 export const register = async ({ email, password, nickname, age, userId }) => {
