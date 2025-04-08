@@ -100,11 +100,18 @@
         </div>
       </div>
     </div>
+    <button
+      class="btn btn-success btn-lg rounded-circle position-fixed fs-2 size-2 d-flex justify-content-center align-items-center z-3 shadow-sm"
+      style="bottom: 3rem; right: 3rem"
+      @click="navToTradeAdd">
+      +
+    </button>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { useTradeListStore } from '@/stores/tradeList';
 import Calender from '@/components/Calendar.vue';
@@ -196,6 +203,11 @@ const analysisExpense = () => {
     category.percentage = Number(category.percentage).toFixed(1);
   });
   return categoryPercentages;
+};
+
+const route = useRouter();
+const navToTradeAdd = () => {
+  route.push('/trade/add');
 };
 
 onMounted(async () => {
