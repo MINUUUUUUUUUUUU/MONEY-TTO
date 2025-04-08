@@ -16,7 +16,13 @@ export const login = async (email, password) => {
     if (user) {
       // 로그인 성공: 세션 스토리지에 사용자 ID 저장
       sessionStorage.setItem('userId', user.id);
-      return { success: true };
+      return {
+        userId: user.userId,
+        email: email,
+        nickname: user.nickname,
+        age: user.age,
+        success: true,
+      };
     } else {
       // 로그인 실패: 일치하는 사용자 없음
       return {

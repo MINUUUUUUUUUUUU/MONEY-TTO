@@ -54,8 +54,9 @@ const userStore = useUserStore();
 const handleLogin = async () => {
   const result = await login(email.value, password.value);
   // console.log(result.success);
+  console.log(result);
   if (result.success) {
-    userStore.userId = '1';
+    userStore.userId = result.userId;
     await router.push('/');
   } else {
     alert('로그인 실패: ' + result.message);
