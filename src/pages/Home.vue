@@ -34,10 +34,9 @@
         <h1 style="font-size: 18px; font-weight: bold; margin-bottom: 8px">
           4 월 소비
         </h1>
-        <p style="margin: 0; color: #757575">수입 : + 123,456</p>
-        <p style="margin: 0; color: #ff5722; font-weight: bold">
-          지출 : - 32,600
-        </p>
+        <hr />
+        <p style="color: #757575">수입 : {{ monthlyIncome }} 원</p>
+        <p style="color: #ff5722">지출 : - {{ monthlyExpense }} 원</p>
       </div>
     </div>
 
@@ -177,6 +176,21 @@ const tradeListStore = useTradeListStore();
 const tradeList = computed(() => {
   return tradeListStore.tradeList;
 });
+
+const monthlyIncome = computed(() => {
+  return tradeList.value
+    .filter((trade) => trade.tradeType === '수입')
+    .reduce((acc, trade) => acc + trade.tradeAmount, 0)
+    .toLocaleString();
+});
+
+const monthlyExpense = computed(() => {
+  return tradeList.value
+    .filter((trade) => trade.tradeType === '지출')
+    .reduce((acc, trade) => acc + trade.tradeAmount, 0)
+    .toLocaleString();
+});
+
 const { handleTradeList } = tradeListStore;
 
 // 탭과 관련된 상태 관리
