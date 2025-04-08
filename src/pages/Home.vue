@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="d-flex flex-column card p-3 shadow-sm">
-        <div class="fw-bold fs-4">4 월 소비</div>
+        <div class="fw-bold fs-4">{{ currentMonth }} 월 소비</div>
         <hr />
         <p class="text-success">수입 : {{ monthlyIncome }} 원</p>
         <p class="text-danger">지출 : - {{ monthlyExpense }} 원</p>
@@ -102,6 +102,7 @@ import { onMounted, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { useTradeListStore } from '@/stores/tradeList';
+import { useCalendarStore } from '@/stores/calendar';
 import Calender from '@/components/Calendar.vue';
 
 const nickname = ref('');
@@ -129,6 +130,10 @@ const monthlyExpense = computed(() => {
 });
 
 const { handleTradeList } = tradeListStore;
+
+// [년도,월] 상태 관리
+const calendarStore = useCalendarStore();
+const currentMonth = computed(() => calendarStore.currentMonth);
 
 // 탭과 관련된 상태 관리
 const showMonthly = ref(true);

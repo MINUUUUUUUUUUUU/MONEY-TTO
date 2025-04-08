@@ -9,6 +9,10 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { useTradeListStore } from '@/stores/tradeList';
 import { computed, reactive, watch } from 'vue';
+import { useCalendarStore } from '@/stores/calendar';
+
+const calendarStore = useCalendarStore();
+const { handleMonth } = calendarStore;
 
 const tradeListStore = useTradeListStore();
 const tradeList = computed(() => tradeListStore.tradeList);
@@ -44,6 +48,10 @@ const calendarOptions = reactive({
   firstDay: 0,
   locale: 'ko',
   events: [],
+  datesSet: (arg) => {
+    const date = new Date(arg.view.currentStart);
+    handleMonth(date.getMonth());
+  },
 });
 
 // tradeList를 감시하면서 캘린더에 넣을 이벤트로 변환
