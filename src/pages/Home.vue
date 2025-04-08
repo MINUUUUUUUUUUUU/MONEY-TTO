@@ -1,5 +1,4 @@
 <template>
-  <!-- [FIX]  스타일 적용 방식 수정 필요-->
   <div class="container">
     <header
       class="d-flex align-items-center mb-4 justify-content-between"
@@ -13,12 +12,13 @@
       <button class="btn">버튼</button>
     </header>
 
+    <!-- 회원 환영 표시 및  -->
     <div class="mb-4">
       <div style="text-align: start">
         <div class="fs-5 text-success fw-bold">
-          <a href="/" style="color: #4caf50; text-decoration: underline"
-            >머니또</a
-          >
+          <a href="/" style="color: #4caf50; text-decoration: underline">
+            {{ nickname }}
+          </a>
           님, 안녕하세요
         </div>
       </div>
@@ -116,6 +116,7 @@ import axios from 'axios';
 import { useTradeListStore } from '@/stores/tradeList';
 import Calender from '@/components/Calendar.vue';
 
+const nickname = ref('');
 const tradeListStore = useTradeListStore();
 const tradeList = computed(() => {
   return tradeListStore.tradeList;
@@ -154,6 +155,17 @@ const showCategoryAnalysis = () => {
   showCategory.value = true;
 };
 
+// 회원 닉네임 가져오기
+const fetchUserNickName = async (userId) => {
+  try {
+    const response = await axios.get(`http://localhost:3000/users`);
+    const user = response.data.filter((user) => user.userId == userId);
+    nickname.value = user[0].nickname;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // 거래 내역 가져오기
 const fetchTradeList = async () => {
   try {
@@ -172,6 +184,7 @@ const fetchTradeList = async () => {
   }
 };
 
+// 거래 내역을 날짜 기준으로 내림차순 정렬
 const sortedTradeList = (tradeList) => {
   return tradeList.sort((a, b) => {
     const dateA = Number(a.tradeDate.split('-').join(''));
@@ -180,6 +193,7 @@ const sortedTradeList = (tradeList) => {
   });
 };
 
+// 카테고리 별 소비 분석
 const analysisExpense = () => {
   const categories = expenseList.value.map((trade) => trade.tradeMethod);
   const categoryCounts = {};
@@ -206,6 +220,7 @@ const analysisExpense = () => {
 };
 
 const route = useRouter();
+// 거래 추가 페이지로 이동
 const navToTradeAdd = () => {
   route.push('/trade/add');
 };
@@ -213,5 +228,6 @@ const navToTradeAdd = () => {
 onMounted(async () => {
   await fetchTradeList();
   analysisExpense();
+  fetchUserNickName(1);
 });
 </script>
