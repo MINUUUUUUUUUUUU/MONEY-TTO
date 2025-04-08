@@ -45,7 +45,7 @@
     <FullCalendar :options="calendarOptions" />
 
     <!-- 분석 탭 -->
-    <div>
+    <div class="mt-4">
       <div class="tabs mb-3">
         <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -70,17 +70,28 @@
       </div>
 
       <!-- 월 별 소비 분석 -->
-      <div v-if="showMonthly">
-        <h3>월별 소비 분석</h3>
-        <p>123,450 원</p>
-        <div class="progress">
-          <div
-            class="progress-bar bg-primary"
-            role="progressbar"
-            style="width: 25%"
-            aria-valuenow="25"
-            aria-valuemin="0"
-            aria-valuemax="100"></div>
+      <div v-if="showMonthly" class="list-group">
+        <div
+          v-if="tradeList.length === 0"
+          class="list-group-item d-flex justify-content-center align-items-center">
+          <span>불러오는 중...</span>
+        </div>
+        <div
+          v-else
+          v-for="trade in tradeList"
+          :key="trade.tradeId"
+          class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="mb-1">{{ trade.tradeDate }}</h6>
+            <div class="text-muted">{{ trade.tradeType }}</div>
+          </div>
+          <span
+            :class="{
+              'text-success': trade.tradeAmount > 0,
+              'text-danger': trade.tradeAmount < 0,
+            }">
+            {{ trade.tradeAmount }}
+          </span>
         </div>
       </div>
 
@@ -143,8 +154,9 @@ import FullCalendar from '@fullcalendar/vue3';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { ref } from 'vue';
-// import axios from 'axios';
+import { onMounted, ref, computed } from 'vue';
+import axios from 'axios';
+import { useTradeListStore } from '@/stores/tradeList';
 
 const calendarOptions = {
   plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
@@ -161,8 +173,15 @@ const calendarOptions = {
   select: () => {},
 };
 
-const showMonthly = ref(false);
-const showCategory = ref(true);
+const tradeListStore = useTradeListStore();
+const tradeList = computed(() => {
+  return tradeListStore.tradeList;
+});
+const { handleTradeList } = tradeListStore;
+
+// 탭과 관련된 상태 관리
+const showMonthly = ref(true);
+const showCategory = ref(false);
 
 const showMonthlyAnalysis = () => {
   showMonthly.value = true;
@@ -172,4 +191,25 @@ const showCategoryAnalysis = () => {
   showMonthly.value = false;
   showCategory.value = true;
 };
+
+// 거래 내역 가져오기
+const fetchTradeList = async () => {
+  try {
+    // [FIXME] 로그인 기능 이후 userId값을 받아오는 것으로 수정 필요
+    const userId = '1';
+    const response = await axios.get('http://localhost:3000/tradeList');
+    const filteredTradeList = response.data.filter(
+      (trade) => trade.userId === userId
+    );
+
+    handleTradeList(filteredTradeList);
+    return filteredTradeList;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+onMounted(async () => {
+  await fetchTradeList();
+});
 </script>
