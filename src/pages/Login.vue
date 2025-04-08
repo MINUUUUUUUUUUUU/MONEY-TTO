@@ -8,9 +8,17 @@
       <br />
       <div class="col-md-6">
         <label for="email"><i class="fa-solid fa-user"></i> 사용자 ID:</label>
-        <input id="email" class="form-control mt-3 mb-3 rounded" />
+        <input
+          id="email"
+          class="form-control mt-3 mb-3 rounded"
+          v-model="email"
+        />
         <label for="password"><i class="fa-solid fa-lock"></i> 비밀번호:</label>
-        <input id="password" class="form-control mb-3 rounded" />
+        <input
+          id="password"
+          class="form-control mb-3 rounded"
+          v-model="password"
+        />
         <div class="d-grid gap-3">
           <button type="button" class="btn" @click="handleLogin">
             <i class="fa-solid fa-right-to-bracket"></i> 로그인
@@ -36,15 +44,19 @@ button:hover {
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { login } from '@/utils/auth-util.js';
+import { useUserStore } from '@/stores/user-store';
 
 const email = ref('');
 const password = ref('');
 const router = useRouter();
+const userStore = useUserStore();
 
 const handleLogin = async () => {
   const result = await login(email.value, password.value);
+  // console.log(result.success);
   if (result.success) {
-    router.push('/');
+    userStore.userId = '1';
+    await router.push('/');
   } else {
     alert('로그인 실패: ' + result.message);
   }

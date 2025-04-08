@@ -5,35 +5,95 @@
       "email": "user1@example.com",
       "password": "password1",
       "nickname": "사용자1",
-      "age": 30
+      "age": 30,
+      "id": "af38"
     },
     {
       "userId": "2",
       "email": "user2@example.com",
       "password": "password2",
       "nickname": "사용자2",
-      "age": 25
+      "age": 25,
+      "id": "c037"
     },
     {
       "userId": "3",
       "email": "user3@example.com",
       "password": "password3",
       "nickname": "사용자3",
-      "age": 28
+      "age": 28,
+      "id": "6da3"
     },
     {
       "userId": "4",
       "email": "user4@example.com",
       "password": "password4",
       "nickname": "사용자4",
-      "age": 35
+      "age": 35,
+      "id": "d49b"
     },
     {
       "userId": "5",
       "email": "user5@example.com",
       "password": "password5",
       "nickname": "사용자5",
-      "age": 40
+      "age": 40,
+      "id": "fdc5"
+    },
+    {
+      "id": "26d5",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "1a3c",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "2096",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "4e05",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "7e1e",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "3c71",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "7b4b",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "8626",
+      "email": "2131",
+      "password": "123123123"
+    },
+    {
+      "id": "7f13",
+      "email": "3151",
+      "password": "1515151515"
+    },
+    {
+      "id": "cb52",
+      "email": "user1@example.com",
+      "password": "password1"
+    },
+    {
+      "id": "6f2b",
+      "email": "user1@example.com",
+      "password": "password1"
     }
   ],
   "tradeList": [
@@ -44,7 +104,8 @@
       "incomeCategory": "1",
       "tradeDate": "2025-04-01",
       "tradeDescription": "3월 급여 입금",
-      "userId": "1"
+      "userId": "1",
+      "id": "b9d7"
     },
     {
       "tradeId": "2",
@@ -54,7 +115,8 @@
       "tradeDate": "2025-04-02",
       "tradeMethod": "카드",
       "tradeDescription": "점심 식사",
-      "userId": "1"
+      "userId": "1",
+      "id": "34c9"
     },
     {
       "tradeId": "3",
@@ -64,7 +126,8 @@
       "tradeDate": "2025-04-03",
       "tradeMethod": "현금",
       "tradeDescription": "택시비",
-      "userId": "2"
+      "userId": "2",
+      "id": "43ec"
     },
     {
       "tradeId": "4",
@@ -73,7 +136,8 @@
       "incomeCategory": "급여",
       "tradeDate": "2025-04-01",
       "tradeDescription": "3월 급여 입금",
-      "userId": "3"
+      "userId": "3",
+      "id": "7844"
     },
     {
       "tradeId": "5",
@@ -83,7 +147,8 @@
       "tradeDate": "2025-04-04",
       "tradeMethod": "카드",
       "tradeDescription": "월세 납부",
-      "userId": "4"
+      "userId": "4",
+      "id": "767e"
     },
     {
       "tradeId": "6",
@@ -93,7 +158,8 @@
       "tradeDate": "2025-04-05",
       "tradeMethod": "현금",
       "tradeDescription": "저녁 식사",
-      "userId": "5"
+      "userId": "5",
+      "id": "9f14"
     },
     {
       "tradeId": "7",
@@ -103,7 +169,8 @@
       "tradeDate": "2025-04-06",
       "tradeMethod": "카드",
       "tradeDescription": "영화 관람",
-      "userId": "1"
+      "userId": "1",
+      "id": "71fc"
     },
     {
       "tradeId": "8",
@@ -112,7 +179,8 @@
       "incomeCategory": "상여금",
       "tradeDate": "2025-04-07",
       "tradeDescription": "프로젝트 보너스",
-      "userId": "2"
+      "userId": "2",
+      "id": "4713"
     },
     {
       "tradeId": "9",
@@ -122,7 +190,8 @@
       "tradeDate": "2025-04-08",
       "tradeMethod": "계좌이체",
       "tradeDescription": "인터넷 요금",
-      "userId": "3"
+      "userId": "3",
+      "id": "5062"
     },
     {
       "tradeId": "10",
@@ -132,7 +201,8 @@
       "tradeDate": "2025-04-09",
       "tradeMethod": "카드",
       "tradeDescription": "아침 식사",
-      "userId": "4"
+      "userId": "4",
+      "id": "5728"
     },
     {
       "tradeId": "11",
@@ -141,7 +211,8 @@
       "incomeCategory": "급여",
       "tradeDate": "2025-04-01",
       "tradeDescription": "3월 급여 입금",
-      "userId": "5"
+      "userId": "5",
+      "id": "6fdc"
     },
     {
       "tradeId": "12",
@@ -151,7 +222,8 @@
       "tradeDate": "2025-04-10",
       "tradeMethod": "카드",
       "tradeDescription": "관리비 납부",
-      "userId": "1"
+      "userId": "1",
+      "id": "4f31"
     },
     {
       "tradeId": "13",
@@ -161,7 +233,8 @@
       "tradeDate": "2025-04-11",
       "tradeMethod": "현금",
       "tradeDescription": "버스카드 충전",
-      "userId": "2"
+      "userId": "2",
+      "id": "1bc8"
     },
     {
       "tradeId": "14",
@@ -170,7 +243,8 @@
       "incomeCategory": "4",
       "tradeDate": "2025-04-12",
       "tradeDescription": "주식 배당금",
-      "userId": "5"
+      "userId": "5",
+      "id": "1d08"
     }
   ],
   "tradeTotal": [
@@ -178,88 +252,101 @@
       "tradeTotalId": "1",
       "tradeTotalAmount": 520000,
       "tradeTotalMonth": 4,
-      "userId": "1"
+      "userId": "1",
+      "id": "a31a"
     },
     {
       "tradeTotalId": "2",
       "tradeTotalAmount": 180000,
       "tradeTotalMonth": 4,
-      "userId": "2"
+      "userId": "2",
+      "id": "3d5d"
     },
     {
       "tradeTotalId": "3",
       "tradeTotalAmount": 270000,
       "tradeTotalMonth": 4,
-      "userId": "3"
+      "userId": "3",
+      "id": "bd86"
     },
     {
       "tradeTotalId": "4",
       "tradeTotalAmount": 45000,
       "tradeTotalMonth": 4,
-      "userId": "4"
+      "userId": "4",
+      "id": "f86e"
     },
     {
       "tradeTotalId": "5",
       "tradeTotalAmount": 238000,
       "tradeTotalMonth": 4,
-      "userId": "5"
+      "userId": "5",
+      "id": "752e"
     },
     {
       "tradeTotalId": "6",
       "tradeTotalAmount": 310000,
       "tradeTotalMonth": 3,
-      "userId": "1"
+      "userId": "1",
+      "id": "7cc3"
     },
     {
       "tradeTotalId": "7",
       "tradeTotalAmount": 150000,
       "tradeTotalMonth": 3,
-      "userId": "2"
+      "userId": "2",
+      "id": "874f"
     },
     {
       "tradeTotalId": "8",
       "tradeTotalAmount": 290000,
       "tradeTotalMonth": 3,
-      "userId": "3"
+      "userId": "3",
+      "id": "c1f6"
     },
     {
       "tradeTotalId": "9",
       "tradeTotalAmount": 50000,
       "tradeTotalMonth": 3,
-      "userId": "4"
+      "userId": "4",
+      "id": "d48d"
     },
     {
       "tradeTotalId": "10",
       "tradeTotalAmount": 220000,
       "tradeTotalMonth": 3,
-      "userId": "5"
+      "userId": "5",
+      "id": "3fff"
     }
   ],
-
   "tradeType": [
     {
-      "type": "수입"
+      "type": "수입",
+      "id": "d0e5"
     },
     {
-      "type": "지출"
+      "type": "지출",
+      "id": "f4f1"
     }
   ],
-
   "tradeMethod": [
     {
-      "method": "현금"
+      "method": "현금",
+      "id": "3667"
     },
     {
-      "method": "신용카드"
+      "method": "신용카드",
+      "id": "b868"
     },
     {
-      "method": "계좌이체"
+      "method": "계좌이체",
+      "id": "fd1a"
     },
     {
-      "method": "체크카드"
+      "method": "체크카드",
+      "id": "13c3"
     }
   ],
-
   "incomeCategory": [
     {
       "id": "1",
@@ -278,7 +365,6 @@
       "category": "기타 수입"
     }
   ],
-
   "expenseCategory": [
     {
       "id": "1",
@@ -312,8 +398,5 @@
       "id": "8",
       "category": "저축"
     }
-  ],
-  "scripts": {
-    "server": "json-server-auth --watch db.json --port 8000"
-  }
+  ]
 }
