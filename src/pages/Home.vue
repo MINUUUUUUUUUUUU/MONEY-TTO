@@ -104,9 +104,7 @@
             class="progress-bar"
             role="progressbar"
             :style="{ width: category.percentage + '%' }">
-            <span style="position: absolute; left: 5%; color: black"
-              >{{ category.category }}
-            </span>
+            <span>{{ category.category }} </span>
             <span>{{ category.percentage }}%</span>
           </div>
         </div>
@@ -223,8 +221,7 @@ const analysisExpense = () => {
     }
   );
   categoryPercentages.forEach((category) => {
-    category.percentage = Number(category.percentage);
-    console.log(category.percentage);
+    category.percentage = Number(category.percentage).toFixed(1);
   });
   return categoryPercentages;
 };
