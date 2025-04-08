@@ -35,7 +35,7 @@
           4 월 소비
         </h1>
         <hr />
-        <p style="color: #757575">수입 : {{ monthlyIncome }} 원</p>
+        <p style="color: #339f46">수입 : {{ monthlyIncome }} 원</p>
         <p style="color: #ff5722">지출 : - {{ monthlyExpense }} 원</p>
       </div>
     </div>
@@ -86,8 +86,8 @@
           </div>
           <span
             :class="{
-              'text-success': trade.tradeAmount > 0,
-              'text-danger': trade.tradeAmount < 0,
+              'text-success': trade.tradeType == '수입',
+              'text-danger': trade.tradeType == '지출',
             }">
             {{ trade.tradeAmount }}
           </span>
