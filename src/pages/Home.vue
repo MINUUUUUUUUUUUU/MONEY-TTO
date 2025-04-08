@@ -139,9 +139,9 @@
 </template>
 
 <script setup>
-import FullCalendar from '@fullcalendar/vue3'; // fullcalendar import
-import dayGridPlugin from '@fullcalendar/daygrid'; // 날짜
-import timeGridPlugin from '@fullcalendar/timegrid'; // 시간 그리드 플러그인 추가
+import FullCalendar from '@fullcalendar/vue3';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ref } from 'vue';
 // import axios from 'axios';
