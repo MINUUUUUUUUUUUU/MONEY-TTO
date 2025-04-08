@@ -202,11 +202,20 @@ const fetchTradeList = async () => {
       (trade) => trade.userId === userId
     );
 
+    sortedTradeList(filteredTradeList);
     handleTradeList(filteredTradeList);
     return filteredTradeList;
   } catch (err) {
     console.error(err);
   }
+};
+
+const sortedTradeList = (tradeList) => {
+  return tradeList.sort((a, b) => {
+    const dateA = Number(a.tradeDate.split('-').join(''));
+    const dateB = Number(b.tradeDate.split('-').join(''));
+    return dateB - dateA;
+  });
 };
 
 onMounted(async () => {
