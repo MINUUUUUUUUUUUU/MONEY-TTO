@@ -88,31 +88,37 @@
       <div
         v-for="trade in dailyTrade.trades"
         :key="trade.tradeId"
+        @click="navToTradeDetail(trade.id)"
         class="d-flex justify-content-between align-items-center py-2 border-bottom"
       >
-        <div class="d-flex align-items-center me-3 flex-grow-1">
+        <div
+          class="d-flex align-items-center me-3 flex-grow-1"
+          style="min-width: 0"
+        >
           <!-- 카테고리 -->
           <div
             class="d-flex align-items-center flex-shrink-0 fixed-category-width me-3"
           >
-            <span class="fw-semibold text-nowrap">{{
-              getCategoryName(trade.categoryId, trade.tradeType)
-            }}</span>
+            <span class="fw-semibold text-nowrap">
+              {{ getCategoryName(trade.categoryId, trade.tradeType) }}
+            </span>
           </div>
 
-          <!-- 세부 내용 (설명, 방법) -->
-          <div class="overflow-hidden">
-            <div class="fw-semibold text-secondary text-truncate">
+          <!-- 설명 -->
+          <div class="overflow-hidden flex-grow-1" style="min-width: 0">
+            <div class="fw-semibold text-secondary text-truncate d-block">
               {{ trade.tradeDescription }}
             </div>
-            <div class="text-muted small text-truncate">
+            <div class="text-muted small text-truncate d-block">
               {{ trade.tradeMethod }}
             </div>
           </div>
         </div>
 
         <!-- 우측: 수입/지출 금액 -->
-        <div class="d-flex align-items-center justify-content-end">
+        <div
+          class="d-flex align-items-center justify-content-end text-end flex-shrink-0"
+        >
           <div
             :class="[
               'fw-littleBold',
@@ -318,6 +324,10 @@ watch(
 // 거래 추가 페이지 이동
 const navToTradeAdd = () => {
   route.push('/trade/add');
+};
+
+const navToTradeDetail = (tradeId) => {
+  route.push(`/trade/${tradeId}`);
 };
 </script>
 
