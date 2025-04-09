@@ -111,7 +111,7 @@
             href="#"
             class="mb-3 text-center text-black"
             style="font-size: 0.75rem"
-            @click="closeOffcanvas"
+            @click="handleLogout"
           >
             로그아웃
           </a>
@@ -140,8 +140,11 @@
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { useUserStore } from '@/stores/user-store';
 
 const route = useRoute();
+
+const userStore = useUserStore();
 
 // 홈 화면인지 확인하는 변수
 const isHome = computed(() => route.path === '/');
@@ -168,7 +171,7 @@ const closeOffcanvas = () => {
 const currentMonth = new Date().getMonth() + 1;
 
 // 임의로 user 지정, 로그인 기능 구현 시, 수정 필요
-const userId = '3';
+const userId = userStore.userId;
 
 onMounted(async () => {
   try {
@@ -180,14 +183,25 @@ onMounted(async () => {
 
     // tradeTotal 데이터 받아오기
     const { data: tradeList } = await axios.get(
-      `http://localhost:3000/tradeTotal?userId=${userId}`
+      `http://localhost:3000/tradeList?userId=${userId}`
     );
 
     // 현재 월에 맞는 total 금액 찾기
-    const currentMonthData = tradeList.find(
-      (trade) => Number(trade.tradeTotalMonth) === currentMonth
-    );
-    monthlyTotal.value = currentMonthData?.tradeTotalAmount ?? 0;
+    const totalAmountForCurrentMonth = tradeList
+      .filter((trade) => {
+        const tradeMonth = new Date(trade.tradeDate).getMonth() + 1;
+        return tradeMonth === currentMonth;
+      })
+      .reduce((sum, trade) => {
+        if (trade.tradeType === '수입') {
+          return sum + trade.tradeAmount;
+        } else if (trade.tradeType === '지출') {
+          return sum - trade.tradeAmount;
+        }
+        return sum;
+      }, 0);
+
+    monthlyTotal.value = totalAmountForCurrentMonth;
   } catch (err) {
     console.error('데이터 불러오기 실패:', err);
   }
@@ -197,6 +211,11 @@ onMounted(async () => {
 const monthlyTotalColorClass = computed(() => {
   return monthlyTotal.value < 0 ? 'carrot' : 'green';
 });
+
+const handleLogout = () => {
+  closeOffcanvas();
+  userStore.logout();
+};
 </script>
 
 <style scoped>

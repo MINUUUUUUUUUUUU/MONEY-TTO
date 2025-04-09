@@ -11,4 +11,9 @@
 
 <script setup>
 import Header from './components/Header.vue';
+import { useUserStore } from './stores/user-store';
+
+const userStore = useUserStore();
+
+userStore.hydrate();
 </script>
