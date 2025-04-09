@@ -30,8 +30,7 @@
               class="nav-link"
               :class="{ active: showMonthly }"
               href="#"
-              @click.prevent="showMonthlyAnalysis"
-            >
+              @click.prevent="showMonthlyAnalysis">
               월별 소비 분석
             </a>
           </li>
@@ -40,8 +39,7 @@
               class="nav-link"
               :class="{ active: showCategory }"
               href="#"
-              @click.prevent="showCategoryAnalysis"
-            >
+              @click.prevent="showCategoryAnalysis">
               카테고리 별 소비 분석
             </a>
           </li>
@@ -85,8 +83,7 @@
     <button
       class="btn btn-success btn-lg rounded-circle position-fixed fs-2 size-2 d-flex justify-content-center align-items-center z-3 shadow-sm"
       style="bottom: 3rem; right: 3rem"
-      @click="navToTradeAdd"
-    >
+      @click="navToTradeAdd">
       +
     </button>
   </div>
@@ -101,7 +98,9 @@ import { useCalendarStore } from '@/stores/calendar';
 import Calender from '@/components/Calendar.vue';
 import CategoryAnalysis from '@/components/CategoryAnalysis.vue';
 import MonthAnalysis from '@/components/MonthAnalysis.vue';
+import { useUserStore } from '@/stores/user-store';
 
+const userStore = useUserStore();
 const nickname = ref('');
 const monthlyData = ref(Array(13).fill(0));
 
@@ -211,8 +210,8 @@ const navToTradeAdd = () => {
 };
 
 onMounted(async () => {
-  await fetchTradeList('1');
-  fetchUserNickName('1');
-  fetchTradeTotal('1');
+  await fetchTradeList(userStore.userId);
+  fetchUserNickName(userStore.userId);
+  fetchTradeTotal(userStore.userId);
 });
 </script>
