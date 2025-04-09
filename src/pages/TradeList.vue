@@ -182,11 +182,11 @@ const totalExpense = ref(0);
 const totalBalance = ref(0);
 
 onMounted(() => {
+  tradeStore.fetchTradeList();
   userStore.hydrate(); // 세션에서 사용자 정보 불러오기
   console.log('userId:', userStore.userId); // state 사용
   fetchIncomeList();
   fetchExpenseList();
-  tradeStore.fetchTradeList();
 });
 
 const formatDate = (date) => {
@@ -199,20 +199,6 @@ const formatDate = (date) => {
     '0'
   )}`;
 };
-
-// const fetchTradeList = async () => {
-//   try {
-//     const response = await axios.get(tradeUrlPrefix);
-//     console.log(response.data);
-
-//     // userId가 일치하는 항목만 필터링
-//     tradeList.value = response.data.filter(
-//       (trade) => trade.userId === userStore.userId
-//     );
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
 
 const fetchIncomeList = async () => {
   try {
