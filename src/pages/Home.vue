@@ -30,7 +30,8 @@
               class="nav-link"
               :class="{ active: showMonthly }"
               href="#"
-              @click.prevent="showMonthlyAnalysis">
+              @click.prevent="showMonthlyAnalysis"
+            >
               월별 소비 분석
             </a>
           </li>
@@ -39,7 +40,8 @@
               class="nav-link"
               :class="{ active: showCategory }"
               href="#"
-              @click.prevent="showCategoryAnalysis">
+              @click.prevent="showCategoryAnalysis"
+            >
               카테고리 별 소비 분석
             </a>
           </li>
@@ -48,16 +50,19 @@
 
       <!-- 월 별 소비 분석 -->
       <div v-if="showMonthly" class="list-group">
-        <div
+        <MonthAnalysis />
+        <!-- <div
           v-if="tradeList.length === 0"
-          class="list-group-item d-flex justify-content-center align-items-center">
+          class="list-group-item d-flex justify-content-center align-items-center"
+        >
           <span>불러오는 중...</span>
         </div>
         <div
           v-else
           v-for="trade in tradeList"
           :key="trade.tradeId"
-          class="list-group-item d-flex justify-content-between align-items-center">
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
           <div>
             <h6 class="mb-1">{{ trade.tradeDate }}</h6>
             <div class="text-muted">{{ trade.tradeType }}</div>
@@ -66,10 +71,11 @@
             :class="{
               'text-success': trade.tradeType == '수입',
               'text-danger': trade.tradeType == '지출',
-            }">
+            }"
+          >
             {{ trade.tradeAmount }}
           </span>
-        </div>
+        </div> -->
       </div>
       <!-- 카테고리 별 소비 분석 -->
       <div v-if="showCategory">
@@ -79,7 +85,8 @@
     <button
       class="btn btn-success btn-lg rounded-circle position-fixed fs-2 size-2 d-flex justify-content-center align-items-center z-3 shadow-sm"
       style="bottom: 3rem; right: 3rem"
-      @click="navToTradeAdd">
+      @click="navToTradeAdd"
+    >
       +
     </button>
   </div>
@@ -93,8 +100,10 @@ import { useTradeListStore } from '@/stores/tradeList';
 import { useCalendarStore } from '@/stores/calendar';
 import Calender from '@/components/Calendar.vue';
 import CategoryAnalysis from '@/components/CategoryAnalysis.vue';
+import MonthAnalysis from '@/components/MonthAnalysis.vue';
 
 const nickname = ref('');
+const monthlyData = ref(Array(13).fill(0));
 
 // 거래 내역 가져오기
 const tradeListStore = useTradeListStore();
@@ -107,6 +116,24 @@ const tradeList = computed(() => {
 const expenseList = computed(() => {
   return tradeList.value.filter((trade) => trade.tradeType === '지출');
 });
+
+// 월별 거래 총액 가져오기
+const fetchTradeTotal = async (userId) => {
+  try {
+    const response = await axios.get('http://localhost:3000/tradeTotal');
+    const filteredTradeList = response.data.filter(
+      (trade) => trade.userId === userId
+    );
+
+    filteredTradeList.forEach((trade) => {
+      const month = trade.tradeTotalMonth;
+      const amount = trade.tradeTotalAmount;
+      monthlyData.value[month] = amount;
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 // 월별 수입과 지출 계산
 const monthlyIncome = computed(() => {
@@ -186,5 +213,6 @@ const navToTradeAdd = () => {
 onMounted(async () => {
   await fetchTradeList('1');
   fetchUserNickName('1');
+  fetchTradeTotal('1');
 });
 </script>
