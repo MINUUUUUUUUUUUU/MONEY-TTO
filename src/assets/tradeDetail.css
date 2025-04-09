@@ -1,0 +1,115 @@
+.trade-detail {
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+	background: white;
+	border-radius: 10px;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.header h1 {
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+.amount {
+	font-size: 1.8rem;
+	font-weight: bold;
+}
+
+.amount.expense {
+	color: #ff8a3d;
+}
+
+.amount.income {
+	color: #339f46;
+}
+
+.info {
+	font-size: 0.95rem;
+	margin-bottom: 2rem;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.6rem 0;
+	border-bottom: 1px solid #eee;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn {
+	padding: 8px 18px;
+	border-radius: 5px;
+	font-weight: 600;
+	border: none;
+	cursor: pointer;
+}
+
+.btn-orange {
+	background-color: #ff8a3d;
+	color: white;
+}
+
+.btn-green {
+	background-color: #339f46;
+	color: white;
+}
+
+.btn-gray {
+	background-color: #e0e0e0;
+	color: #333;
+}
+
+/* 하단 고정 버튼 영역 */
+.fixed-actions-detail {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	max-width: 480px;
+	margin: 0 auto;
+	padding: 1rem;
+	background-color: white;
+	box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+	display: flex;
+	justify-content: space-between;
+	z-index: 10;
+	border-top: 1px solid #ddd;
+}
+.row {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.2rem;
+}
+
+.label {
+	width: 100px;
+	/* 너비 넉넉하게 줘서 줄바꿈 방지 */
+	white-space: nowrap;
+	/* 줄바꿈 금지 */
+	font-weight: 500;
+	text-align: right;
+	margin-right: 10px;
+}
+
+.value {
+	flex: 1;
+	text-align: right;
+	/* 오른쪽 정렬 */
+}
+
+.calendar {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 1.5rem auto 2rem;
+}
