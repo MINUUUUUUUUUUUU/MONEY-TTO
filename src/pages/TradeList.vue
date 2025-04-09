@@ -4,7 +4,7 @@
     <div class="col">
       <div class="text-secondary fw-semibold">수입</div>
       <div class="text-success fw-bold total-font-size">
-        {{ totalIncome.toLocaleString() }}<span class="text-success">원</span>
+        {{ totalIncome.toLocaleString() }}<span class="text-success"></span>
       </div>
     </div>
 
@@ -12,22 +12,22 @@
     <div class="col">
       <div class="text-secondary fw-semibold">지출</div>
       <div class="text-danger fw-bold total-font-size">
-        {{ totalExpense.toLocaleString() }}<span class="text-danger">원</span>
+        {{ totalExpense.toLocaleString() }}<span class="text-danger"></span>
       </div>
     </div>
 
     <!-- 총 잔액 -->
     <div class="col">
-      <div class="text-secondary fw-semibold">총 합계</div>
+      <div class="text-secondary fw-semibold">합계</div>
       <div class="text-dark fw-bold total-font-size">
         {{ (totalIncome - totalExpense).toLocaleString() }}
-        <span class="text-dark">원</span>
+        <span class="text-dark"></span>
       </div>
     </div>
   </div>
 
   <!-- 캘린더 로직 -->
-  <div class="d-flex align-items-center gap-2 mt-3">
+  <div class="d-flex align-items-center gap-2 mt-3 mb-3">
     <VueDatePicker
       v-model="startDate"
       :format="formatDate"
