@@ -1,4 +1,23 @@
 <template>
+  <div class="d-flex align-items-center gap-2 mt-3">
+    <VueDatePicker
+      v-model="startDate"
+      :format="formatDate"
+      :start-date="startDate"
+      :max-date="endDate"
+      placeholder="시작일"
+      :enable-time-picker="false"
+    />
+    <span class="mx-2">~</span>
+    <VueDatePicker
+      v-model="endDate"
+      :format="formatDate"
+      :min-date="startDate"
+      :start-date="startDate"
+      placeholder="종료일"
+      :enable-time-picker="false"
+    />
+  </div>
   <div
     v-for="dailyTrade in dailyTradeList"
     :key="dailyTrade.date"
@@ -74,11 +93,16 @@
 </template>
 
 <script setup>
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 import axios from 'axios';
 import { computed, ref, watch } from 'vue';
 const tradeList = ref([]);
 const incomeList = ref([]);
 const expenseList = ref([]);
+
+const startDate = ref(null);
+const endDate = ref(null);
 
 const tradeUrlPrefix = '/api/tradeList/';
 const incomeUrlPrefix = '/api/incomeCategory/';
@@ -144,6 +168,17 @@ const dailyTradeList = computed(() => {
 
   return Object.values(grouped).sort((a, b) => b.date.localeCompare(a.date));
 });
+
+const formatDate = (date) => {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(
+    2,
+    '0'
+  )}`;
+};
 
 fetchTradeList();
 fetchIncomeList();
