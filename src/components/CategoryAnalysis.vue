@@ -13,10 +13,7 @@
           width: category.percentage + '%',
           backgroundColor: getColor(category.category),
         }"
-      >
-        <span>{{ category.category }}</span>
-        <span>{{ category.percentage }}%</span>
-      </div>
+      ></div>
     </div>
 
     <!-- 아래 카테고리 상세 표 -->
@@ -37,7 +34,8 @@
               display: 'inline-block',
             }"
           ></span>
-          <span>{{ category.category }}</span>
+          <span>{{ category.category }} &nbsp;</span>
+          <span>({{ category.percentage }}%)</span>
         </div>
         <span>{{ category.amount.toLocaleString() }}원</span>
       </li>
