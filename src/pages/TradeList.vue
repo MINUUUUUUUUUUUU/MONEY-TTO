@@ -145,8 +145,45 @@ const getCategoryName = (categoryId, tradeType) => {
 };
 
 const dailyTradeList = computed(() => {
-  const grouped = tradeList.value.reduce((acc, trade) => {
+  // 날짜 객체 -> 문자열 YYYY-MM-DD로 포맷
+  const formatDateToString = (dateObj) => {
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const tradesToUse =
+    !startDate.value && !endDate.value
+      ? tradeList.value
+      : tradeList.value.filter((trade) => {
+          const tradeDate = trade.tradeDate; // 문자열: 'YYYY-MM-DD'
+          const start = startDate.value
+            ? formatDateToString(startDate.value)
+            : null;
+          const end = endDate.value ? formatDateToString(endDate.value) : null;
+
+          if (start && end) {
+            return tradeDate >= start && tradeDate <= end;
+          } else if (start) {
+            return tradeDate >= start;
+          } else if (end) {
+            return tradeDate <= end;
+          }
+
+          return true;
+        });
+
+  const grouped = tradesToUse.reduce((acc, trade) => {
     const date = trade.tradeDate;
+
+    // 👉 카테고리 ID 통합 (수입/지출 구분)
+    const categoryId =
+      trade.tradeType === '수입' ? trade.incomeCategory : trade.expenseCategory;
+
+    // 필요한 경우 categoryId를 trade에 추가 (원본 수정이 아니라 clone하는 게 더 안전)
+    trade.categoryId = categoryId;
+
     if (!acc[date]) {
       acc[date] = {
         date,
