@@ -175,6 +175,7 @@ const userId = userStore.userId;
 
 onMounted(async () => {
   try {
+    console.log(userId);
     // user 데이터 받아오기
     const { data } = axios.get(`http://localhost:3000/users?userId=${userId}`);
     userName.value = data[0]?.nickname ?? '이름 없음';
