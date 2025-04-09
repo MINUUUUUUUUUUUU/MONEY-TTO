@@ -106,6 +106,7 @@ import { useCalendarStore } from '@/stores/calendar';
 import Calender from '@/components/Calendar.vue';
 
 const nickname = ref('');
+const monthlyData = ref(Array(13).fill(0));
 
 // 거래 내역 가져오기
 const tradeListStore = useTradeListStore();
@@ -118,6 +119,24 @@ const tradeList = computed(() => {
 const expenseList = computed(() => {
   return tradeList.value.filter((trade) => trade.tradeType === '지출');
 });
+
+// 월별 거래 총액 가져오기
+const fetchTradeTotal = async(userId) =>{
+  try {
+    const response = await axios.get('http://localhost:3000/tradeTotal');
+    const filteredTradeList = response.data.filter(
+      (trade) => trade.userId === userId
+    );
+
+    filteredTradeList.forEach((trade) => {
+      const month = trade.tradeTotalMonth;
+      const amount = trade.tradeTotalAmount;
+      monthlyData.value[month] = amount;
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 // 월별 수입과 지출 계산
 const monthlyIncome = computed(() => {
@@ -225,5 +244,6 @@ onMounted(async () => {
   await fetchTradeList('1');
   analysisExpense();
   fetchUserNickName('1');
+  fetchTradeTotal('1');
 });
 </script>
