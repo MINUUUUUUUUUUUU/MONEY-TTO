@@ -111,7 +111,7 @@
             href="#"
             class="mb-3 text-center text-black"
             style="font-size: 0.75rem"
-            @click="closeOffcanvas"
+            @click="handleLogout"
           >
             로그아웃
           </a>
@@ -140,8 +140,11 @@
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { useUserStore } from '@/stores/user-store';
 
 const route = useRoute();
+
+const userStore = useUserStore();
 
 // 홈 화면인지 확인하는 변수
 const isHome = computed(() => route.path === '/');
@@ -197,6 +200,11 @@ onMounted(async () => {
 const monthlyTotalColorClass = computed(() => {
   return monthlyTotal.value < 0 ? 'carrot' : 'green';
 });
+
+const handleLogout = () => {
+  closeOffcanvas();
+  userStore.logout();
+};
 </script>
 
 <style scoped>
