@@ -123,14 +123,14 @@ const expenseList = computed(() => {
 const monthlyIncome = computed(() => {
   return tradeList.value
     .filter((trade) => trade.tradeType === '수입')
-    .reduce((acc, trade) => acc + trade.tradeAmount, 0)
+    .reduce((prev, trade) => prev + trade.tradeAmount, 0)
     .toLocaleString();
 });
 
 const monthlyExpense = computed(() => {
   return tradeList.value
     .filter((trade) => trade.tradeType === '지출')
-    .reduce((acc, trade) => acc + trade.tradeAmount, 0)
+    .reduce((prev, trade) => prev + trade.tradeAmount, 0)
     .toLocaleString();
 });
 
