@@ -35,6 +35,7 @@ const router = createRouter({
       name: 'tradeList',
       component: () => import('../pages/TradeList.vue'),
     },
+
     // 거래 상세 페이지
     {
       path: '/trade/:id',
