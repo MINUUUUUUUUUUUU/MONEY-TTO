@@ -123,7 +123,6 @@ const monthlyExpense = computed(() => {
     .toLocaleString();
 });
 
-
 // [년도,월] 상태 관리
 const calendarStore = useCalendarStore();
 const currentMonth = computed(() => calendarStore.currentMonth);
@@ -185,7 +184,7 @@ const navToTradeAdd = () => {
 };
 
 onMounted(async () => {
-  await fetchTradeList();
-  fetchUserNickName(1);
+  await fetchTradeList('1');
+  fetchUserNickName('1');
 });
 </script>
