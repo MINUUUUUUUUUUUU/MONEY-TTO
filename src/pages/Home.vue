@@ -71,21 +71,9 @@
           </span>
         </div>
       </div>
-
       <!-- 카테고리 별 소비 분석 -->
       <div v-if="showCategory">
-        <h3>카테고리 별 소비 분석</h3>
-        <div class="progress" style="height: 3em; position: relative">
-          <div
-            v-for="(category, index) in analysisExpense()"
-            :key="index"
-            class="progress-bar"
-            role="progressbar"
-            :style="{ width: category.percentage + '%' }">
-            <span>{{ category.category }} </span>
-            <span>{{ category.percentage }}%</span>
-          </div>
-        </div>
+        <CategoryAnalysis />
       </div>
     </div>
     <button
@@ -104,6 +92,7 @@ import axios from 'axios';
 import { useTradeListStore } from '@/stores/tradeList';
 import { useCalendarStore } from '@/stores/calendar';
 import Calender from '@/components/Calendar.vue';
+import CategoryAnalysis from '@/components/CategoryAnalysis.vue';
 
 const nickname = ref('');
 
@@ -133,7 +122,6 @@ const monthlyExpense = computed(() => {
     .reduce((prev, trade) => prev + trade.tradeAmount, 0)
     .toLocaleString();
 });
-
 
 // [년도,월] 상태 관리
 const calendarStore = useCalendarStore();
@@ -189,32 +177,6 @@ const sortedTradeList = (tradeList) => {
   });
 };
 
-// 카테고리 별 소비 분석
-const analysisExpense = () => {
-  const categories = expenseList.value.map((trade) => trade.tradeMethod);
-  const categoryCounts = {};
-  categories.forEach((category) => {
-    if (categoryCounts[category]) {
-      categoryCounts[category]++;
-    } else {
-      categoryCounts[category] = 1;
-    }
-  });
-  const totalCount = categories.length;
-  const categoryPercentages = Object.entries(categoryCounts).map(
-    ([category, count]) => {
-      return {
-        category,
-        percentage: (count / totalCount) * 100,
-      };
-    }
-  );
-  categoryPercentages.forEach((category) => {
-    category.percentage = Number(category.percentage).toFixed(1);
-  });
-  return categoryPercentages;
-};
-
 const route = useRouter();
 // 거래 추가 페이지로 이동
 const navToTradeAdd = () => {
@@ -223,7 +185,6 @@ const navToTradeAdd = () => {
 
 onMounted(async () => {
   await fetchTradeList('1');
-  analysisExpense();
   fetchUserNickName('1');
 });
 </script>
