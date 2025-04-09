@@ -171,7 +171,7 @@ const closeOffcanvas = () => {
 const currentMonth = new Date().getMonth() + 1;
 
 // 임의로 user 지정, 로그인 기능 구현 시, 수정 필요
-const userId = '3';
+const userId = userStore.userId;
 
 onMounted(async () => {
   try {
@@ -183,14 +183,25 @@ onMounted(async () => {
 
     // tradeTotal 데이터 받아오기
     const { data: tradeList } = await axios.get(
-      `http://localhost:3000/tradeTotal?userId=${userId}`
+      `http://localhost:3000/tradeList?userId=${userId}`
     );
 
     // 현재 월에 맞는 total 금액 찾기
-    const currentMonthData = tradeList.find(
-      (trade) => Number(trade.tradeTotalMonth) === currentMonth
-    );
-    monthlyTotal.value = currentMonthData?.tradeTotalAmount ?? 0;
+    const totalAmountForCurrentMonth = tradeList
+      .filter((trade) => {
+        const tradeMonth = new Date(trade.tradeDate).getMonth() + 1;
+        return tradeMonth === currentMonth;
+      })
+      .reduce((sum, trade) => {
+        if (trade.tradeType === '수입') {
+          return sum + trade.tradeAmount;
+        } else if (trade.tradeType === '지출') {
+          return sum - trade.tradeAmount;
+        }
+        return sum;
+      }, 0);
+
+    monthlyTotal.value = totalAmountForCurrentMonth;
   } catch (err) {
     console.error('데이터 불러오기 실패:', err);
   }

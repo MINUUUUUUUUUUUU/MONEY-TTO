@@ -47,57 +47,6 @@
       "nickname": "수정된닉네임",
       "age": "20",
       "id": "6d33"
-    },
-    {
-      "id": "1e17",
-      "email": "user12@example.com",
-      "password": "user1@example.com",
-      "nickname": "1",
-      "age": "1"
-    },
-    {
-      "id": "4763",
-      "email": "12@1",
-      "password": "123",
-      "nickname": "1",
-      "age": "10"
-    },
-    {
-      "id": "5c29",
-      "email": "123@123",
-      "password": "1",
-      "nickname": "1",
-      "age": "1"
-    },
-    {
-      "id": "e12e",
-      "email": "1232@123",
-      "password": "123",
-      "nickname": "3123",
-      "age": "123",
-      "userId": 123
-    },
-    {
-      "id": "e2b1",
-      "email": "213@123",
-      "password": "abc1",
-      "nickname": "ㄴ기네",
-      "age": "22",
-      "userId": 22
-    },
-    {
-      "id": "a3e5",
-      "email": "1234@nav",
-      "password": "123",
-      "nickname": "ab",
-      "age": "12"
-    },
-    {
-      "id": "a422",
-      "email": "12@12",
-      "password": "12",
-      "nickname": "12",
-      "age": "12"
     }
   ],
   "tradeList": [
@@ -110,6 +59,15 @@
       "tradeDescription": "3월 급여 입금",
       "userId": "1",
       "id": "b9d7"
+    },
+    {
+      "tradeId": "1",
+      "tradeType": "수입",
+      "tradeAmount": 500000,
+      "incomeCategory": "급여",
+      "tradeDate": "2025-03-01",
+      "tradeDescription": "3월 급여 입금",
+      "userId": "1"
     },
     {
       "tradeId": "2",
@@ -249,78 +207,6 @@
       "tradeDescription": "주식 배당금",
       "userId": "5",
       "id": "1d08"
-    }
-  ],
-  "tradeTotal": [
-    {
-      "tradeTotalId": "1",
-      "tradeTotalAmount": 520000,
-      "tradeTotalMonth": 4,
-      "userId": "1",
-      "id": "a31a"
-    },
-    {
-      "tradeTotalId": "2",
-      "tradeTotalAmount": 180000,
-      "tradeTotalMonth": 4,
-      "userId": "2",
-      "id": "3d5d"
-    },
-    {
-      "tradeTotalId": "3",
-      "tradeTotalAmount": 270000,
-      "tradeTotalMonth": 4,
-      "userId": "3",
-      "id": "bd86"
-    },
-    {
-      "tradeTotalId": "4",
-      "tradeTotalAmount": 45000,
-      "tradeTotalMonth": 4,
-      "userId": "4",
-      "id": "f86e"
-    },
-    {
-      "tradeTotalId": "5",
-      "tradeTotalAmount": 238000,
-      "tradeTotalMonth": 4,
-      "userId": "5",
-      "id": "752e"
-    },
-    {
-      "tradeTotalId": "6",
-      "tradeTotalAmount": 310000,
-      "tradeTotalMonth": 3,
-      "userId": "1",
-      "id": "7cc3"
-    },
-    {
-      "tradeTotalId": "7",
-      "tradeTotalAmount": 150000,
-      "tradeTotalMonth": 3,
-      "userId": "2",
-      "id": "874f"
-    },
-    {
-      "tradeTotalId": "8",
-      "tradeTotalAmount": 290000,
-      "tradeTotalMonth": 3,
-      "userId": "3",
-      "id": "c1f6"
-    },
-    {
-      "tradeTotalId": "9",
-      "tradeTotalAmount": 50000,
-      "tradeTotalMonth": 3,
-      "userId": "4",
-      "id": "d48d"
-    },
-    {
-      "tradeTotalId": "10",
-      "tradeTotalAmount": 220000,
-      "tradeTotalMonth": 3,
-      "userId": "5",
-      "id": "3fff"
     }
   ],
   "tradeType": [
