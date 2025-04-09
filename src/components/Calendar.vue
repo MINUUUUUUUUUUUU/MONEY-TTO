@@ -23,7 +23,7 @@ const convertToCalendarEvents = (tradeList) => {
     return {
       title: `${isIncome ? '+' : '-'}${trade.tradeAmount.toLocaleString()}`,
       start: trade.tradeDate,
-      color: isIncome ? 'green' : 'red',
+      color: isIncome ? '#339F46' : '#FF8A3D',
       extendedProps: {
         description: trade.tradeDescription,
         category: trade.incomeCategory,
@@ -63,3 +63,39 @@ watch(
   { immediate: true }
 );
 </script>
+
+<style>
+/* 🔹 요일 텍스트 (ex. 일, 월, 화...) */
+.fc-col-header-cell-cushion {
+  color: #339f46;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* 🔸 날짜 숫자 (ex. 1, 2, 3...) */
+.fc-daygrid-day-number {
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 24px; /* 필요에 따라 조절 */
+  font-weight: 600;
+}
+
+/* 🔸 셀 안 전체를 위에서 아래로 정렬 (숫자 + 이벤트 같이 정렬) */
+.fc-daygrid-day-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🔹 이벤트 텍스트 */
+.fc-event-title {
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+</style>
