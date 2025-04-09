@@ -44,8 +44,8 @@ const calendarOptions = reactive({
   selectable: true,
   editable: true,
   weekends: true,
-  displayEventTime: false,
   firstDay: 0,
+  fixedWeekCount: false,
   locale: 'ko',
   events: [],
   datesSet: (arg) => {
