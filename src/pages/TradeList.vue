@@ -141,6 +141,7 @@
 </template>
 
 <script setup>
+// 캘린더 관련 라이브러리
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
