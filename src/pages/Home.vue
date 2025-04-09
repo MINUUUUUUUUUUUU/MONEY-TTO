@@ -119,7 +119,6 @@ const fetchTradeTotal = async (userId) => {
     }, {});
 
     // 결과를 monthlyData 객체에 저장
-    console.log(monthlyData);
     return monthlyData;
   } catch (err) {
     console.error('데이터 불러오기 실패:', err);

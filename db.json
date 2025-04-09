@@ -61,6 +61,15 @@
       "id": "b9d7"
     },
     {
+      "tradeId": "1",
+      "tradeType": "수입",
+      "tradeAmount": 500000,
+      "incomeCategory": "급여",
+      "tradeDate": "2025-03-01",
+      "tradeDescription": "3월 급여 입금",
+      "userId": "1"
+    },
+    {
       "tradeId": "2",
       "tradeType": "지출",
       "tradeAmount": 15000,

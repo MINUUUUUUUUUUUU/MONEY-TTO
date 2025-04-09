@@ -20,12 +20,13 @@ const userId = userStore.userId;
 onMounted(async () => {
   try {
     const data = await fetchTradeData(userId);
-    const monthlySpending = calculateMonthlySpending(data, userId);
+    console.log(data);
+    const { incomeData, expenseData } = calculateMonthlySpending(data);
     const canvas = document.getElementById('spendingChart');
     if (canvas instanceof HTMLCanvasElement) {
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        renderChart(ctx, monthlySpending);
+        renderChart(ctx, incomeData, expenseData);
       } else {
         console.error('2D 컨텍스트를 가져올 수 없습니다.');
       }
