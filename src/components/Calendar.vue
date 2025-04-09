@@ -23,7 +23,7 @@ const convertToCalendarEvents = (tradeList) => {
     return {
       title: `${isIncome ? '+' : '-'}${trade.tradeAmount.toLocaleString()}`,
       start: trade.tradeDate,
-      color: isIncome ? '#339F46' : '#FF8A3D',
+      color: isIncome ? 'rgba(51, 159, 70, 0.8)' : 'rgba(255, 138, 61, 0.8)',
       extendedProps: {
         description: trade.tradeDescription,
         category: trade.incomeCategory,
@@ -98,5 +98,38 @@ watch(
   color: white;
   text-align: center;
   width: 100%;
+}
+
+/* 🔹 왼쪽(prev) 버튼 스타일 */
+.fc-toolbar .fc-prev-button {
+  background-color: #339f46;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-weight: 600;
+}
+
+/* 🔹 오른쪽(next) 버튼 스타일 */
+.fc-toolbar .fc-next-button {
+  background-color: #339f46;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-weight: 600;
+}
+
+/* 🔹 버튼 hover 효과 */
+.fc-toolbar .fc-button:hover {
+  background-color: #ff8a3d;
+  opacity: 0.9;
+}
+
+/* 🔹 버튼 비활성화 스타일 */
+.fc-toolbar .fc-button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 </style>
