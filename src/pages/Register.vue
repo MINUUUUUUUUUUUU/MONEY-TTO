@@ -16,12 +16,6 @@ button:hover {
 </style>
 
 <template>
-  <BaseAlert
-    v-if="alertMessage"
-    :message="alertMessage"
-    :type="alertType"
-    :duration="3000"
-  />
   <div
     class="container min-vh-100 mb-5 d-flex justify-content-center align-items-center"
   >
@@ -114,7 +108,6 @@ button:hover {
 import { ref } from 'vue';
 import { register, emailCheck } from '@/utils/auth-util.js';
 import { useRouter } from 'vue-router';
-import BaseAlert from '@/components/BaseAlert.vue';
 
 const router = useRouter();
 
@@ -128,18 +121,21 @@ const nickname = ref('');
 const userId = ref('');
 
 const showAlert = (msg, type = 'info') => {
-  alertMessage.value = msg;
-  alertType.value = type;
+  nextTick(() => {
+    alertMessage.value = msg;
+    alertType.value = type;
+  });
+  alertMessage.value = '';
 };
 
 const handleEmailCheck = async () => {
   const result = await emailCheck(email.value);
-  showAlert(result.message);
+  // showAlert(result.message);
 };
 
 const handleRegister = async () => {
   if (password.value !== confirmPassword.value) {
-    showAlert('비밀번호가 일치하지 않습니다', 'danger');
+    // showAlert('비밀번호가 일치하지 않습니다', 'danger');
     return;
   }
 
@@ -150,8 +146,8 @@ const handleRegister = async () => {
     age: age.value,
   });
 
-  // 등록 처리 로직 (예: POST /users)
-  showAlert(result.message, 'success');
+  // showAlert(result.message, 'success');
+
   if (result.success === true) {
     router.push('/login');
   }

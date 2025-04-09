@@ -1,10 +1,4 @@
 <template>
-  <BaseAlert
-    v-if="alertMessage"
-    :message="alertMessage"
-    :type="alertType"
-    :duration="3000"
-  />
   <div
     class="container min-vh-100 mb-5 d-flex justify-content-center align-items-center"
   >
@@ -79,7 +73,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import BaseAlert from '@/components/BaseAlert.vue';
 import { useUserStore } from '@/stores/user-store';
 import axios from 'axios';
 
@@ -97,11 +90,6 @@ const confirmPassword = ref('');
 const nickname = ref('');
 const age = ref('');
 
-const showAlert = (msg, type = 'info') => {
-  alertMessage.value = msg;
-  alertType.value = type;
-};
-
 // 사용자 정보 불러오기
 const fetchUserInfo = async () => {
   try {
@@ -115,7 +103,7 @@ const fetchUserInfo = async () => {
     console.log(user);
 
     if (!user) {
-      showAlert('사용자 정보를 찾을 수 없습니다.', 'danger');
+      // showAlert('사용자 정보를 찾을 수 없습니다.', 'danger');
       return;
     }
 
@@ -126,14 +114,14 @@ const fetchUserInfo = async () => {
     password.value = '';
     confirmPassword.value = '';
   } catch (error) {
-    showAlert('사용자 정보를 불러오는 데 실패했습니다.', 'danger');
+    // showAlert('사용자 정보를 불러오는 데 실패했습니다.', 'danger');
   }
 };
 
 // 사용자 정보 수정 처리
 const handleUpdate = async () => {
   if (password.value && password.value !== confirmPassword.value) {
-    showAlert('비밀번호가 일치하지 않습니다.', 'danger');
+    // showAlert('비밀번호가 일치하지 않습니다.', 'danger');
     return;
   }
 
@@ -148,10 +136,10 @@ const handleUpdate = async () => {
     }
 
     await axios.patch(`http://localhost:3000/users/${id.value}`, updateData);
-    showAlert('회원 정보가 성공적으로 수정되었습니다.', 'success');
+    // showAlert('회원 정보가 성공적으로 수정되었습니다.', 'success');
     setTimeout(() => router.push('/'), 2000);
   } catch (error) {
-    showAlert('회원 정보 수정 중 오류가 발생했습니다.', 'danger');
+    // showAlert('회원 정보 수정 중 오류가 발생했습니다.', 'danger');
   }
 };
 

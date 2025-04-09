@@ -43,7 +43,7 @@
     {
       "userId": "6",
       "email": "1@1",
-      "password": "1234",
+      "password": "12",
       "nickname": "수정된닉네임",
       "age": "20",
       "id": "6d33"
@@ -84,6 +84,13 @@
       "nickname": "ㄴ기네",
       "age": "22",
       "userId": 22
+    },
+    {
+      "id": "a3e5",
+      "email": "1234@nav",
+      "password": "123",
+      "nickname": "ab",
+      "age": "12"
     }
   ],
   "tradeList": [
