@@ -47,57 +47,6 @@
       "nickname": "수정된닉네임",
       "age": "20",
       "id": "6d33"
-    },
-    {
-      "id": "1e17",
-      "email": "user12@example.com",
-      "password": "user1@example.com",
-      "nickname": "1",
-      "age": "1"
-    },
-    {
-      "id": "4763",
-      "email": "12@1",
-      "password": "123",
-      "nickname": "1",
-      "age": "10"
-    },
-    {
-      "id": "5c29",
-      "email": "123@123",
-      "password": "1",
-      "nickname": "1",
-      "age": "1"
-    },
-    {
-      "id": "e12e",
-      "email": "1232@123",
-      "password": "123",
-      "nickname": "3123",
-      "age": "123",
-      "userId": 123
-    },
-    {
-      "id": "e2b1",
-      "email": "213@123",
-      "password": "abc1",
-      "nickname": "ㄴ기네",
-      "age": "22",
-      "userId": 22
-    },
-    {
-      "id": "a3e5",
-      "email": "1234@nav",
-      "password": "123",
-      "nickname": "ab",
-      "age": "12"
-    },
-    {
-      "id": "a422",
-      "email": "12@12",
-      "password": "12",
-      "nickname": "12",
-      "age": "12"
     }
   ],
   "tradeList": [
