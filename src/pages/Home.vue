@@ -51,31 +51,6 @@
       <!-- 월 별 소비 분석 -->
       <div v-if="showMonthly" class="list-group">
         <MonthAnalysis />
-        <!-- <div
-          v-if="tradeList.length === 0"
-          class="list-group-item d-flex justify-content-center align-items-center"
-        >
-          <span>불러오는 중...</span>
-        </div>
-        <div
-          v-else
-          v-for="trade in tradeList"
-          :key="trade.tradeId"
-          class="list-group-item d-flex justify-content-between align-items-center"
-        >
-          <div>
-            <h6 class="mb-1">{{ trade.tradeDate }}</h6>
-            <div class="text-muted">{{ trade.tradeType }}</div>
-          </div>
-          <span
-            :class="{
-              'text-success': trade.tradeType == '수입',
-              'text-danger': trade.tradeType == '지출',
-            }"
-          >
-            {{ trade.tradeAmount }}
-          </span>
-        </div> -->
       </div>
       <!-- 카테고리 별 소비 분석 -->
       <div v-if="showCategory">

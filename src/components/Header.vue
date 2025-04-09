@@ -140,6 +140,7 @@
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { useUserStore } from '@/stores/user-store';
 
 const route = useRoute();
 
@@ -149,6 +150,8 @@ const isHome = computed(() => route.path === '/');
 const isNavShow = ref(false);
 const userName = ref('');
 const monthlyTotal = ref(0);
+
+const userStore = useUserStore();
 
 // 금액 포맷 맞추기(3자리 수마다 콤마 추가)
 const formattedMonthlyTotal = computed(() => {
@@ -168,7 +171,7 @@ const closeOffcanvas = () => {
 const currentMonth = new Date().getMonth() + 1;
 
 // 임의로 user 지정, 로그인 기능 구현 시, 수정 필요
-const userId = '3';
+const userId = userStore.userId;
 
 onMounted(async () => {
   try {
@@ -180,14 +183,18 @@ onMounted(async () => {
 
     // tradeTotal 데이터 받아오기
     const { data: tradeList } = await axios.get(
-      `http://localhost:3000/tradeTotal?userId=${userId}`
+      `http://localhost:3000/tradeList?userId=${userId}`
     );
 
     // 현재 월에 맞는 total 금액 찾기
-    const currentMonthData = tradeList.find(
-      (trade) => Number(trade.tradeTotalMonth) === currentMonth
-    );
-    monthlyTotal.value = currentMonthData?.tradeTotalAmount ?? 0;
+    const totalAmountForCurrentMonth = tradeList
+      .filter((trade) => {
+        const tradeMonth = new Date(trade.tradeDate).getMonth() + 1;
+        return tradeMonth === currentMonth;
+      })
+      .reduce((sum, trade) => sum + trade.tradeAmount, 0);
+
+    monthlyTotal.value = totalAmountForCurrentMonth;
   } catch (err) {
     console.error('데이터 불러오기 실패:', err);
   }
