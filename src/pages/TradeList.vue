@@ -127,15 +127,15 @@ import axios from 'axios';
 import { computed, ref, watch } from 'vue';
 
 import { useUserStore } from '@/stores/user-store'; // 경로는 실제 위치에 맞게 조정
+import { useTradeStore } from '@/stores/trade-store';
 import { onMounted } from 'vue';
 
-const tradeList = ref([]);
 const incomeList = ref([]);
 const expenseList = ref([]);
 
 const userStore = useUserStore();
+const tradeStore = useTradeStore();
 
-const tradeUrlPrefix = '/api/tradeList/';
 const incomeUrlPrefix = '/api/incomeCategory/';
 const expenseUrlPrefix = '/api/expenseCategory/';
 const startDate = ref(null);
@@ -147,6 +147,9 @@ const totalBalance = ref(0);
 onMounted(() => {
   userStore.hydrate(); // 세션에서 사용자 정보 불러오기
   console.log('userId:', userStore.userId); // state 사용
+  fetchIncomeList();
+  fetchExpenseList();
+  tradeStore.fetchTradeList();
 });
 
 const formatDate = (date) => {
@@ -160,19 +163,19 @@ const formatDate = (date) => {
   )}`;
 };
 
-const fetchTradeList = async () => {
-  try {
-    const response = await axios.get(tradeUrlPrefix);
-    console.log(response.data);
+// const fetchTradeList = async () => {
+//   try {
+//     const response = await axios.get(tradeUrlPrefix);
+//     console.log(response.data);
 
-    // userId가 일치하는 항목만 필터링
-    tradeList.value = response.data.filter(
-      (trade) => trade.userId === userStore.userId
-    );
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     // userId가 일치하는 항목만 필터링
+//     tradeList.value = response.data.filter(
+//       (trade) => trade.userId === userStore.userId
+//     );
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 const fetchIncomeList = async () => {
   try {
@@ -211,8 +214,8 @@ const dailyTradeList = computed(() => {
 
   const tradesToUse =
     !startDate.value && !endDate.value
-      ? tradeList.value
-      : tradeList.value.filter((trade) => {
+      ? tradeStore.tradeList
+      : tradeStore.tradeList.filter((trade) => {
           const tradeDate = trade.tradeDate; // 문자열: 'YYYY-MM-DD'
           const start = startDate.value
             ? formatDateToString(startDate.value)
@@ -278,10 +281,6 @@ watch(
   },
   { immediate: true }
 );
-
-fetchTradeList();
-fetchIncomeList();
-fetchExpenseList();
 </script>
 <style scoped>
 .fw-littleBold {
