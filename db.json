@@ -91,6 +91,13 @@
       "password": "123",
       "nickname": "ab",
       "age": "12"
+    },
+    {
+      "id": "a422",
+      "email": "12@12",
+      "password": "12",
+      "nickname": "12",
+      "age": "12"
     }
   ],
   "tradeList": [

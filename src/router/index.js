@@ -5,12 +5,11 @@ import { useUserStore } from '@/stores/user-store.js';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // 홈 페이지
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: () => import('../pages/Home.vue'),
-    // },
+    {
+      path: '/',
+      name: 'home',
+      component: () => import('../pages/Home.vue'),
+    },
 
     // 로그인, 회원가입
     {
@@ -48,7 +47,6 @@ const router = createRouter({
     //   name: 'editTrade',
     //   component: () => import('../pages/EditTrade.vue'),
     // },
-
 
     // 사용자 정보 수정
     {

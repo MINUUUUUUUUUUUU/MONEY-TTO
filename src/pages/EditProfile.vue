@@ -2,6 +2,7 @@
   <div
     class="container min-vh-100 mb-5 d-flex justify-content-center align-items-center"
   >
+    <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" />
     <div class="w-100 mt-5">
       <h2 class="text-center mb-4">회원 정보 수정</h2>
       <p v-if="nickname" class="text-center mb-4">
@@ -74,6 +75,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user-store';
+import Alert from '@/components/Alert.vue';
 import axios from 'axios';
 
 const userStore = useUserStore();
@@ -103,7 +105,7 @@ const fetchUserInfo = async () => {
     console.log(user);
 
     if (!user) {
-      // showAlert('사용자 정보를 찾을 수 없습니다.', 'danger');
+      triggerAlert('사용자 정보를 찾을 수 없습니다.', 'danger');
       return;
     }
 
@@ -114,14 +116,14 @@ const fetchUserInfo = async () => {
     password.value = '';
     confirmPassword.value = '';
   } catch (error) {
-    // showAlert('사용자 정보를 불러오는 데 실패했습니다.', 'danger');
+    triggerAlert('사용자 정보를 불러오는 데 실패했습니다.', 'danger');
   }
 };
 
 // 사용자 정보 수정 처리
 const handleUpdate = async () => {
   if (password.value && password.value !== confirmPassword.value) {
-    // showAlert('비밀번호가 일치하지 않습니다.', 'danger');
+    triggerAlert('비밀번호가 일치하지 않습니다.', 'danger');
     return;
   }
 
@@ -139,8 +141,16 @@ const handleUpdate = async () => {
     // showAlert('회원 정보가 성공적으로 수정되었습니다.', 'success');
     setTimeout(() => router.push('/'), 2000);
   } catch (error) {
-    // showAlert('회원 정보 수정 중 오류가 발생했습니다.', 'danger');
+    triggerAlert('회원 정보 수정 중 오류가 발생했습니다.', 'danger');
   }
+};
+
+const triggerAlert = (message, type) => {
+  alertMessage.value = ''; // 리셋
+  setTimeout(() => {
+    alertMessage.value = message;
+    alertType.value = type;
+  }, 300); // 아주 짧은 지연 후 다시 설정
 };
 
 onMounted(() => {

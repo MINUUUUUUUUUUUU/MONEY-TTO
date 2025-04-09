@@ -19,6 +19,7 @@ button:hover {
   <div
     class="container min-vh-100 mb-5 d-flex justify-content-center align-items-center"
   >
+    <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" />
     <div class="w-100 mt-5">
       <div class="text-center mb-4">
         <img
@@ -107,6 +108,7 @@ button:hover {
 <script setup>
 import { ref } from 'vue';
 import { register, emailCheck } from '@/utils/auth-util.js';
+import Alert from '@/components/Alert.vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -120,22 +122,14 @@ const confirmPassword = ref('');
 const nickname = ref('');
 const userId = ref('');
 
-const showAlert = (msg, type = 'info') => {
-  nextTick(() => {
-    alertMessage.value = msg;
-    alertType.value = type;
-  });
-  alertMessage.value = '';
-};
-
 const handleEmailCheck = async () => {
   const result = await emailCheck(email.value);
-  // showAlert(result.message);
+  triggerAlert(result.message, 'info');
 };
 
 const handleRegister = async () => {
   if (password.value !== confirmPassword.value) {
-    // showAlert('비밀번호가 일치하지 않습니다', 'danger');
+    triggerAlert('비밀번호가 일치하지 않습니다', 'danger');
     return;
   }
 
@@ -151,5 +145,13 @@ const handleRegister = async () => {
   if (result.success === true) {
     router.push('/login');
   }
+};
+
+const triggerAlert = (message, type) => {
+  alertMessage.value = ''; // 리셋
+  setTimeout(() => {
+    alertMessage.value = message;
+    alertType.value = type;
+  }, 300); // 아주 짧은 지연 후 다시 설정
 };
 </script>

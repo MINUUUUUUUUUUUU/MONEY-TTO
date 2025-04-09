@@ -22,6 +22,7 @@ a {
   <div
     class="container min-vh-100 d-flex justify-content-center align-items-center"
   >
+    <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" />
     <div class="row justify-content-center w-100 mt-5">
       <div class="col-8">
         <div class="text-center">
@@ -76,6 +77,7 @@ a {
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { login } from '@/utils/auth-util.js';
+import Alert from '@/components/Alert.vue';
 import { useUserStore } from '@/stores/user-store';
 
 const email = ref('');
@@ -94,7 +96,15 @@ const handleLogin = async () => {
     userStore.userId = result.userId;
     await router.push('/');
   } else {
-    // showAlert(result.message, 'danger');
+    triggerAlert(result.message, 'danger');
   }
+};
+
+const triggerAlert = (message, type) => {
+  alertMessage.value = ''; // 리셋
+  setTimeout(() => {
+    alertMessage.value = message;
+    alertType.value = type;
+  }, 300); // 아주 짧은 지연 후 다시 설정
 };
 </script>
