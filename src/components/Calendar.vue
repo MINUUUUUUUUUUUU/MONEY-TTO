@@ -52,6 +52,9 @@ const calendarOptions = reactive({
     const date = new Date(arg.view.currentStart);
     handleMonth(date.getMonth());
   },
+  dayCellContent: (arg) => {
+    return { html: String(arg.date.getDate()) }; // 숫자만 리턴
+  },
 });
 
 // tradeList를 감시하면서 캘린더에 넣을 이벤트로 변환
@@ -68,28 +71,27 @@ watch(
 /* 🔹 요일 텍스트 (ex. 일, 월, 화...) */
 .fc-col-header-cell-cushion {
   color: #339f46;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100%;
 }
 
 /* 🔸 날짜 숫자 (ex. 1, 2, 3...) */
 .fc-daygrid-day-number {
+  text-decoration: none !important; /* 밑줄 제거 */
   color: #000000;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 24px; /* 필요에 따라 조절 */
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  align-items: flex-start; /* 상단 정렬 */
   font-weight: 600;
+}
+
+.fc-daygrid-day-top {
+  display: flex;
 }
 
 /* 🔸 셀 안 전체를 위에서 아래로 정렬 (숫자 + 이벤트 같이 정렬) */
 .fc-daygrid-day-frame {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 /* 🔹 이벤트 텍스트 */
