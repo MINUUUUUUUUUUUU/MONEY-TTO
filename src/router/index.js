@@ -30,11 +30,11 @@ const router = createRouter({
     //   component: () => import('../pages/AddTrade.vue'),
     // },
     // // 거래 리스트 페이지
-    // {
-    //   path: '/trade',
-    //   name: 'tradeList',
-    //   component: () => import('../pages/TradeList.vue'),
-    // },
+    {
+      path: '/trade',
+      name: 'tradeList',
+      component: () => import('../pages/TradeList.vue'),
+    },
     // // 거래 상세 페이지
     // {
     //   path: '/trade/:tradeId',
