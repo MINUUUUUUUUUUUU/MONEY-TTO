@@ -175,23 +175,31 @@ const userId = userStore.userId;
 
 onMounted(async () => {
   try {
-    console.log(userId);
     // user 데이터 받아오기
-    const { data } = axios.get(`http://localhost:3000/users?userId=${userId}`);
+    const { data } = await axios.get(
+      `http://localhost:3000/users?userId=${userId}`
+    );
     userName.value = data[0]?.nickname ?? '이름 없음';
 
     // tradeTotal 데이터 받아오기
-    const { data: tradeList } = axios.get(
+    const { data: tradeList } = await axios.get(
       `http://localhost:3000/tradeList?userId=${userId}`
     );
 
     // 현재 월에 맞는 total 금액 찾기
-    const totalAmountForCurrentMonth = await tradeList
+    const totalAmountForCurrentMonth = tradeList
       .filter((trade) => {
         const tradeMonth = new Date(trade.tradeDate).getMonth() + 1;
         return tradeMonth === currentMonth;
       })
-      .reduce((sum, trade) => sum + trade.tradeAmount, 0);
+      .reduce((sum, trade) => {
+        if (trade.tradeType === '수입') {
+          return sum + trade.tradeAmount;
+        } else if (trade.tradeType === '지출') {
+          return sum - trade.tradeAmount;
+        }
+        return sum;
+      }, 0);
 
     monthlyTotal.value = totalAmountForCurrentMonth;
   } catch (err) {
