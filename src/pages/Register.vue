@@ -124,7 +124,7 @@ const userId = ref('');
 
 const handleEmailCheck = async () => {
   const result = await emailCheck(email.value);
-  triggerAlert(result.message, 'info');
+  triggerAlert(result.message, 'light');
 };
 
 const handleRegister = async () => {
@@ -140,7 +140,7 @@ const handleRegister = async () => {
     age: age.value,
   });
 
-  // showAlert(result.message, 'success');
+  triggerAlert(result.message, 'light');
 
   if (result.success === true) {
     router.push('/login');

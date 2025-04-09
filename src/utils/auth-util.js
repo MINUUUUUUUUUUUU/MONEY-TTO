@@ -40,31 +40,57 @@ export const login = async (email, password) => {
 };
 
 export const emailCheck = async (email) => {
-  const response = await axios.get(`${API_URL}/users`);
-  const users = response.data;
+  // 이메일 형식 정규식
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const emailExists = users.some((user) => user.email === email);
-  if (emailExists) {
+  // 형식이 올바르지 않은 경우
+  if (!emailRegex.test(email)) {
     return {
       success: false,
-      message: '이미 존재하는 이메일입니다.',
+      message: '올바른 이메일 형식이 아닙니다.',
     };
-  } else {
+  }
+
+  try {
+    const response = await axios.get(`${API_URL}/users`);
+    const users = response.data;
+
+    const emailExists = users.some((user) => user.email === email);
+    if (emailExists) {
+      return {
+        success: false,
+        message: '이미 존재하는 이메일입니다.',
+      };
+    } else {
+      return {
+        success: true,
+        message: '사용 가능한 이메일입니다.',
+      };
+    }
+  } catch (error) {
     return {
-      success: true,
-      message: '사용 가능한 이메일입니다.',
+      success: false,
+      message: '이메일 확인 중 오류가 발생했습니다.',
     };
   }
 };
 
 export const register = async ({ email, password, nickname, age, userId }) => {
   try {
-    // 먼저 중복 사용자 체크
+    // 이메일 형식 유효성 검사
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return {
+        success: false,
+        message: '올바른 이메일 형식이 아닙니다.',
+      };
+    }
+
+    //. 중복 사용자 체크
     const response = await axios.get(`${API_URL}/users`);
     const users = response.data;
 
     const emailExists = users.some((user) => user.email === email);
-
     if (emailExists) {
       return {
         success: false,
@@ -72,7 +98,7 @@ export const register = async ({ email, password, nickname, age, userId }) => {
       };
     }
 
-    // 중복이 아니라면 사용자 등록 요청
+    // 3. 사용자 등록
     const newUser = {
       email,
       password,
