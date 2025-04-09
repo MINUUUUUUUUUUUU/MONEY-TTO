@@ -19,12 +19,6 @@ a {
 }
 </style>
 <template>
-  <BaseAlert
-    v-if="alertMessage"
-    :message="alertMessage"
-    :type="alertType"
-    :duration="3000"
-  />
   <div
     class="container min-vh-100 d-flex justify-content-center align-items-center"
   >
@@ -83,7 +77,6 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { login } from '@/utils/auth-util.js';
 import { useUserStore } from '@/stores/user-store';
-import BaseAlert from '@/components/BaseAlert.vue';
 
 const email = ref('');
 const password = ref('');
@@ -93,11 +86,6 @@ const userStore = useUserStore();
 const alertMessage = ref('');
 const alertType = ref('info');
 
-const showAlert = (msg, type = 'info') => {
-  alertMessage.value = msg;
-  alertType.value = type;
-};
-
 const handleLogin = async () => {
   const result = await login(email.value, password.value);
   console.log(result);
@@ -106,7 +94,7 @@ const handleLogin = async () => {
     userStore.userId = result.userId;
     await router.push('/');
   } else {
-    showAlert(result.message, 'danger');
+    // showAlert(result.message, 'danger');
   }
 };
 </script>

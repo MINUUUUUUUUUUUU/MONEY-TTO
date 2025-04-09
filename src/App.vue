@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-<script setup></script>
-
-<template>
-  <RouterView></RouterView>
-</template>
-=======
 <template>
   <!-- 전체 컨테이너를 감싸는 div -->
   <div class="container">
@@ -22,4 +15,3 @@
 <script setup>
 import Header from './components/Header.vue';
 </script>
->>>>>>> e8c3fd22f8be3602279033bfc03f4252fcad2030
