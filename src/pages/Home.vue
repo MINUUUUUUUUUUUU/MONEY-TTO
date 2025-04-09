@@ -1,5 +1,3 @@
 <template>
-    <div>
-        <h1>홈 화면</h1>
-    </div>
+  <h1></h1>
 </template>

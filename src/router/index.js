@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../pages/Home.vue';
+
+import { useUserStore } from '@/stores/user-store.js';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // 홈 페이지
     {
       path: '/',
       name: 'home',
@@ -45,7 +45,7 @@ const router = createRouter({
     {
       path: '/trade/:id/edit',
       name: 'editTrade',
-      component: () => import('../pages/transactions//EditTrade.vue'),
+      component: () => import('../pages/transactions/EditTrade.vue'),
     },
 
     // 사용자 정보 수정
@@ -55,13 +55,42 @@ const router = createRouter({
       component: () => import('../pages/EditProfile.vue'),
     },
 
-    // Not Found
-    {
-      path: '/:pathMatch(.*)*',
-      name: 'notFound',
-      component: () => import('../pages/NotFound.vue'),
-    },
+    // // Not Found
+    // {
+    //   path: '/:pathMatch(.*)*',
+    //   name: 'notFound',
+    //   component: () => import('../pages/NotFound.vue'),
+    // },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+
+  userStore.hydrate();
+
+  if (
+    (to.path === '/login' || to.path === '/register') &&
+    !userStore.isLoggedIn
+  ) {
+    next();
+  }
+  // 로그인하지 않았고, 접근하려는 경로가 로그인/회원가입이 아니면 로그인 페이지로 리다이렉트
+  else if (
+    !userStore.isLoggedIn &&
+    to.path !== '/login' &&
+    to.path !== '/register'
+  ) {
+    next('/login');
+  }
+  // 로그인한 사용자가 로그인 페이지에 접근하려고 하면 홈으로 리다이렉트
+  else if (to.path === '/login' && userStore.isLoggedIn) {
+    next('/');
+  }
+  // 그 외는 정상 라우팅
+  else {
+    next();
+  }
 });
 
 export default router;
