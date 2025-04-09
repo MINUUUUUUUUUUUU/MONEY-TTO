@@ -48,7 +48,7 @@
   </div>
 
   <!-- 거래 내역 출력 -->
-  <div v-if="dailyTradeList.length > 0">
+  <div class="mb-6" v-if="dailyTradeList.length > 0">
     <!-- 이중 v-for dailyTradeList 가져오기 -->
     <div
       v-for="dailyTrade in dailyTradeList"
@@ -346,5 +346,8 @@ const navToTradeDetail = (tradeId) => {
 .bg-carrot {
   background-color: #ff8a3d;
   color: white;
+}
+.mb-6 {
+  margin-bottom: 4.5rem !important;
 }
 </style>
