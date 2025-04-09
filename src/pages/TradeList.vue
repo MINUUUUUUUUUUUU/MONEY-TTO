@@ -126,9 +126,14 @@ import '@vuepic/vue-datepicker/dist/main.css';
 import axios from 'axios';
 import { computed, ref, watch } from 'vue';
 
+import { useUserStore } from '@/stores/user-store'; // 경로는 실제 위치에 맞게 조정
+import { onMounted } from 'vue';
+
 const tradeList = ref([]);
 const incomeList = ref([]);
 const expenseList = ref([]);
+
+const userStore = useUserStore();
 
 const tradeUrlPrefix = '/api/tradeList/';
 const incomeUrlPrefix = '/api/incomeCategory/';
@@ -138,6 +143,11 @@ const endDate = ref(null);
 const totalIncome = ref(0);
 const totalExpense = ref(0);
 const totalBalance = ref(0);
+
+onMounted(() => {
+  userStore.hydrate(); // 세션에서 사용자 정보 불러오기
+  console.log('userId:', userStore.userId); // state 사용
+});
 
 const formatDate = (date) => {
   const day = date.getDate();
@@ -154,7 +164,11 @@ const fetchTradeList = async () => {
   try {
     const response = await axios.get(tradeUrlPrefix);
     console.log(response.data);
-    tradeList.value = response.data;
+
+    // userId가 일치하는 항목만 필터링
+    tradeList.value = response.data.filter(
+      (trade) => trade.userId === userStore.userId
+    );
   } catch (err) {
     console.log(err);
   }
