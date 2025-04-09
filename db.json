@@ -41,7 +41,7 @@
       "tradeId": "1",
       "tradeType": "수입",
       "tradeAmount": 500000,
-      "incomeCategory": "1",
+      "incomeCategory": "급여",
       "tradeDate": "2025-04-01",
       "tradeDescription": "3월 급여 입금",
       "userId": "1"
@@ -50,20 +50,20 @@
       "tradeId": "2",
       "tradeType": "지출",
       "tradeAmount": 15000,
-      "expenseCategory": "2",
+      "expenseCategory": "식비",
       "tradeDate": "2025-04-02",
-      "tradeMethod": "카드",
+      "tradeMethod": "현금",
       "tradeDescription": "점심 식사",
       "userId": "1"
     },
     {
       "tradeId": "3",
       "tradeType": "지출",
-      "tradeAmount": 20000,
-      "expenseCategory": "6",
+      "tradeAmount": 30000,
+      "expenseCategory": "교통",
       "tradeDate": "2025-04-03",
       "tradeMethod": "현금",
-      "tradeDescription": "택시비",
+      "tradeDescription": "지하철 교통비",
       "userId": "2"
     },
     {
@@ -79,29 +79,29 @@
       "tradeId": "5",
       "tradeType": "지출",
       "tradeAmount": 50000,
-      "expenseCategory": "3",
+      "expenseCategory": "주거",
       "tradeDate": "2025-04-04",
-      "tradeMethod": "카드",
+      "tradeMethod": "신용카드",
       "tradeDescription": "월세 납부",
-      "userId": "4"
+      "userId": "1"
     },
     {
       "tradeId": "6",
       "tradeType": "지출",
-      "tradeAmount": 12000,
-      "expenseCategory": "2",
+      "tradeAmount": 25000,
+      "expenseCategory": "보건",
       "tradeDate": "2025-04-05",
       "tradeMethod": "현금",
-      "tradeDescription": "저녁 식사",
+      "tradeDescription": "약국 이용",
       "userId": "5"
     },
     {
       "tradeId": "7",
       "tradeType": "지출",
       "tradeAmount": 8000,
-      "expenseCategory": "5",
+      "expenseCategory": "오락",
       "tradeDate": "2025-04-06",
-      "tradeMethod": "카드",
+      "tradeMethod": "체크 카드",
       "tradeDescription": "영화 관람",
       "userId": "1"
     },
@@ -117,8 +117,8 @@
     {
       "tradeId": "9",
       "tradeType": "지출",
-      "tradeAmount": 30000,
-      "expenseCategory": "7",
+      "tradeAmount": 10000,
+      "expenseCategory": "통신",
       "tradeDate": "2025-04-08",
       "tradeMethod": "계좌이체",
       "tradeDescription": "인터넷 요금",
@@ -127,11 +127,11 @@
     {
       "tradeId": "10",
       "tradeType": "지출",
-      "tradeAmount": 10000,
-      "expenseCategory": "2",
+      "tradeAmount": 12000,
+      "expenseCategory": "세금",
       "tradeDate": "2025-04-09",
-      "tradeMethod": "카드",
-      "tradeDescription": "아침 식사",
+      "tradeMethod": "계좌이체",
+      "tradeDescription": "지방세 납부",
       "userId": "4"
     },
     {
@@ -146,18 +146,18 @@
     {
       "tradeId": "12",
       "tradeType": "지출",
-      "tradeAmount": 60000,
-      "expenseCategory": "3",
+      "tradeAmount": 30000,
+      "expenseCategory": "저축",
       "tradeDate": "2025-04-10",
-      "tradeMethod": "카드",
-      "tradeDescription": "관리비 납부",
+      "tradeMethod": "계좌이체",
+      "tradeDescription": "적금 입금",
       "userId": "1"
     },
     {
       "tradeId": "13",
       "tradeType": "지출",
       "tradeAmount": 15000,
-      "expenseCategory": "6",
+      "expenseCategory": "교통",
       "tradeDate": "2025-04-11",
       "tradeMethod": "현금",
       "tradeDescription": "버스카드 충전",
@@ -167,7 +167,7 @@
       "tradeId": "14",
       "tradeType": "수입",
       "tradeAmount": 100000,
-      "incomeCategory": "4",
+      "incomeCategory": "기타 수입",
       "tradeDate": "2025-04-12",
       "tradeDescription": "주식 배당금",
       "userId": "5"
