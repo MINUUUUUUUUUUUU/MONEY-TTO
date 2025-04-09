@@ -1,0 +1,188 @@
+/* tap 디자인 변경 (부트스트랩 유지)  */
+/* 탭 공통 스타일 */
+/* 탭 공통 스타일 */
+.custom-tab-group .btn {
+  width: 50%;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+/* 지출 버튼 기본: 아웃라인 */
+/* 지출 버튼 */
+.custom-expense-btn {
+  color: #ff8a3d;
+  border: 3px solid #ff8a3d;
+  background-color: transparent;
+}
+
+.custom-expense-btn.active {
+  background-color: #ff8a3d !important;
+  color: white !important;
+}
+
+/* 수입 버튼 */
+.custom-income-btn {
+  color: #339f46;
+  border: 3px solid #339f46;
+  background-color: transparent;
+}
+
+.custom-income-btn.active {
+  background-color: #339f46 !important;
+  color: white !important;
+}
+
+/* input 클릭시 테두리 색상 변경  */
+.input-orange {
+  border: 2px solid #ff8a3d !important;
+  outline: none;
+  box-shadow: 0 0 0 0.15rem rgba(255, 165, 0, 0.3);
+}
+
+.input-green {
+  border: 2px solid #339f46 !important;
+  outline: none;
+  box-shadow: 0 0 0 0.15rem rgba(0, 128, 0, 0.3);
+}
+
+/* 폼 전체의 정렬 및 너비 조정 */
+.fixed-actions {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+padding: 10px 1rem 0;  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  /* 배경 흰색 */
+  z-index: 10;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  /* 살짝 그림자 */
+}
+.form-layout {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  /* 각 항목 간 간격 */
+}
+
+/* 각 입력 박스 그룹 (부트스트랩 mb-3 포함되지만 명시적 추가도 OK) */
+.form-layout .mb-3 {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 라벨 정렬 개선 */
+.form-layout .form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* 입력창 높이 조금 더 넉넉하게 */
+.form-layout .form-control,
+.form-layout .form-select,
+.form-layout textarea {
+  min-height: 40px;
+  padding: 0.5rem 0.75rem;
+}
+
+/* 지출,수입 버튼 */
+/* 전체 탭 컨테이너 */
+.custom-tab-line {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1.5rem;
+}
+
+/* 각 탭 아이템 */
+.tab-item {
+  padding: 8px 0;
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  color: #ccc;
+  cursor: pointer;
+  position: relative;
+}
+
+/* 선택된 탭 텍스트 스타일 */
+.tab-item.active {
+  color: inherit;
+}
+
+/* 선택된 탭 밑줄 */
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.orange.active {
+  color: #ff8a3d;
+}
+.orange.active::after {
+  background-color: #ff8a3d;
+}
+.green.active {
+  color: #339f46;
+}
+
+.green.active::after {
+  background-color: #339f46;
+}
+
+/* 저장버튼 색 조정  */
+.save-expense {
+  background-color: #ff8a3d;
+  border-color: #ff8a3d;
+}
+
+.save-income {
+  background-color: #339f46;
+  border-color: #339f46;
+}
+
+.save-expense:hover {
+  background-color: #e6731f;
+  border-color: #e6731f;
+}
+
+.save-income:hover {
+  background-color: #2d8e3f;
+  border-color: #2d8e3f;
+}
+
+/* 닫기 버튼 테두리 스타일 추가  */
+.cancel-btn {
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #f1f1f1;
+}
+
+/* +,- 크기 */
+.amount-icon {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+
+
+

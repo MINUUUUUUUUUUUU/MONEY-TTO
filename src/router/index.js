@@ -23,30 +23,31 @@ const router = createRouter({
       component: () => import('../pages/Register.vue'),
     },
 
-    // // 거래 추가 페이지
-    // {
-    //   path: '/trade/add',
-    //   name: 'addTrade',
-    //   component: () => import('../pages/AddTrade.vue'),
-    // },
-    // // 거래 리스트 페이지
+    // 거래 추가 페이지
+    {
+      path: '/trade/add',
+      name: 'addTrade',
+      component: () => import('../pages/transactions/AddTrade.vue'),
+    },
+    // 거래 리스트 페이지
     {
       path: '/trade',
       name: 'tradeList',
       component: () => import('../pages/TradeList.vue'),
     },
-    // // 거래 상세 페이지
-    // {
-    //   path: '/trade/:tradeId',
-    //   name: 'tradeDetail',
-    //   component: () => import('../pages/TradeDetail.vue'),
-    // },
-    // // 거래 수정 페이지
-    // {
-    //   path: '/trade/:tradeId/edit',
-    //   name: 'editTrade',
-    //   component: () => import('../pages/EditTrade.vue'),
-    // },
+
+    // 거래 상세 페이지
+    {
+      path: '/trade/:id',
+      name: 'tradeDetail',
+      component: () => import('../pages/transactions/TradeDetail.vue'),
+    },
+    // 거래 수정 페이지
+    {
+      path: '/trade/:id/edit',
+      name: 'editTrade',
+      component: () => import('../pages/transactions/EditTrade.vue'),
+    },
 
     // 사용자 정보 수정
     {
