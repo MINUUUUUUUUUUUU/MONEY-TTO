@@ -26,19 +26,8 @@
     </div>
   </div>
 
+  <!-- 캘린더 로직 -->
   <div class="d-flex align-items-center gap-2 mt-3">
-    <div class="position-fixed bottom-0 end-0 p-4">
-      <!-- 옵션 버튼 그룹 -->
-      <div v-if="showOptions" class="mb-2 text-end">
-        <button class="btn btn-light border d-block mb-1" @click="addExpense">
-          지출 내역 추가
-        </button>
-        <button class="btn btn-light border d-block" @click="addIncome">
-          수입 내역 추가
-        </button>
-      </div>
-    </div>
-
     <VueDatePicker
       v-model="startDate"
       :format="formatDate"
@@ -58,12 +47,15 @@
     />
   </div>
 
+  <!-- 거래 내역 출력 -->
   <div v-if="dailyTradeList.length > 0">
+    <!-- 이중 v-for dailyTradeList 가져오기 -->
     <div
       v-for="dailyTrade in dailyTradeList"
       :key="dailyTrade.date"
       class="justify-content-between align-items-start py-2"
     >
+      <!-- 특정 날짜에 대한 총 수입, 지출 출력 -->
       <div
         class="d-flex justify-content-between align-items-center border-top border-bottom py-1"
       >
@@ -80,24 +72,26 @@
             }}
           </span>
         </div>
+        <!-- 오늘 총 수입 -->
         <div class="d-flex align-items-center">
           <span class="text-success me-3 fw-littleBold">
             +{{ dailyTrade.dailyIncome.toLocaleString() }}원
           </span>
+          <!-- 오늘 총 지출 -->
           <span class="text-danger fw-littleBold">
             -{{ dailyTrade.dailyExpense.toLocaleString() }}원
           </span>
         </div>
       </div>
 
+      <!-- 이중 v-for 내부: 오늘 하루 거래에 대한 각 trade 항목 -->
       <div
         v-for="trade in dailyTrade.trades"
         :key="trade.tradeId"
         class="d-flex justify-content-between align-items-center py-2 border-bottom"
       >
-        <!-- 좌측: 이모지 + 내용 -->
         <div class="d-flex align-items-center me-3 flex-grow-1">
-          <!-- 카테고리 + 아이콘 영역 -->
+          <!-- 카테고리 -->
           <div
             class="d-flex align-items-center flex-shrink-0 fixed-category-width me-3"
           >
@@ -106,7 +100,7 @@
             }}</span>
           </div>
 
-          <!-- 세부 내용 -->
+          <!-- 세부 내용 (설명, 방법) -->
           <div class="overflow-hidden">
             <div class="fw-semibold text-secondary text-truncate">
               {{ trade.tradeDescription }}
@@ -131,21 +125,10 @@
         </div>
       </div>
       <div class="position-fixed bottom-0 end-0 p-4">
-        <!-- 옵션 버튼 그룹 -->
-        <div v-if="showOptions" class="mb-2 text-end">
-          <button class="btn btn-light border d-block mb-1" @click="addExpense">
-            지출 내역 추가
-          </button>
-          <button class="btn btn-light border d-block" @click="addIncome">
-            수입 내역 추가
-          </button>
-        </div>
-
-        <!-- 메인 플로팅 버튼 -->
+        <!-- 지출 폼으로 이동하는 버튼 -->
         <button
-          class="btn bg-carrot rounded-circle shadow"
-          style="width: 56px; height: 56px; font-size: 24px"
-          @click="toggleOptions"
+          class="btn btn-lg fs-2 size-2 d-flex justify-content-center align-items-center z-3 bg-carrot rounded-circle shadow"
+          @click="navToTradeAdd"
         >
           +
         </button>
@@ -153,6 +136,7 @@
     </div>
   </div>
 
+  <!-- 거래 내용이 없는 경우 출력 -->
   <div v-else class="text-center py-5 text-muted">작성된 내용이 없습니다.</div>
 </template>
 
@@ -162,33 +146,44 @@ import '@vuepic/vue-datepicker/dist/main.css';
 
 import axios from 'axios';
 import { computed, ref, watch } from 'vue';
-
+import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user-store'; // 경로는 실제 위치에 맞게 조정
 import { useTradeStore } from '@/stores/trade-store';
 import { onMounted } from 'vue';
 
+// 수입 지출 리스트
 const incomeList = ref([]);
 const expenseList = ref([]);
 
+// pinia
 const userStore = useUserStore();
 const tradeStore = useTradeStore();
 
+// UrlPrefix
 const incomeUrlPrefix = '/api/incomeCategory/';
 const expenseUrlPrefix = '/api/expenseCategory/';
+
+// 시작일 종료일
 const startDate = ref(null);
 const endDate = ref(null);
+
+// 총 수입, 지출
 const totalIncome = ref(0);
 const totalExpense = ref(0);
-const totalBalance = ref(0);
 
+// 라우트
+const route = useRouter();
+
+// 마운트 됐을 때
 onMounted(() => {
-  tradeStore.fetchTradeList();
+  tradeStore.fetchTradeList(); // id 필터링 된 tradeList 가져오기(tradeStore.tradeList)
   userStore.hydrate(); // 세션에서 사용자 정보 불러오기
   console.log('userId:', userStore.userId); // state 사용
-  fetchIncomeList();
-  fetchExpenseList();
+  fetchIncomeList(); // 수입 리스트 가져오기
+  fetchExpenseList(); // 지출 리스트 가져오기
 });
 
+// 날짜 포맷 지정 (YYYY-MM-DD)
 const formatDate = (date) => {
   const day = date.getDate();
   const month = date.getMonth() + 1;
@@ -200,6 +195,7 @@ const formatDate = (date) => {
   )}`;
 };
 
+// axios로 수입 리스트 가져오기
 const fetchIncomeList = async () => {
   try {
     const response = await axios.get(incomeUrlPrefix);
@@ -210,6 +206,7 @@ const fetchIncomeList = async () => {
   }
 };
 
+// axios로 지출 리스트 가져오기
 const fetchExpenseList = async () => {
   try {
     const response = await axios.get(expenseUrlPrefix);
@@ -220,12 +217,14 @@ const fetchExpenseList = async () => {
   }
 };
 
+// 카테고리 이름 가져오기(카테고리ID와 거래 타입에 따라 변경)
 const getCategoryName = (categoryId, tradeType) => {
   const list = tradeType === '수입' ? incomeList.value : expenseList.value;
   const found = list.find((cat) => cat.id === categoryId);
   return found ? found.category : '기타';
 };
 
+// 반환 값 dailyTradeList 생성 [날짜: , 오늘 수입: , 오늘 지출: , 오늘 거래 항목목: {}]
 const dailyTradeList = computed(() => {
   // 날짜 객체 -> 문자열 YYYY-MM-DD로 포맷
   const formatDateToString = (dateObj) => {
@@ -235,16 +234,20 @@ const dailyTradeList = computed(() => {
     return `${year}-${month}-${day}`;
   };
 
+  // 기간별 정보 조회
   const tradesToUse =
     !startDate.value && !endDate.value
       ? tradeStore.tradeList
       : tradeStore.tradeList.filter((trade) => {
           const tradeDate = trade.tradeDate; // 문자열: 'YYYY-MM-DD'
+
+          // 시작과 종료 날짜는 Data 객체로 formatDateToString으로 문자열 포매팅
           const start = startDate.value
             ? formatDateToString(startDate.value)
             : null;
           const end = endDate.value ? formatDateToString(endDate.value) : null;
 
+          // start, end에 따른 기간별 리스트 조회
           if (start && end) {
             return tradeDate >= start && tradeDate <= end;
           } else if (start) {
@@ -256,16 +259,17 @@ const dailyTradeList = computed(() => {
           return true;
         });
 
+  // 새로운 dailyTradeList 형태로 반환하는 과정 [날짜: , 오늘 수입: , 오늘 지출: , 오늘 거래 항목목: {}]
   const grouped = tradesToUse.reduce((acc, trade) => {
     const date = trade.tradeDate;
 
-    // 👉 카테고리 ID 통합 (수입/지출 구분)
+    // 카테고리 ID 통합 (수입/지출 구분)
     const categoryId =
       trade.tradeType === '수입' ? trade.incomeCategory : trade.expenseCategory;
 
-    // 필요한 경우 categoryId를 trade에 추가 (원본 수정이 아니라 clone하는 게 더 안전)
     trade.categoryId = categoryId;
 
+    // dailyTradeList에 해당 날짜가 존재하지 않는 경우 항목 생성 후 초기화
     if (!acc[date]) {
       acc[date] = {
         date,
@@ -275,6 +279,7 @@ const dailyTradeList = computed(() => {
       };
     }
 
+    // 일치하는 날짜의 dailyIncome과 dailyExpense 각각 누적합
     if (trade.tradeType === '수입') {
       acc[date].dailyIncome += trade.tradeAmount;
     } else {
@@ -285,9 +290,11 @@ const dailyTradeList = computed(() => {
     return acc;
   }, {});
 
+  // 정렬
   return Object.values(grouped).sort((a, b) => b.date.localeCompare(a.date));
 });
 
+// computed에서 연산하면 무한 랜더링 문제로 총 수입, 총 지출을 따로 watch로 구현
 watch(
   dailyTradeList,
   (list) => {
@@ -304,7 +311,13 @@ watch(
   },
   { immediate: true }
 );
+
+// 거래 추가 페이지 이동
+const navToTradeAdd = () => {
+  route.push('/trade/add');
+};
 </script>
+
 <style scoped>
 .fw-littleBold {
   font-weight: 500 !important;
