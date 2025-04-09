@@ -1,4 +1,31 @@
 <template>
+  <div class="row text-center border-top border-bottom py-3">
+    <!-- 총 수입 -->
+    <div class="col">
+      <div class="text-secondary fw-semibold">수입</div>
+      <div class="text-success fw-bold total-font-size">
+        {{ totalIncome.toLocaleString() }}<span class="text-success">원</span>
+      </div>
+    </div>
+
+    <!-- 총 지출 -->
+    <div class="col">
+      <div class="text-secondary fw-semibold">지출</div>
+      <div class="text-danger fw-bold total-font-size">
+        {{ totalExpense.toLocaleString() }}<span class="text-danger">원</span>
+      </div>
+    </div>
+
+    <!-- 총 잔액 -->
+    <div class="col">
+      <div class="text-secondary fw-semibold">총 잔액</div>
+      <div class="text-dark fw-bold total-font-size">
+        {{ (totalIncome - totalExpense).toLocaleString() }}
+        <span class="text-dark">원</span>
+      </div>
+    </div>
+  </div>
+
   <div class="d-flex align-items-center gap-2 mt-3">
     <VueDatePicker
       v-model="startDate"
@@ -95,18 +122,33 @@
 <script setup>
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
+
 import axios from 'axios';
 import { computed, ref, watch } from 'vue';
+
 const tradeList = ref([]);
 const incomeList = ref([]);
 const expenseList = ref([]);
 
-const startDate = ref(null);
-const endDate = ref(null);
-
 const tradeUrlPrefix = '/api/tradeList/';
 const incomeUrlPrefix = '/api/incomeCategory/';
 const expenseUrlPrefix = '/api/expenseCategory/';
+const startDate = ref(null);
+const endDate = ref(null);
+const totalIncome = ref(0);
+const totalExpense = ref(0);
+const totalBalance = ref(0);
+
+const formatDate = (date) => {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(
+    2,
+    '0'
+  )}`;
+};
 
 const fetchTradeList = async () => {
   try {
@@ -206,18 +248,37 @@ const dailyTradeList = computed(() => {
   return Object.values(grouped).sort((a, b) => b.date.localeCompare(a.date));
 });
 
-const formatDate = (date) => {
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
+watch(
+  dailyTradeList,
+  (list) => {
+    let income = 0;
+    let expense = 0;
 
-  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(
-    2,
-    '0'
-  )}`;
-};
+    list.forEach((day) => {
+      income += day.dailyIncome;
+      expense += day.dailyExpense;
+    });
+
+    totalIncome.value = income;
+    totalExpense.value = expense;
+  },
+  { immediate: true }
+);
 
 fetchTradeList();
 fetchIncomeList();
 fetchExpenseList();
 </script>
+<style scoped>
+.fw-littleBold {
+  font-weight: 500 !important;
+}
+.fixed-category-width {
+  min-width: 100px;
+  max-width: 150px;
+}
+.total-font-size {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  text-shadow: 1px 1px 2px #ddd;
+}
+</style>
