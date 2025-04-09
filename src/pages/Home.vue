@@ -184,7 +184,6 @@ const navToTradeAdd = () => {
 
 onMounted(async () => {
   await fetchTradeList();
-  analysisExpense();
   fetchUserNickName(1);
 });
 </script>
