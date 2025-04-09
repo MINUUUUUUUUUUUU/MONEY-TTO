@@ -106,7 +106,11 @@ import { useCalendarStore } from '@/stores/calendar';
 import Calender from '@/components/Calendar.vue';
 
 const nickname = ref('');
+
+// 거래 내역 가져오기
 const tradeListStore = useTradeListStore();
+const { handleTradeList } = tradeListStore;
+
 const tradeList = computed(() => {
   return tradeListStore.tradeList;
 });
@@ -115,6 +119,7 @@ const expenseList = computed(() => {
   return tradeList.value.filter((trade) => trade.tradeType === '지출');
 });
 
+// 월별 수입과 지출 계산
 const monthlyIncome = computed(() => {
   return tradeList.value
     .filter((trade) => trade.tradeType === '수입')
@@ -129,7 +134,6 @@ const monthlyExpense = computed(() => {
     .toLocaleString();
 });
 
-const { handleTradeList } = tradeListStore;
 
 // [년도,월] 상태 관리
 const calendarStore = useCalendarStore();
