@@ -42,7 +42,6 @@ const calendarOptions = reactive({
   },
   contentHeight: 'auto',
   selectable: true,
-  editable: true,
   weekends: true,
   firstDay: 0,
   fixedWeekCount: false,
