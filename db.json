@@ -249,6 +249,17 @@
       "tradeDescription": "주식 배당금",
       "userId": "5",
       "id": "1d08"
+    },
+    {
+      "id": "1744188156272",
+      "tradeId": "1744188156272",
+      "tradeType": "지출",
+      "tradeDate": "2025-04-09",
+      "tradeAmount": 1000000000,
+      "tradeDescription": "rr",
+      "userId": "1",
+      "expenseCategory": "교통",
+      "tradeMethod": "신용카드"
     }
   ],
   "tradeTotal": [
@@ -354,15 +365,15 @@
   "incomeCategory": [
     {
       "id": "1",
-      "category": "급여"
+      "category": "💸 급여"
     },
     {
       "id": "2",
-      "category": "용돈"
+      "category": "🪙 용돈"
     },
     {
       "id": "3",
-      "category": "상여금"
+      "category": "🏆 상여금"
     },
     {
       "id": "4",
@@ -372,35 +383,35 @@
   "expenseCategory": [
     {
       "id": "1",
-      "category": "세금"
+      "category": "🧾 세금"
     },
     {
       "id": "2",
-      "category": "식비"
+      "category": "🍰 식비"
     },
     {
       "id": "3",
-      "category": "주거"
+      "category": "🏠 주거"
     },
     {
       "id": "4",
-      "category": "보건"
+      "category": "🚑 보건"
     },
     {
       "id": "5",
-      "category": "오락"
+      "category": "🎮 오락"
     },
     {
       "id": "6",
-      "category": "교통"
+      "category": "🚌 교통"
     },
     {
       "id": "7",
-      "category": "통신"
+      "category": "🛜 통신"
     },
     {
       "id": "8",
-      "category": "저축"
+      "category": "🐖 저축"
     }
   ]
 }

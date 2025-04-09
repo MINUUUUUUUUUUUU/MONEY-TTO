@@ -18,7 +18,7 @@
 
     <!-- 총 잔액 -->
     <div class="col">
-      <div class="text-secondary fw-semibold">총 잔액</div>
+      <div class="text-secondary fw-semibold">총 합계</div>
       <div class="text-dark fw-bold total-font-size">
         {{ (totalIncome - totalExpense).toLocaleString() }}
         <span class="text-dark">원</span>
@@ -144,6 +144,8 @@
 // 캘린더 관련 라이브러리
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
+
+// 숫자 관련 라이브러리
 
 import axios from 'axios';
 import { computed, ref, watch } from 'vue';
