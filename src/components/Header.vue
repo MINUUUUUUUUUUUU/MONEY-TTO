@@ -153,8 +153,6 @@ const isNavShow = ref(false);
 const userName = ref('');
 const monthlyTotal = ref(0);
 
-const userStore = useUserStore();
-
 // 금액 포맷 맞추기(3자리 수마다 콤마 추가)
 const formattedMonthlyTotal = computed(() => {
   return monthlyTotal.value.toLocaleString('ko-KR');

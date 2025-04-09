@@ -13,8 +13,8 @@
       <div class="d-flex flex-column card p-3 shadow-sm">
         <div class="fw-bold fs-4">{{ currentMonth }} 월 소비</div>
         <hr />
-        <p class="text-success">수입 : {{ monthlyIncome }} 원</p>
-        <p class="text-danger">지출 : - {{ monthlyExpense }} 원</p>
+        <p class="text-success">수입 : {{ tradeSummary.monthlyIncome }} 원</p>
+        <p class="text-danger">지출 : - {{ tradeSummary.monthlyExpense }} 원</p>
       </div>
     </div>
 
@@ -30,7 +30,8 @@
               class="nav-link"
               :class="{ active: showMonthly }"
               href="#"
-              @click.prevent="showMonthlyAnalysis">
+              @click.prevent="showMonthlyAnalysis"
+            >
               월별 소비 분석
             </a>
           </li>
@@ -39,7 +40,8 @@
               class="nav-link"
               :class="{ active: showCategory }"
               href="#"
-              @click.prevent="showCategoryAnalysis">
+              @click.prevent="showCategoryAnalysis"
+            >
               카테고리 별 소비 분석
             </a>
           </li>
@@ -58,7 +60,8 @@
     <button
       class="btn btn-success btn-lg rounded-circle position-fixed fs-2 size-2 d-flex justify-content-center align-items-center z-3 shadow-sm"
       style="bottom: 3rem; right: 3rem"
-      @click="navToTradeAdd">
+      @click="navToTradeAdd"
+    >
       +
     </button>
   </div>
@@ -94,34 +97,50 @@ const expenseList = computed(() => {
 // 월별 거래 총액 가져오기
 const fetchTradeTotal = async (userId) => {
   try {
-    const response = await axios.get('http://localhost:3000/tradeTotal');
-    const filteredTradeList = response.data.filter(
-      (trade) => trade.userId === userId
+    // /tradeList 엔드포인트에서 데이터 가져오기
+    const response = await axios.get(
+      `http://localhost:3000/tradeList?userId=${userId}`
     );
+    const tradeList = response.data;
 
-    filteredTradeList.forEach((trade) => {
-      const month = trade.tradeTotalMonth;
-      const amount = trade.tradeTotalAmount;
-      monthlyData.value[month] = amount;
-    });
+    // 사용자 ID에 해당하는 거래만 필터링
+
+    // 월별 거래 총액 계산
+    const monthlyData = tradeList.reduce((acc, trade) => {
+      const month = new Date(trade.tradeDate).getMonth() + 1; // 월은 0부터 시작하므로 +1
+      const amount = trade.tradeAmount;
+
+      if (!acc[month]) {
+        acc[month] = 0;
+      }
+
+      acc[month] += amount;
+      return acc;
+    }, {});
+
+    // 결과를 monthlyData 객체에 저장
+    console.log(monthlyData);
+    return monthlyData;
   } catch (err) {
-    console.error(err);
+    console.error('데이터 불러오기 실패:', err);
+    return {};
   }
 };
 
 // 월별 수입과 지출 계산
-const monthlyIncome = computed(() => {
-  return tradeList.value
+const tradeSummary = computed(() => {
+  const income = tradeList.value
     .filter((trade) => trade.tradeType === '수입')
-    .reduce((prev, trade) => prev + trade.tradeAmount, 0)
-    .toLocaleString();
-});
+    .reduce((sum, trade) => sum + trade.tradeAmount, 0);
 
-const monthlyExpense = computed(() => {
-  return tradeList.value
+  const expense = tradeList.value
     .filter((trade) => trade.tradeType === '지출')
-    .reduce((prev, trade) => prev + trade.tradeAmount, 0)
-    .toLocaleString();
+    .reduce((sum, trade) => sum + trade.tradeAmount, 0);
+
+  return {
+    monthlyIncome: income.toLocaleString(),
+    monthlyExpense: expense.toLocaleString(),
+  };
 });
 
 // [년도,월] 상태 관리
