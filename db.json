@@ -43,7 +43,7 @@
     {
       "userId": "6",
       "email": "1@1",
-      "password": "1",
+      "password": "2",
       "nickname": "수정된닉네임",
       "age": "20",
       "id": "6d33"
@@ -67,7 +67,8 @@
       "incomeCategory": "급여",
       "tradeDate": "2025-03-01",
       "tradeDescription": "3월 급여 입금",
-      "userId": "1"
+      "userId": "1",
+      "id": "88a3"
     },
     {
       "tradeId": "2",
