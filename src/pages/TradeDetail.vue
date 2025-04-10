@@ -21,16 +21,6 @@
       <span class="value">{{ trade.tradeDate }}</span>
     </div>
 
-    <!-- 달력 추가 -->
-<v-calendar
-  v-if="trade.tradeDate"
-  :attributes="[{ dates: new Date(trade.tradeDate), highlight: true }]"
-  :show-title="false"
-  :show-months="1"
-  is-expanded
-  readonly
-  class="calendar"
-></v-calendar>
   <div class="row">
       <span class="label">카테고리&nbsp;|</span>
       <span class="value">{{ category }}</span>
