@@ -81,10 +81,22 @@
             </div>
             <div>이번 달 총액</div>
           </div>
+          <hr />
 
+          <!-- 분석 페이지 -->
+          <div class="my-2">
+            <RouterLink
+              class="d-flex justify-content-between align-items-center text-decoration-none text-black px-3"
+              to="/analysis"
+              @click="closeOffcanvas"
+            >
+              <span>내 소비 분석 보기</span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </RouterLink>
+          </div>
           <hr />
           <!-- 전체 내역 조회 -->
-          <div class="my-3">
+          <div class="my-2">
             <RouterLink
               class="d-flex justify-content-between align-items-center text-decoration-none text-black px-3"
               to="/trade"
@@ -180,6 +192,7 @@ const isShowBackButton = computed(() => {
     path === '/trade' ||
     path === '/trade/add' ||
     path === '/profile/edit' ||
+    path === '/analysis' ||
     /^\/trade\/[^\/]+$/.test(path) || // '/trade/:id'
     /^\/trade\/[^\/]+\/edit$/.test(path) // '/trade/:id/edit'
   );
