@@ -37,7 +37,7 @@
           isHome ? 'custom-toggler' : 'custom-toggler-orange',
           !showHamburger && 'invisible',
         ]"
-        @click="openOffcanvas"
+        @click="openOffcanvas()"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -81,10 +81,22 @@
             </div>
             <div>이번 달 총액</div>
           </div>
+          <hr />
 
+          <!-- 분석 페이지 -->
+          <div class="my-2">
+            <RouterLink
+              class="d-flex justify-content-between align-items-center text-decoration-none text-black px-3"
+              to="/analysis"
+              @click="closeOffcanvas"
+            >
+              <span>내 소비 분석 보기</span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </RouterLink>
+          </div>
           <hr />
           <!-- 전체 내역 조회 -->
-          <div class="my-3">
+          <div class="my-2">
             <RouterLink
               class="d-flex justify-content-between align-items-center text-decoration-none text-black px-3"
               to="/trade"
@@ -180,6 +192,7 @@ const isShowBackButton = computed(() => {
     path === '/trade' ||
     path === '/trade/add' ||
     path === '/profile/edit' ||
+    path === '/analysis' ||
     /^\/trade\/[^\/]+$/.test(path) || // '/trade/:id'
     /^\/trade\/[^\/]+\/edit$/.test(path) // '/trade/:id/edit'
   );
@@ -215,9 +228,6 @@ const closeOffcanvas = () => {
 // 현재 월(Month) 계산
 const currentMonth = new Date().getMonth() + 1;
 
-// 임의로 user 지정, 로그인 기능 구현 시, 수정 필요
-const userId = userStore.userId;
-
 const tradeList = ref([]);
 
 const monthlyTotal = computed(() => {
@@ -234,6 +244,7 @@ const monthlyTotal = computed(() => {
 
 const fetchUserTotalInfo = async () => {
   try {
+    const userId = userStore.userId;
     // 사용자 데이터 가져오기
     const { data: users } = await axios.get(`/api/users?userId=${userId}`);
     userName.value = users[0]?.nickname ?? '이름 없음';

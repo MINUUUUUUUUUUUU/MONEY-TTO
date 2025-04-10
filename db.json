@@ -205,29 +205,7 @@
       "tradeAmount": 270000,
       "tradeDescription": "성과급 지급 12342134",
       "userId": "1",
-      "incomeCategory": "급여"
-    },
-    {
-      "id": "1744262411558",
-      "tradeId": "1744262411558",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 33,
-      "tradeDescription": "dd",
-      "userId": "1744262383185",
-      "expenseCategory": "주거",
-      "tradeMethod": "체크카드"
-    },
-    {
-      "id": "1744262760773",
-      "tradeId": "1744262760773",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 50000,
-      "tradeDescription": "입원함 내 병원비 ㅠㅠ",
-      "userId": "2",
-      "expenseCategory": "보건",
-      "tradeMethod": "신용카드"
+      "id": "c9d0"
     }
   ],
   "tradeType": [
