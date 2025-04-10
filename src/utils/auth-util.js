@@ -8,6 +8,8 @@ export const login = async (email, password) => {
     const response = await axios.get(`${API_URL}/users`);
     const users = response.data;
 
+    console.log(users);
+
     // 입력된 이메일과 비밀번호가 일치하는 사용자 찾기
     const user = users.find(
       (user) => user.email === email && user.password === password
@@ -31,6 +33,7 @@ export const login = async (email, password) => {
       };
     }
   } catch (error) {
+    console.log(error.message);
     // 서버 오류 처리
     return {
       success: false,
