@@ -234,15 +234,13 @@ const monthlyTotal = computed(() => {
 
 const fetchUserTotalInfo = async () => {
   try {
-    // 사용자 데이터 가져오기
-    const { data: users } = await axios.get(
-      `http://localhost:3000/users?userId=${userId}`
-    );
-    userName.value = users[0]?.nickname ?? '이름 없음';
+    // user 데이터 받아오기
+    const { data } = await axios.get(`/api/users?userId=${userId}`);
+    userName.value = data[0]?.nickname ?? '이름 없음';
 
-    // 거래 목록 데이터 가져오기
-    const { data: trades } = await axios.get(
-      `http://localhost:3000/tradeList?userId=${userId}`
+    // tradeTotal 데이터 받아오기
+    const { data: tradeList } = await axios.get(
+      `/api/tradeList?userId=${userId}`
     );
     tradeList.value = trades;
   } catch (err) {

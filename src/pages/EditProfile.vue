@@ -97,9 +97,7 @@ const fetchUserInfo = async () => {
   try {
     userId.value = userStore.userId;
 
-    const response = await axios.get(
-      `http://localhost:3000/users?userId=${userId.value}`
-    );
+    const response = await axios.get(`/api/users?userId=${userId.value}`);
 
     const user = response.data[0]; // 배열에서 첫 번째 사용자 정보 추출
 
@@ -136,7 +134,7 @@ const handleUpdate = async () => {
       updateData.password = password.value;
     }
 
-    await axios.patch(`http://localhost:3000/users/${id.value}`, updateData);
+    await axios.patch(`/api/users/${id.value}`, updateData);
     triggerAlert('회원 정보가 성공적으로 수정되었습니다.', 'success');
     setTimeout(() => router.push('/'), 2000);
   } catch (error) {
