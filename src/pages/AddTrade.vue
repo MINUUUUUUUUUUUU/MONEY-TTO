@@ -160,7 +160,7 @@
   }
 
   try {
-    await axios.post('http://localhost:3000/tradeList', trade);
+    await axios.post('/api/tradeList', trade);
     triggerAlert('거래 내역이 저장되었습니다!', 'success');
     setTimeout(() => router.push('/'), 2000);
   } catch (error) {

@@ -101,13 +101,13 @@ const formattedAmount = computed(() =>
 // 거래 상세 조회 (id 기준)
 const fetchTrade = async () => {
   try {
-    const res = await axios.get(`http://localhost:3000/tradeList/${id}`);
+    const res = await axios.get(`/api/tradeList/${id}`);
     trade.value = res.data;
 
     const categoryType = trade.value.tradeType === '수입' ? 'incomeCategory' : 'expenseCategory';
     const categoryId = trade.value.incomeCategory || trade.value.expenseCategory;
 
-    const categoryRes = await axios.get(`http://localhost:3000/${categoryType}`);
+    const categoryRes = await axios.get(`/api/${categoryType}`);
     const found = categoryRes.data.find(
   c => String(c.id) === String(categoryId) || c.category === categoryId
 );
@@ -130,8 +130,7 @@ const handleDelete = () => {
 
 const confirmDelete = async () => {
   try {
-    await axios.delete(`http://localhost:3000/tradeList/${id}`);
-    alert('삭제되었습니다!');
+await axios.delete(`/api/tradeList/${id}`);    alert('삭제되었습니다!');
     showModal.value = false;
     router.push('/trade');
   } catch (err) {
