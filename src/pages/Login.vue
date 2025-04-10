@@ -1,6 +1,6 @@
 <style scoped>
 * {
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
 }
 
 button {
@@ -14,58 +14,76 @@ button:hover {
   background-color: #ff8a3d;
 }
 
+img {
+  max-height: 300px;
+}
+
 a {
   text-decoration-color: #6c757d;
 }
+
+.m {
+  margin-top: 10%;
+}
 </style>
+
 <template>
-  <div class="container d-flex justify-content-center align-items-center">
-    <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" />
-    <div class="row justify-content-center w-100 mt-5">
-      <div class="col-8">
-        <div class="text-center">
-          <img
-            src="https://placehold.co/300x300"
-            alt="샘플이미지"
-            class="img-fluid mb-5"
-          />
+  <div class="container m">
+    <div class="row">
+      <!-- 로고 이미지 섹션 -->
+      <div
+        class="col-md-6 d-flex justify-content-center justify-content-md-end"
+      >
+        <img src="@/assets/logo.png" alt="로고" class="img-fluid" />
+        <!-- <Carousel /> -->
+      </div>
+      <!-- 폼 섹션 -->
+      <div class="col-md-6">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-8">
+            <Alert
+              v-if="alertMessage"
+              :message="alertMessage"
+              :type="alertType"
+            />
+            <form @submit.prevent="handleLogin">
+              <div class="mb-3">
+                <label for="email" class="form-label">
+                  <i class="fa-solid fa-user"></i> 이메일
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  class="form-control"
+                  v-model="email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">
+                  <i class="fa-solid fa-lock"></i> 비밀번호
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  class="form-control"
+                  v-model="password"
+                  required
+                />
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn">
+                  <i class="fa-solid fa-right-to-bracket"></i> 로그인
+                </button>
+              </div>
+              <div class="mt-5 text-center">
+                <router-link to="/register" class="btn btn-link">
+                  <p class="text-secondary">회원이 아니신가요?</p>
+                </router-link>
+              </div>
+            </form>
+          </div>
         </div>
-        <form @submit.prevent="handleLogin">
-          <div class="mb-3">
-            <label for="email" class="form-label">
-              <i class="fa-solid fa-user"></i> 이메일
-            </label>
-            <input
-              id="email"
-              type="email"
-              class="form-control"
-              v-model="email"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">
-              <i class="fa-solid fa-lock"></i> 비밀번호
-            </label>
-            <input
-              id="password"
-              type="password"
-              class="form-control"
-              v-model="password"
-              required
-            />
-          </div>
-          <div class="d-grid">
-            <button type="submit" class="btn">
-              <i class="fa-solid fa-right-to-bracket"></i> 로그인
-            </button>
-          </div>
-          <div class="mt-5 text-center">
-            <router-link to="/register" class="btn btn-link">
-              <p class="text-secondary">회원이 아니신가요?</p>
-            </router-link>
-          </div>
-        </form>
       </div>
     </div>
   </div>
