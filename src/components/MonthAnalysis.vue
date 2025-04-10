@@ -20,7 +20,6 @@ const userId = userStore.userId;
 onMounted(async () => {
   try {
     const data = await fetchTradeData(userId);
-    console.log(data);
     const { incomeData, expenseData } = calculateMonthlySpending(data);
     const canvas = document.getElementById('spendingChart');
     if (canvas instanceof HTMLCanvasElement) {
