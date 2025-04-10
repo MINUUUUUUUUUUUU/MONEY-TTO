@@ -37,7 +37,7 @@
           isHome ? 'custom-toggler' : 'custom-toggler-orange',
           !showHamburger && 'invisible',
         ]"
-        @click="openOffcanvas"
+        @click="openOffcanvas()"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -228,9 +228,6 @@ const closeOffcanvas = () => {
 // 현재 월(Month) 계산
 const currentMonth = new Date().getMonth() + 1;
 
-// 임의로 user 지정, 로그인 기능 구현 시, 수정 필요
-const userId = userStore.userId;
-
 const tradeList = ref([]);
 
 const monthlyTotal = computed(() => {
@@ -247,6 +244,7 @@ const monthlyTotal = computed(() => {
 
 const fetchUserTotalInfo = async () => {
   try {
+    const userId = userStore.userId;
     // 사용자 데이터 가져오기
     const { data: users } = await axios.get(`/api/users?userId=${userId}`);
     userName.value = users[0]?.nickname ?? '이름 없음';
