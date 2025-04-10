@@ -50,7 +50,7 @@
               isExpense ? 'text-warning' : 'text-success',
             ]"
           >
-            {{ isExpense ? '−' : '+' }}
+            {{ isExpense ? "−" : "+" }}
           </span>
           <input
             type="number"
@@ -179,33 +179,35 @@
 </template>
 
 <script setup>
-import axios from 'axios';
-import { ref, computed, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import '@/assets/addTrade.css';
-import Alert from '@/components/Alert.vue';
+import axios from "axios";
+import { ref, computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import "@/assets/addTrade.css";
+import Alert from "@/components/Alert.vue";
+import { useUserStore } from "@/stores/user-store";
 
 const route = useRoute();
 const router = useRouter();
 const id = String(route.params.id); // 거래 ID
+const userStore = useUserStore();
 
 const isExpense = ref(true);
-const date = ref('');
+const date = ref("");
 const amount = ref(0);
-const paymentMethod = ref('');
-const category = ref('');
-const memo = ref('');
+const paymentMethod = ref("");
+const category = ref("");
+const memo = ref("");
 const isFocused = ref(false);
 const showCancelModal = ref(false);
 
-const alertMessage = ref('');
-const alertType = ref('info');
+const alertMessage = ref("");
+const alertType = ref("info");
 const today = new Date().toISOString().slice(0, 10);
 
 const categoryOptions = computed(() => {
   return isExpense.value
-    ? ['세금', '식비', '주거', '보건', '오락', '교통', '통신', '저축']
-    : ['급여', '용돈', '상여금', '기타 수입'];
+    ? ["세금", "식비", "주거", "보건", "오락", "교통", "통신", "저축"]
+    : ["급여", "용돈", "상여금", "기타 수입"];
 });
 
 // 거래 정보 불러오기
@@ -214,7 +216,7 @@ const fetchTrade = async () => {
     const res = await axios.get(`https://money-tto.glitch.me/tradeList/${id}`);
     const trade = res.data;
 
-    isExpense.value = trade.tradeType === '지출';
+    isExpense.value = trade.tradeType === "지출";
     date.value = trade.tradeDate;
     amount.value = trade.tradeAmount;
     memo.value = trade.tradeDescription;
@@ -222,7 +224,7 @@ const fetchTrade = async () => {
     if (isExpense.value) {
       paymentMethod.value = trade.tradeMethod;
       const categoryRes = await axios.get(
-        'https://money-tto.glitch.me/expenseCategory'
+        "https://money-tto.glitch.me/expenseCategory"
       );
       const found = categoryRes.data.find(
         (c) =>
@@ -232,7 +234,7 @@ const fetchTrade = async () => {
       category.value = found?.category || trade.expenseCategory;
     } else {
       const categoryRes = await axios.get(
-        'https://money-tto.glitch.me/incomeCategory'
+        "https://money-tto.glitch.me/incomeCategory"
       );
       const found = categoryRes.data.find(
         (c) =>
@@ -242,9 +244,9 @@ const fetchTrade = async () => {
       category.value = found?.category || trade.incomeCategory;
     }
   } catch (err) {
-    console.error('[조회 오류]', err);
-    alert('거래 내역을 불러올 수 없습니다.');
-    router.push('/');
+    console.error("[조회 오류]", err);
+    alert("거래 내역을 불러올 수 없습니다.");
+    router.push("/");
   }
 };
 
@@ -253,11 +255,11 @@ const handleSubmit = async () => {
   const trade = {
     id,
     tradeId: id,
-    tradeType: isExpense.value ? '지출' : '수입',
+    tradeType: isExpense.value ? "지출" : "수입",
     tradeDate: date.value,
     tradeAmount: amount.value,
     tradeDescription: memo.value,
-    userId: '1',
+    userId: userStore.userId,
   };
 
   if (isExpense.value) {
@@ -269,11 +271,11 @@ const handleSubmit = async () => {
 
   try {
     await axios.put(`https://money-tto.glitch.me/tradeList/${id}`, trade);
-    triggerAlert('거래 내역이 수정되었습니다!', 'success');
+    triggerAlert("거래 내역이 수정되었습니다!", "success");
     setTimeout(() => router.push(`/trade/${id}`), 2000);
   } catch (err) {
-    console.error('[수정 실패]', err);
-    triggerAlert('수정에 실패했습니다.', 'danger');
+    console.error("[수정 실패]", err);
+    triggerAlert("수정에 실패했습니다.", "danger");
   }
 };
 
@@ -289,8 +291,8 @@ const cancelCancel = () => {
   showCancelModal.value = false;
 };
 
-const triggerAlert = (message, type = 'info') => {
-  alertMessage.value = '';
+const triggerAlert = (message, type = "info") => {
+  alertMessage.value = "";
   setTimeout(() => {
     alertMessage.value = message;
     alertType.value = type;
@@ -301,9 +303,9 @@ const handleTabClick = (targetIsExpense) => {
   if (targetIsExpense !== isExpense.value) {
     triggerAlert(
       `현재 '${
-        isExpense.value ? '지출' : '수입'
+        isExpense.value ? "지출" : "수입"
       }' 내역을 수정 중입니다.\n다른 탭으로 전환할 수 없습니다.`,
-      'warning'
+      "warning"
     );
     return;
   }
