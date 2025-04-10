@@ -15,7 +15,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000', // 실제 API 서버 주소
+        target: 'https://money-tto.glitch.me/', // 실제 API 서버 주소
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

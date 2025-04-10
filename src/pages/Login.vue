@@ -19,9 +19,7 @@ a {
 }
 </style>
 <template>
-  <div
-    class="container min-vh-100 d-flex justify-content-center align-items-center"
-  >
+  <div class="container d-flex justify-content-center align-items-center">
     <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" />
     <div class="row justify-content-center w-100 mt-5">
       <div class="col-8">
