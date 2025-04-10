@@ -25,7 +25,14 @@
     <form class="form-layout" @submit.prevent="handleSubmit">
       <div class="mb-3">
         <label class="form-label"><span class="text-danger">* </span>일자</label>
-        <input type="date" class="form-control" v-model="date" required />
+        <input
+            type="date"
+            class="form-control"
+            v-model="date"
+            :max="today"
+            required
+          />
+
       </div>
 
       <div class="mb-3">
@@ -134,6 +141,8 @@ const showCancelModal = ref(false); // 모달 표시 여부
 
 const alertMessage = ref('');
 const alertType = ref('info');
+const today = new Date().toISOString().slice(0, 10);
+
 
 const categoryOptions = computed(() => {
   return isExpense.value
