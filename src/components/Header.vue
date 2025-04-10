@@ -4,6 +4,23 @@
     :class="{ 'bg-carrot': isHome, 'bg-white border-bottom': !isHome }"
   >
     <div class="container-fluid position-relative">
+      <!-- 뒤로가기 버튼 -->
+      <!-- <button
+        v-if="!isHome"
+        class="btn navbar-toggler"
+        :class="isHome ? 'back-button' : 'back-button'"
+        @click="goBack"
+      > -->
+      <!-- <i class="back-button"></i>
+      </button> -->
+
+      <button
+        v-if="isShowBackButton"
+        class="navbar-toggler me-auto"
+        @click="goBack"
+      >
+        <i class="back-button"></i>
+      </button>
       <!-- 중앙 타이틀 -->
       <RouterLink
         to="/"
@@ -140,12 +157,13 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import axios from 'axios';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user-store';
 
 const route = useRoute();
+const router = useRouter();
 
 const userStore = useUserStore();
 
@@ -154,6 +172,26 @@ const isHome = computed(() => route.path === '/');
 // 현재 경로가 /login, /register 인지 확인해서 햄버거 버튼 숨김
 const showHamburger = computed(() => {
   return !['/login', '/register'].includes(route.path);
+});
+
+const isShowBackButton = computed(() => {
+  const path = route.path;
+  return (
+    path === '/trade' ||
+    path === '/trade/add' ||
+    path === '/profile/edit' ||
+    /^\/trade\/[^\/]+$/.test(path) || // '/trade/:id'
+    /^\/trade\/[^\/]+\/edit$/.test(path) // '/trade/:id/edit'
+  );
+});
+
+watch(isShowBackButton, (newValue, oldValue) => {
+  console.log(`${isShowBackButton.value} ${newValue}`);
+  if (newValue) {
+    console.log(`버튼 보여짐! ${isShowBackButton.value}`);
+  } else {
+    console.log(`안보임! ${isShowBackButton.value}`);
+  }
 });
 
 const isNavShow = ref(false);
@@ -224,6 +262,10 @@ const monthlyTotalColorClass = computed(() => {
 const handleLogout = () => {
   closeOffcanvas();
   userStore.logout();
+};
+
+const goBack = () => {
+  router.back();
 };
 </script>
 
@@ -297,5 +339,15 @@ const handleLogout = () => {
 }
 .pointer {
   cursor: pointer;
+}
+.back-button {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff8a3d' d='M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
 }
 </style>
