@@ -37,7 +37,7 @@
           isHome ? 'custom-toggler' : 'custom-toggler-orange',
           !showHamburger && 'invisible',
         ]"
-        @click="fetchUserTotalInfo(), openOffcanvas()"
+        @click="openOffcanvas()"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
