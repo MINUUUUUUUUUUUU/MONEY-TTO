@@ -43,25 +43,10 @@
     {
       "userId": "6",
       "email": "1@1",
-      "password": "2",
+      "password": "1",
       "nickname": "수정된닉네임",
       "age": "20",
       "id": "6d33"
-    },
-    {
-      "id": "6dbb",
-      "email": "22@12.com",
-      "password": "12",
-      "nickname": "12",
-      "age": 12
-    },
-    {
-      "id": "e588",
-      "email": "12@123.com",
-      "password": "12",
-      "nickname": "12",
-      "age": 12,
-      "userId": 1744248160806
     }
   ],
   "tradeList": [
@@ -205,17 +190,6 @@
       "id": "1d08"
     },
     {
-      "id": "1744188156272",
-      "tradeId": "1744188156272",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-09",
-      "tradeAmount": 1000000000,
-      "tradeDescription": "rr",
-      "userId": "1",
-      "expenseCategory": "교통",
-      "tradeMethod": "신용카드"
-    },
-    {
       "id": "1744218411570",
       "tradeId": "1744218411570",
       "tradeType": "지출",
@@ -233,6 +207,26 @@
       "tradeDate": "2025-04-10",
       "tradeAmount": 100000,
       "tradeDescription": "test1",
+      "userId": "1",
+      "incomeCategory": "용돈"
+    },
+    {
+      "id": "1744252612183",
+      "tradeId": "1744252612183",
+      "tradeType": "수입",
+      "tradeDate": "2025-04-10",
+      "tradeAmount": 200000,
+      "tradeDescription": "",
+      "userId": "1",
+      "incomeCategory": "상여금"
+    },
+    {
+      "id": "1744252753704",
+      "tradeId": "1744252753704",
+      "tradeType": "수입",
+      "tradeDate": "2025-04-10",
+      "tradeAmount": 300000,
+      "tradeDescription": "333",
       "userId": "1",
       "incomeCategory": "용돈"
     }
