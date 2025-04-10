@@ -7,6 +7,46 @@
       "nickname": "사용자1",
       "age": 30,
       "id": "e2c7"
+    },
+    {
+      "userId": "2",
+      "email": "user2@example.com",
+      "password": "password2",
+      "nickname": "사용자2",
+      "age": 25,
+      "id": "14f9"
+    },
+    {
+      "userId": "3",
+      "email": "user3@example.com",
+      "password": "password3",
+      "nickname": "사용자3",
+      "age": 28,
+      "id": "5068"
+    },
+    {
+      "userId": "4",
+      "email": "user4@example.com",
+      "password": "password4",
+      "nickname": "사용자4",
+      "age": 35,
+      "id": "0e11"
+    },
+    {
+      "userId": "5",
+      "email": "user5@example.com",
+      "password": "password5",
+      "nickname": "사용자5",
+      "age": 40,
+      "id": "d989"
+    },
+    {
+      "userId": "6",
+      "email": "1@1",
+      "password": "1",
+      "nickname": "수정된닉네임",
+      "age": "20",
+      "id": "6d33"
     }
   ],
   "tradeList": [
@@ -148,6 +188,7 @@
     },
     {
       "tradeId": "14",
+
       "tradeType": "지출",
       "tradeAmount": 200000,
       "expenseCategory": "저축",
@@ -166,6 +207,7 @@
       "tradeDescription": "성과급 지급",
       "userId": "1",
       "id": "c9d0"
+
     }
   ],
   "tradeType": [

@@ -44,17 +44,42 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useTradeListStore } from '@/stores/tradeList';
+import { ref, computed, onMounted } from 'vue';
+import { useUserStore } from '@/stores/user-store';
+import { fetchTradeData } from '@/utils/month-analysis.js';
 
-const tradeListStore = useTradeListStore();
+const userStore = useUserStore();
+const userId = userStore.userId;
 
-// 지출 내역만 추출
+const tradeList = ref([]);
+
+onMounted(async () => {
+  try {
+    const data = await fetchTradeData(userId);
+    tradeList.value = data;
+  } catch (error) {
+    console.error('데이터를 가져오는 중 오류 발생:', error);
+  }
+});
+
+// 현재 날짜
+const now = new Date();
+const currentMonth = now.getMonth(); // 0부터 시작
+const currentYear = now.getFullYear();
+
+// 이번 달 지출 내역만 추출
 const expenseList = computed(() =>
-  tradeListStore.tradeList.filter((trade) => trade.tradeType === '지출')
+  tradeList.value.filter((trade) => {
+    if (trade.tradeType !== '지출' || !trade.tradeDate) return false;
+
+    const date = new Date(trade.tradeDate);
+    return (
+      date.getMonth() === currentMonth && date.getFullYear() === currentYear
+    );
+  })
 );
 
-// 카테고리 데이터 (category 필드 기준)
+// 카테고리 데이터 계산
 const categoryData = computed(() => {
   const categorySums = {};
 
@@ -75,29 +100,27 @@ const categoryData = computed(() => {
       amount: sum,
       percentage: Number(((sum / total) * 100).toFixed(1)),
     }))
-    .sort((a, b) => b.percentage - a.percentage); // ⬅ 이 부분 추가!
+    .sort((a, b) => b.percentage - a.percentage);
 });
 
+// 카테고리 색상 지정
 const getColor = (category) => {
   const colorMap = {
-    세금: '#a3bcd6', // 차분한 블루그레이
-    식비: '#eac9a5', // 은은한 베이지 오렌지
-    주거: '#b5d3c1', // 톤다운 민트
-    보건: '#b7cee3', // 연한 그레이 블루
-    오락: '#dfb0c0', // 톤 다운된 로즈핑크
-    쇼핑: '#e2b3b3', // 코랄 느낌의 로우톤 핑크
-    교통: '#b0cbe1', // 흐린 하늘색
-    저축: '#c0bce0', // 회색기 있는 보라
-    기타: '#d4d4d4', // 뉴트럴 연회색
+    세금: '#a3bcd6',
+    식비: '#eac9a5',
+    주거: '#b5d3c1',
+    보건: '#b7cee3',
+    오락: '#dfb0c0',
+    쇼핑: '#e2b3b3',
+    교통: '#b0cbe1',
+    저축: '#c0bce0',
+    기타: '#d4d4d4',
   };
-  return colorMap[category] || '#bbb'; // 기본 흐린 회색
+  return colorMap[category] || '#bbb';
 };
 
-// 총 지출액 계산
-const totalExpense = computed(() => {
-  return expenseList.value.reduce(
-    (sum, trade) => sum + (trade.tradeAmount || 0),
-    0
-  );
-});
+// 총 지출액
+const totalExpense = computed(() =>
+  expenseList.value.reduce((sum, trade) => sum + (trade.tradeAmount || 0), 0)
+);
 </script>

@@ -1,62 +1,45 @@
 <template>
   <div class="container">
-    <!-- 회원 환영 표시 및  -->
     <div class="mb-4">
-      <div style="text-align: start">
-        <div class="fs-5 text-success fw-bold">
-          <a href="/" style="color: #4caf50; text-decoration: underline">
-            {{ nickname }}
-          </a>
-          님, 안녕하세요
+      <div class="card p-4 shadow-sm my-2 border-0 rounded-4">
+        <!-- <div
+        class="card p-4 shadow-sm my-2 border-0 rounded-4"
+        style="background-color: #f9fafb"
+      > -->
+        <!-- 월 정보 -->
+        <div class="fs-6 fw-semibold text-secondary mb-3 text-center">
+          {{ currentMonth }}월 소비 요약
+        </div>
+
+        <!-- 수입/지출 요약 -->
+        <div class="d-flex justify-content-between text-center px-md-5">
+          <!-- 수입 -->
+          <div class="flex-fill">
+            <div class="fs-6 fw-medium text-muted mb-1">수입</div>
+            <div class="fs-4 fw-bold text-success">
+              + {{ tradeSummary.monthlyIncome.toLocaleString() }} 원
+            </div>
+          </div>
+
+          <!-- 지출 -->
+          <div class="flex-fill">
+            <div class="fs-6 fw-medium text-muted mb-1">지출</div>
+            <div class="fs-4 fw-bold text-danger">
+              - {{ tradeSummary.monthlyExpense.toLocaleString() }} 원
+            </div>
+          </div>
         </div>
       </div>
-      <div class="d-flex flex-column card p-3 shadow-sm">
-        <div class="fw-bold fs-4">{{ currentMonth }} 월 소비</div>
-        <hr />
-        <p class="text-success">수입 : {{ tradeSummary.monthlyIncome }} 원</p>
-        <p class="text-danger">지출 : - {{ tradeSummary.monthlyExpense }} 원</p>
+      <div class="text-end mt-3">
+        <button class="btn btn-outline-secondary btn-sm" @click="navToAnalysis">
+          분석 더 보기
+        </button>
       </div>
     </div>
 
     <!-- 달력 -->
     <Calender />
 
-    <!-- 분석 탭 -->
-    <div class="mt-4">
-      <div class="tabs mb-3">
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="{ active: showMonthly }"
-              href="#"
-              @click.prevent="showMonthlyAnalysis"
-            >
-              월별 소비 분석
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="{ active: showCategory }"
-              href="#"
-              @click.prevent="showCategoryAnalysis"
-            >
-              카테고리 별 소비 분석
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 월 별 소비 분석 -->
-      <div v-if="showMonthly" class="list-group">
-        <MonthAnalysis />
-      </div>
-      <!-- 카테고리 별 소비 분석 -->
-      <div v-if="showCategory">
-        <CategoryAnalysis />
-      </div>
-    </div>
     <button
       class="btn btn-success btn-lg rounded-circle position-fixed fs-2 size-2 d-flex justify-content-center align-items-center z-3 shadow-sm"
       style="bottom: 3rem; right: 3rem"
@@ -126,11 +109,18 @@ const fetchTradeTotal = async (userId) => {
 
 // 월별 수입과 지출 계산
 const tradeSummary = computed(() => {
-  const income = tradeList.value
+  const selectedMonth = currentMonth.value; // getMonth()는 0부터 시작하므로 +1 필요
+
+  const filteredTrades = tradeList.value.filter((trade) => {
+    const [year, month] = trade.tradeDate.split('-').map(Number);
+    return month === selectedMonth;
+  });
+
+  const income = filteredTrades
     .filter((trade) => trade.tradeType === '수입')
     .reduce((sum, trade) => sum + trade.tradeAmount, 0);
 
-  const expense = tradeList.value
+  const expense = filteredTrades
     .filter((trade) => trade.tradeType === '지출')
     .reduce((sum, trade) => sum + trade.tradeAmount, 0);
 
@@ -198,6 +188,12 @@ const route = useRouter();
 // 거래 추가 페이지로 이동
 const navToTradeAdd = () => {
   route.push('/trade/add');
+};
+
+// 분석 페이지로 이동
+
+const navToAnalysis = () => {
+  route.push('/analysis');
 };
 
 onMounted(async () => {
