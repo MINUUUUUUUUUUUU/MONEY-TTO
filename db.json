@@ -67,8 +67,7 @@
       "incomeCategory": "급여",
       "tradeDate": "2025-03-01",
       "tradeDescription": "3월 급여 입금",
-      "userId": "1",
-      "id": "deda"
+      "userId": "1"
     },
     {
       "tradeId": "2",
@@ -157,15 +156,15 @@
       "id": "5062"
     },
     {
-      "id": "5728",
-      "tradeId": "5728",
+      "tradeId": "10",
       "tradeType": "지출",
-      "tradeDate": "2025-04-09",
       "tradeAmount": 12000,
+      "expenseCategory": "세금",
+      "tradeDate": "2025-04-09",
+      "tradeMethod": "카드",
       "tradeDescription": "아침 식사",
-      "userId": "1",
-      "expenseCategory": "주거",
-      "tradeMethod": "계좌이체"
+      "userId": "4",
+      "id": "5728"
     },
     {
       "tradeId": "11",
@@ -209,82 +208,6 @@
       "userId": "1",
       "expenseCategory": "세금",
       "tradeMethod": "현금"
-    },
-    {
-      "id": "1744244242839",
-      "tradeId": "1744244242839",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 1500000,
-      "tradeDescription": "이마트 장보기",
-      "userId": "1",
-      "expenseCategory": "식비",
-      "tradeMethod": "신용카드"
-    },
-    {
-      "id": "1744248228107",
-      "tradeId": "1744248228107",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 5000000,
-      "tradeDescription": "전세 집 구함 꺄르륵",
-      "userId": "userStore.userId",
-      "expenseCategory": "주거",
-      "tradeMethod": "계좌이체"
-    },
-    {
-      "id": "1744248340490",
-      "tradeId": "1744248340490",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 50000000,
-      "tradeDescription": "집을 계좌이체로 삼",
-      "userId": "3",
-      "expenseCategory": "주거",
-      "tradeMethod": "현금"
-    },
-    {
-      "id": "1744248390846",
-      "tradeId": "1744248390846",
-      "tradeType": "수입",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 50000,
-      "tradeDescription": "알바 대타갔다옴 ",
-      "userId": "3",
-      "incomeCategory": "급여"
-    },
-    {
-      "id": "1744250967548",
-      "tradeId": "1744250967548",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 333,
-      "tradeDescription": "",
-      "userId": "5",
-      "expenseCategory": "오락",
-      "tradeMethod": "체크카드"
-    },
-    {
-      "id": "1744251535521",
-      "tradeId": "1744251535521",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 333,
-      "tradeDescription": "",
-      "userId": "5",
-      "expenseCategory": "주거",
-      "tradeMethod": "계좌이체"
-    },
-    {
-      "id": "1744252336469",
-      "tradeId": "1744252336469",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-07",
-      "tradeAmount": 44,
-      "tradeDescription": "ee",
-      "userId": "5",
-      "expenseCategory": "보건",
-      "tradeMethod": "계좌이체"
     }
   ],
   "tradeType": [
