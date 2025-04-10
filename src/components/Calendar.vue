@@ -18,18 +18,42 @@ const tradeListStore = useTradeListStore();
 const tradeList = computed(() => tradeListStore.tradeList);
 
 const convertToCalendarEvents = (tradeList) => {
-  return tradeList.map((trade) => {
+  const dailyTotals = {};
+
+  tradeList.forEach((trade) => {
+    const date = trade.tradeDate;
     const isIncome = trade.tradeType === '수입';
-    return {
-      title: `${isIncome ? '+' : '-'}${trade.tradeAmount.toLocaleString()}`,
-      start: trade.tradeDate,
-      color: isIncome ? 'rgba(51, 159, 70, 0.8)' : 'rgba(255, 138, 61, 0.8)',
-      extendedProps: {
-        description: trade.tradeDescription,
-        category: trade.incomeCategory,
-      },
-    };
+
+    if (!dailyTotals[date]) {
+      dailyTotals[date] = { income: 0, expense: 0 };
+    }
+    if (isIncome) {
+      dailyTotals[date].income += trade.tradeAmount;
+    } else {
+      dailyTotals[date].expense += trade.tradeAmount;
+    }
   });
+
+  const events = [];
+
+  for (const [date, totals] of Object.entries(dailyTotals)) {
+    if (totals.income > 0) {
+      events.push({
+        title: `+${totals.income.toLocaleString()}`,
+        start: date,
+        color: `rgba(51, 159, 70, 0.8)`,
+      });
+    }
+
+    if (totals.expense > 0) {
+      events.push({
+        title: `-${totals.expense.toLocaleString()}`,
+        start: date,
+        color: `rgba(255, 138, 61, 0.8)`,
+      });
+    }
+  }
+  return events;
 };
 
 const calendarOptions = reactive({
