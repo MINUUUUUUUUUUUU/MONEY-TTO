@@ -47,6 +47,21 @@
       "nickname": "수정된닉네임",
       "age": "20",
       "id": "6d33"
+    },
+    {
+      "id": "6dbb",
+      "email": "22@12.com",
+      "password": "12",
+      "nickname": "12",
+      "age": 12
+    },
+    {
+      "id": "e588",
+      "email": "12@123.com",
+      "password": "12",
+      "nickname": "12",
+      "age": 12,
+      "userId": 1744248160806
     }
   ],
   "tradeList": [
