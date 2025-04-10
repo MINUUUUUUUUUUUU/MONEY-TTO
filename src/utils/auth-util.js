@@ -8,7 +8,8 @@ export const login = async (email, password) => {
     const response = await axios.get(`${API_URL}/users`);
     const users = response.data;
 
-    console.log(users);
+    console.log(`요청 API : ${API_URL}/users`);
+    console.log(`불러온 데이터 : ${users}`);
 
     // 입력된 이메일과 비밀번호가 일치하는 사용자 찾기
     const user = users.find(
