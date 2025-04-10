@@ -55,7 +55,12 @@ const router = createRouter({
       name: 'editProfile',
       component: () => import('../pages/EditProfile.vue'),
     },
-
+    // 소비 분석 페이지
+    {
+      path: '/analysis',
+      name: 'analysis',
+      component: () => import('../pages/Analysis.vue'),
+    },
     // // Not Found
     // {
     //   path: '/:pathMatch(.*)*',

@@ -4,7 +4,7 @@
     <div class="col">
       <div class="text-secondary fw-semibold">수입</div>
       <div class="text-success fw-bold total-font-size">
-        {{ totalIncome.toLocaleString() }}<span class="text-success">원</span>
+        {{ totalIncome.toLocaleString() }}<span class="text-success"></span>
       </div>
     </div>
 
@@ -12,22 +12,22 @@
     <div class="col">
       <div class="text-secondary fw-semibold">지출</div>
       <div class="text-danger fw-bold total-font-size">
-        {{ totalExpense.toLocaleString() }}<span class="text-danger">원</span>
+        {{ totalExpense.toLocaleString() }}<span class="text-danger"></span>
       </div>
     </div>
 
     <!-- 총 잔액 -->
     <div class="col">
-      <div class="text-secondary fw-semibold">총 잔액</div>
+      <div class="text-secondary fw-semibold">합계</div>
       <div class="text-dark fw-bold total-font-size">
         {{ (totalIncome - totalExpense).toLocaleString() }}
-        <span class="text-dark">원</span>
+        <span class="text-dark"></span>
       </div>
     </div>
   </div>
 
   <!-- 캘린더 로직 -->
-  <div class="d-flex align-items-center gap-2 mt-3">
+  <div class="d-flex align-items-center gap-2 mt-3 mb-3">
     <VueDatePicker
       v-model="startDate"
       :format="formatDate"
@@ -48,7 +48,7 @@
   </div>
 
   <!-- 거래 내역 출력 -->
-  <div v-if="dailyTradeList.length > 0">
+  <div class="mb-6" v-if="dailyTradeList.length > 0">
     <!-- 이중 v-for dailyTradeList 가져오기 -->
     <div
       v-for="dailyTrade in dailyTradeList"
@@ -88,31 +88,41 @@
       <div
         v-for="trade in dailyTrade.trades"
         :key="trade.tradeId"
+        @click="navToTradeDetail(trade.id)"
         class="d-flex justify-content-between align-items-center py-2 border-bottom"
       >
-        <div class="d-flex align-items-center me-3 flex-grow-1">
+        <div
+          class="d-flex align-items-center me-3 flex-grow-1"
+          style="min-width: 0"
+        >
           <!-- 카테고리 -->
           <div
             class="d-flex align-items-center flex-shrink-0 fixed-category-width me-3"
           >
-            <span class="fw-semibold text-nowrap">{{
-              getCategoryName(trade.categoryId, trade.tradeType)
-            }}</span>
+            <span class="fw-semibold text-nowrap">
+              {{
+                trade.tradeType === '수입'
+                  ? trade.incomeCategory
+                  : trade.expenseCategory
+              }}
+            </span>
           </div>
 
-          <!-- 세부 내용 (설명, 방법) -->
-          <div class="overflow-hidden">
-            <div class="fw-semibold text-secondary text-truncate">
+          <!-- 설명 -->
+          <div class="overflow-hidden flex-grow-1" style="min-width: 0">
+            <div class="fw-semibold text-secondary text-truncate d-block">
               {{ trade.tradeDescription }}
             </div>
-            <div class="text-muted small text-truncate">
+            <div class="text-muted small text-truncate d-block">
               {{ trade.tradeMethod }}
             </div>
           </div>
         </div>
 
         <!-- 우측: 수입/지출 금액 -->
-        <div class="d-flex align-items-center justify-content-end">
+        <div
+          class="d-flex align-items-center justify-content-end text-end flex-shrink-0"
+        >
           <div
             :class="[
               'fw-littleBold',
@@ -144,6 +154,8 @@
 // 캘린더 관련 라이브러리
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
+
+// 숫자 관련 라이브러리
 
 import axios from 'axios';
 import { computed, ref, watch } from 'vue';
@@ -179,7 +191,7 @@ const route = useRouter();
 onMounted(() => {
   tradeStore.fetchTradeList(); // id 필터링 된 tradeList 가져오기(tradeStore.tradeList)
   userStore.hydrate(); // 세션에서 사용자 정보 불러오기
-  console.log('userId:', userStore.userId); // state 사용
+  // console.log('userId:', userStore.userId); // state 사용
   fetchIncomeList(); // 수입 리스트 가져오기
   fetchExpenseList(); // 지출 리스트 가져오기
 });
@@ -200,7 +212,7 @@ const formatDate = (date) => {
 const fetchIncomeList = async () => {
   try {
     const response = await axios.get(incomeUrlPrefix);
-    console.log(response.data);
+    // console.log(response.data);
     incomeList.value = response.data;
   } catch (err) {
     console.log(err);
@@ -211,7 +223,7 @@ const fetchIncomeList = async () => {
 const fetchExpenseList = async () => {
   try {
     const response = await axios.get(expenseUrlPrefix);
-    console.log(response.data);
+    // console.log(response.data);
     expenseList.value = response.data;
   } catch (err) {
     console.log(err);
@@ -317,6 +329,10 @@ watch(
 const navToTradeAdd = () => {
   route.push('/trade/add');
 };
+
+const navToTradeDetail = (tradeId) => {
+  route.push(`/trade/${tradeId}`);
+};
 </script>
 
 <style scoped>
@@ -334,5 +350,8 @@ const navToTradeAdd = () => {
 .bg-carrot {
   background-color: #ff8a3d;
   color: white;
+}
+.mb-6 {
+  margin-bottom: 4.5rem !important;
 }
 </style>
