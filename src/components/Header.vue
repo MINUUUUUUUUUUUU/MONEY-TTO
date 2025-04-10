@@ -157,7 +157,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue';
+import { ref, computed, watch } from 'vue';
 import axios from 'axios';
 import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user-store';
@@ -234,14 +234,12 @@ const monthlyTotal = computed(() => {
 
 const fetchUserTotalInfo = async () => {
   try {
-    // user 데이터 받아오기
-    const { data } = await axios.get(`/api/users?userId=${userId}`);
-    userName.value = data[0]?.nickname ?? '이름 없음';
+    // 사용자 데이터 가져오기
+    const { data: users } = await axios.get(`/api/users?userId=${userId}`);
+    userName.value = users[0]?.nickname ?? '이름 없음';
 
-    // tradeTotal 데이터 받아오기
-    const { data: tradeList } = await axios.get(
-      `/api/tradeList?userId=${userId}`
-    );
+    // 거래 목록 데이터 가져오기
+    const { data: trades } = await axios.get(`/api/tradeList?userId=${userId}`);
     tradeList.value = trades;
   } catch (err) {
     console.error('데이터 불러오기 실패:', err);
