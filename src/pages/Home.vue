@@ -81,7 +81,9 @@ const expenseList = computed(() => {
 const fetchTradeTotal = async (userId) => {
   try {
     // /tradeList 엔드포인트에서 데이터 가져오기
-    const response = await axios.get(`/api/tradeList?userId=${userId}`);
+    const response = await axios.get(
+      `https://money-tto.glitch.me/tradeList?userId=${userId}`
+    );
     const tradeList = response.data;
 
     // 사용자 ID에 해당하는 거래만 필터링
@@ -149,7 +151,7 @@ const showCategoryAnalysis = () => {
 // 회원 닉네임 가져오기
 const fetchUserNickName = async (userId) => {
   try {
-    const response = await axios.get(`/api/users`);
+    const response = await axios.get(`https://money-tto.glitch.me/users`);
     const user = response.data.filter((user) => user.userId == userId);
     nickname.value = user[0].nickname;
   } catch (err) {
@@ -161,7 +163,7 @@ const fetchUserNickName = async (userId) => {
 const fetchTradeList = async (userId) => {
   try {
     // [FIXME] 로그인 기능 이후 userId값을 받아오는 것으로 수정 필요
-    const response = await axios.get('/api/tradeList');
+    const response = await axios.get('https://money-tto.glitch.me/tradeList');
     const filteredTradeList = response.data.filter(
       (trade) => trade.userId === userId
     );

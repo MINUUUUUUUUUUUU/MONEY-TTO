@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/api'; // 로컬 json-server 도메인
+const API_URL = 'https://money-tto.glitch.me'; // 로컬 json-server 도메인
 
 export const login = async (email, password) => {
   try {
@@ -31,6 +31,7 @@ export const login = async (email, password) => {
       };
     }
   } catch (error) {
+    console.log(error.message);
     // 서버 오류 처리
     return {
       success: false,

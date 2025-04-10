@@ -2,7 +2,9 @@ import axios from 'axios';
 
 export async function fetchTradeData(userId) {
   try {
-    const response = await axios.get(`/api/tradeList?userId=${userId}`);
+    const response = await axios.get(
+      `https://money-tto.glitch.me/tradeList?userId=${userId}`
+    );
     return response.data;
   } catch (error) {
     console.error('Error fetching trade data:', error);

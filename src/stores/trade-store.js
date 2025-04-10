@@ -5,7 +5,7 @@ import { useUserStore } from './user-store';
 
 export const useTradeStore = defineStore('trade', () => {
   const tradeList = ref([]);
-  const tradeUrlPrefix = '/api/tradeList/';
+  const tradeUrlPrefix = 'https://money-tto.glitch.me/tradeList/';
 
   const userStore = useUserStore();
 
