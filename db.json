@@ -62,15 +62,15 @@
       "id": "34c9"
     },
     {
-      "tradeId": "3",
+      "id": "43ec",
+      "tradeId": "43ec",
       "tradeType": "지출",
-      "tradeAmount": 30000,
-      "expenseCategory": "교통",
       "tradeDate": "2025-04-03",
-      "tradeMethod": "현금",
+      "tradeAmount": 30000,
       "tradeDescription": "택시비",
-      "userId": "2",
-      "id": "43ec"
+      "userId": "1",
+      "expenseCategory": "교통",
+      "tradeMethod": "현금"
     },
     {
       "tradeId": "4",
@@ -116,16 +116,6 @@
       "id": "71fc"
     },
     {
-      "tradeId": "8",
-      "tradeType": "수입",
-      "tradeAmount": 200000,
-      "incomeCategory": "상여금",
-      "tradeDate": "2025-04-07",
-      "tradeDescription": "프로젝트 보너스",
-      "userId": "2",
-      "id": "4713"
-    },
-    {
       "tradeId": "9",
       "tradeType": "지출",
       "tradeAmount": 10000,
@@ -169,15 +159,15 @@
       "id": "4f31"
     },
     {
-      "tradeId": "13",
+      "id": "1bc8",
+      "tradeId": "1bc8",
       "tradeType": "지출",
+      "tradeDate": "2025-04-01",
       "tradeAmount": 15000,
-      "expenseCategory": "교통",
-      "tradeDate": "2025-04-11",
-      "tradeMethod": "현금",
       "tradeDescription": "버스카드 충전",
-      "userId": "2",
-      "id": "1bc8"
+      "userId": "1",
+      "expenseCategory": "교통",
+      "tradeMethod": "현금"
     },
     {
       "tradeId": "14",
@@ -262,6 +252,26 @@
       "userId": "1",
       "expenseCategory": "통신",
       "tradeMethod": "계좌이체"
+    },
+    {
+      "id": "1744261658913",
+      "tradeId": "1744261658913",
+      "tradeType": "수입",
+      "tradeDate": "2025-04-03",
+      "tradeAmount": 50000,
+      "tradeDescription": "메모추가",
+      "userId": "1",
+      "incomeCategory": "상여금"
+    },
+    {
+      "id": "1744261931110",
+      "tradeId": "1744261931110",
+      "tradeType": "수입",
+      "tradeDate": "2025-04-10",
+      "tradeAmount": 90000000,
+      "tradeDescription": "돈주움 ",
+      "userId": "2",
+      "incomeCategory": "기타 수입"
     }
   ],
   "tradeType": [

@@ -30,9 +30,13 @@
       <span class="value">{{ trade.tradeMethod }}</span>
   </div>
   <div class="row">
-      <span class="label">메모&nbsp;|</span>
-    <span class="value">{{ trade.tradeDescription }}</span>
-  </div>
+  <span class="label">메모&nbsp;|</span>
+  <span class="value" v-if="trade.tradeDescription && trade.tradeDescription.trim()">
+    {{ trade.tradeDescription }}
+  </span>
+  <span class="value text-secondary" v-else>내용 없음</span>
+</div>
+
 
 
 
