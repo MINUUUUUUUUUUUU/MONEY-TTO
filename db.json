@@ -229,6 +229,39 @@
       "tradeDescription": "333",
       "userId": "1",
       "incomeCategory": "용돈"
+    },
+    {
+      "id": "1744258006697",
+      "tradeId": "1744258006697",
+      "tradeType": "지출",
+      "tradeDate": "2025-03-30",
+      "tradeAmount": 1000000,
+      "tradeDescription": "",
+      "userId": "1",
+      "expenseCategory": "보건",
+      "tradeMethod": "계좌이체"
+    },
+    {
+      "id": "1744258227475",
+      "tradeId": "1744258227475",
+      "tradeType": "지출",
+      "tradeDate": "2025-04-10",
+      "tradeAmount": 230000,
+      "tradeDescription": "",
+      "userId": "1",
+      "expenseCategory": "주거",
+      "tradeMethod": "신용카드"
+    },
+    {
+      "id": "1744258619870",
+      "tradeId": "1744258619870",
+      "tradeType": "지출",
+      "tradeDate": "2025-04-10",
+      "tradeAmount": 300000,
+      "tradeDescription": "",
+      "userId": "1",
+      "expenseCategory": "통신",
+      "tradeMethod": "계좌이체"
     }
   ],
   "tradeType": [
