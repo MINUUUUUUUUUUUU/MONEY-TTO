@@ -102,7 +102,6 @@ const fetchUserInfo = async () => {
     );
 
     const user = response.data[0]; // 배열에서 첫 번째 사용자 정보 추출
-    console.log(user);
 
     if (!user) {
       triggerAlert('사용자 정보를 찾을 수 없습니다.', 'danger');
