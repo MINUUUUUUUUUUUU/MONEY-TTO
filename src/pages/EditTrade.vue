@@ -1,5 +1,7 @@
 <template>
   <div class="container mt-4">
+    <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" :duration="2000" />
+
 <div class="custom-tab-line">
   <div
     class="tab-item"
@@ -79,6 +81,35 @@
         </button>
       </div>
     </form>
+
+    <!-- 수정 취소 모달 -->
+<div
+  v-if="showCancelModal"
+  class="modal fade show"
+  tabindex="-1"
+  role="dialog"
+  style="display: block; background-color: rgba(0, 0, 0, 0.5); z-index: 1050;"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-white" style="background-color: #ff8a3d;">
+        <h5 class="modal-title">수정 취소</h5>
+        <button type="button" class="btn-close" @click="cancelCancel"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>수정한 내용이 저장되지 않습니다.</p>
+        <p class="text-danger">정말 나가시겠습니까?</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" @click="cancelCancel">취소</button>
+        <button type="button" class="btn text-white" style="background-color: #ff8a3d;" @click="confirmCancel">
+          확인
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
   </div>
 </template>
 <script setup>
@@ -86,6 +117,7 @@ import axios from 'axios';
 import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import '@/assets/addTrade.css';
+import Alert from '@/components/Alert.vue'
 
 const route = useRoute();
 const router = useRouter();
@@ -98,6 +130,10 @@ const paymentMethod = ref('');
 const category = ref('');
 const memo = ref('');
 const isFocused = ref(false);
+const showCancelModal = ref(false); // 모달 표시 여부
+
+const alertMessage = ref('');
+const alertType = ref('info');
 
 const categoryOptions = computed(() => {
   return isExpense.value
@@ -147,7 +183,7 @@ const handleSubmit = async () => {
     tradeDate: date.value,
     tradeAmount: amount.value,
     tradeDescription: memo.value,
-    userId: '1'
+    userId: '1',
   };
 
   if (isExpense.value) {
@@ -159,32 +195,46 @@ const handleSubmit = async () => {
 
   try {
     await axios.put(`http://localhost:3000/tradeList/${id}`, trade);
-    alert('거래 내역이 수정되었습니다!');
-    router.push(`/trade/${id}`); // 수정 후 상세 페이지로 이동
+    triggerAlert('거래 내역이 수정되었습니다!', 'success');
+    setTimeout(() => router.push(`/trade/${id}`), 2000);
   } catch (err) {
     console.error('[수정 실패]', err);
-    alert('수정에 실패했습니다.');
+    triggerAlert('수정에 실패했습니다.', 'danger');
   }
 };
+
 
 const handleCancel = () => {
-  const isConfirmed = confirm('수정 내용이 저장되지 않습니다. 정말 나가시겠습니까?');
-  if (isConfirmed) {
-    router.push(`/trade/${id}`);
-  }
+  showCancelModal.value = true;
 };
 
-// 탭 클릭 제어 함수
+const confirmCancel = () => {
+  router.push(`/trade/${id}`);
+};
+
+const cancelCancel = () => {
+  showCancelModal.value = false;
+};
+
+const triggerAlert = (message, type = 'info') => {
+  alertMessage.value = '';
+  setTimeout(() => {
+    alertMessage.value = message;
+    alertType.value = type;
+  }, 10);
+};
+
+
 const handleTabClick = (targetIsExpense) => {
   if (targetIsExpense !== isExpense.value) {
-    alert(
-      `현재 ${isExpense.value ? '지출' : '수입'} 내역을 수정 중입니다.\n` +
-      `${targetIsExpense ? '지출' : '수입'} 내역은 수정할 수 없습니다.`
-    );
+    triggerAlert(
+  `현재 '${isExpense.value ? '지출' : '수입'}' 내역을 수정 중입니다.\n다른 탭으로 전환할 수 없습니다.`,
+  'warning'
+);
+
     return;
   }
 };
-
 
 onMounted(fetchTrade);
 </script>

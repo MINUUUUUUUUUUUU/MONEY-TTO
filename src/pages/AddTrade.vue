@@ -1,5 +1,6 @@
 <template>
   <div class="container mt-4">
+    <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" :duration="2000" />
     <!-- 탭: 지출 / 수입 -->
     <div class="custom-tab-line">
       <div class="tab-item" :class="{ active: isExpense, orange: isExpense }" @click="isExpense = true">
@@ -72,6 +73,34 @@
         </button>
       </div>
     </form>
+    <div
+      v-if="showCancelModal"
+      class="modal fade show"
+      tabindex="-1"
+      role="dialog"
+      style="display: block; background-color: rgba(0, 0, 0, 0.5); z-index: 1050;"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-white" style="background-color: #ff8a3d;">
+            <h5 class="modal-title">입력 내용 확인</h5>
+            <button type="button" class="btn-close" @click="cancelCancel"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>입력한 내용이 저장되어 있지 않습니다.</p>
+            <p class="text-danger">정말 나가시겠습니까?</p>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-secondary" @click="cancelCancel">취소</button>
+            <button type="button" class="btn text-white" style="background-color: #ff8a3d;" @click="confirmCancel">
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </template>
   
@@ -81,7 +110,8 @@
   import '@/assets/addTrade.css';
   import { useRouter } from 'vue-router';
   import { useUserStore } from '@/stores/user-store';
-  
+  import Alert from '@/components/Alert.vue';  
+
   const isExpense = ref(true); // true: 지출, false: 수입
   const date = ref(new Date().toISOString().slice(0, 10));
   const amount = ref(0);
@@ -91,6 +121,9 @@
   const isFocused = ref(false);
   const router = useRouter();
   const userStore = useUserStore();
+  const alertMessage = ref('');
+  const alertType = ref('info');
+  const showCancelModal = ref(false);
   
   const categoryOptions = computed(() => {
     return isExpense.value
@@ -100,17 +133,15 @@
   
   const handleSubmit = async () => {
   const newTradeId = Date.now().toString();
-const trade = {
-  id: newTradeId,              
-  tradeId: newTradeId,
-  tradeType: isExpense.value ? '지출' : '수입',
-  tradeDate: date.value,
-  tradeAmount: amount.value,
-  tradeDescription: memo.value,
-  userId: userStore.userId,
-};
-
-
+  const trade = {
+    id: newTradeId,
+    tradeId: newTradeId,
+    tradeType: isExpense.value ? '지출' : '수입',
+    tradeDate: date.value,
+    tradeAmount: amount.value,
+    tradeDescription: memo.value,
+    userId: userStore.userId,
+  };
 
   if (isExpense.value) {
     trade.expenseCategory = category.value;
@@ -121,19 +152,34 @@ const trade = {
 
   try {
     await axios.post('http://localhost:3000/tradeList', trade);
-    alert('거래 내역이 저장되었습니다!');
-    router.push('/'); // 저장 후 홈으로 이동!
+    triggerAlert('거래 내역이 저장되었습니다!', 'success');
+    setTimeout(() => router.push('/'), 2000);
   } catch (error) {
     console.error('저장 실패:', error);
-    alert('저장에 실패했습니다.');
+    triggerAlert('저장에 실패했습니다.', 'danger');
   }
-  };
+};
 
-const handleCancel = () => {
-  const isConfirmed = confirm('입력한 내용이 저장되지 않습니다. 정말 나가시겠습니까?');
-  if (isConfirmed) {
-    router.push('/');
-  }
+  const handleCancel = () => {
+  showCancelModal.value = true;
+};
+
+const confirmCancel = () => {
+  router.push('/');
+};
+
+const cancelCancel = () => {
+  showCancelModal.value = false;
+};
+
+
+
+  const triggerAlert = (message, type = 'info') => {
+  alertMessage.value = ''; // 먼저 리셋
+  setTimeout(() => {
+    alertMessage.value = message;
+    alertType.value = type;
+  }, 10); // 빠르게 갱신해서 알림 반응 트리거
 };
 
 
