@@ -184,10 +184,12 @@ import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import '@/assets/addTrade.css';
 import Alert from '@/components/Alert.vue';
+import { useUserStore } from '@/stores/user-store';
 
 const route = useRoute();
 const router = useRouter();
 const id = String(route.params.id); // 거래 ID
+const userStore = useUserStore();
 
 const isExpense = ref(true);
 const date = ref('');
@@ -257,7 +259,7 @@ const handleSubmit = async () => {
     tradeDate: date.value,
     tradeAmount: amount.value,
     tradeDescription: memo.value,
-    userId: '1',
+    userId: userStore.userId,
   };
 
   if (isExpense.value) {
