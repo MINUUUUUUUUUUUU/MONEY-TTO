@@ -27,7 +27,7 @@ const router = createRouter({
     {
       path: '/trade/add',
       name: 'addTrade',
-      component: () => import('../pages/transactions/AddTrade.vue'),
+      component: () => import('../pages/AddTrade.vue'),
     },
     // 거래 리스트 페이지
     {
@@ -40,13 +40,13 @@ const router = createRouter({
     {
       path: '/trade/:id',
       name: 'tradeDetail',
-      component: () => import('../pages/transactions/TradeDetail.vue'),
+      component: () => import('../pages/TradeDetail.vue'),
     },
     // 거래 수정 페이지
     {
       path: '/trade/:id/edit',
       name: 'editTrade',
-      component: () => import('../pages/transactions/EditTrade.vue'),
+      component: () => import('../pages/EditTrade.vue'),
     },
 
     // 사용자 정보 수정
