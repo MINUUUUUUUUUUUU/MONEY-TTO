@@ -84,7 +84,6 @@ export function renderChart(ctx, incomeData, expenseData) {
         x: {
           title: {
             display: true,
-            text: '월',
           },
           stacked: false, // 그룹화된 막대를 위해 false로 설정
         },
