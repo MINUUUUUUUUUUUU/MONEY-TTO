@@ -129,7 +129,6 @@ const tradeSummary = computed(() => {
     monthlyExpense: expense.toLocaleString(),
   };
 });
-
 // [년도,월] 상태 관리
 const calendarStore = useCalendarStore();
 const currentMonth = computed(() => calendarStore.currentMonth);
