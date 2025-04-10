@@ -1,80 +1,113 @@
 <template>
   <div class="container mt-4">
-<div class="custom-tab-line">
-  <div
-    class="tab-item"
-    :class="{ active: isExpense, orange: isExpense }"
-    @click="handleTabClick(true)"
-  >
-    지출
-  </div>
-  <div
-    class="tab-item"
-    :class="{ active: !isExpense, green: !isExpense }"
-    @click="handleTabClick(false)"
-  >
-    수입
-  </div>
-</div>
-
-
+    <div class="custom-tab-line">
+      <div
+        class="tab-item"
+        :class="{ active: isExpense, orange: isExpense }"
+        @click="handleTabClick(true)"
+      >
+        지출
+      </div>
+      <div
+        class="tab-item"
+        :class="{ active: !isExpense, green: !isExpense }"
+        @click="handleTabClick(false)"
+      >
+        수입
+      </div>
+    </div>
 
     <!-- 거래 입력 폼 -->
     <form class="form-layout" @submit.prevent="handleSubmit">
       <div class="mb-3">
-        <label class="form-label"><span class="text-danger">* </span>일자</label>
+        <label class="form-label"
+          ><span class="text-danger">* </span>일자</label
+        >
         <input type="date" class="form-control" v-model="date" required />
       </div>
 
       <div class="mb-3">
-        <label class="form-label"><span class="text-danger">*</span> 금액</label>
+        <label class="form-label"
+          ><span class="text-danger">*</span> 금액</label
+        >
         <div class="d-flex align-items-center gap-2">
-          <span :class="['amount-icon', isExpense ? 'text-warning' : 'text-success']">
+          <span
+            :class="[
+              'amount-icon',
+              isExpense ? 'text-warning' : 'text-success',
+            ]"
+          >
             {{ isExpense ? '−' : '+' }}
           </span>
-          <input type="number" class="form-control amount-input" v-model.number="amount" @focus="isFocused = true"
-            @blur="isFocused = false" :class="{
+          <input
+            type="number"
+            class="form-control amount-input"
+            v-model.number="amount"
+            @focus="isFocused = true"
+            @blur="isFocused = false"
+            :class="{
               'input-orange': isExpense && isFocused,
-              'input-green': !isExpense && isFocused
-            }" required min="1" />
+              'input-green': !isExpense && isFocused,
+            }"
+            required
+            min="1"
+          />
         </div>
       </div>
 
-
-
-
       <!-- 지출일 경우에만 결제 수단 선택 -->
       <div v-if="isExpense" class="mb-3">
-        <label class="form-label"><span class="text-danger">* </span>결제 수단</label>
+        <label class="form-label"
+          ><span class="text-danger">* </span>결제 수단</label
+        >
         <select class="form-select" v-model="paymentMethod" required>
           <option value="" disabled>선택</option>
-  <option value="현금">현금</option>
-  <option value="신용카드">신용카드</option>
-  <option value="계좌이체">계좌이체</option>
-  <option value="체크카드">체크카드</option>
+          <option value="현금">현금</option>
+          <option value="신용카드">신용카드</option>
+          <option value="계좌이체">계좌이체</option>
+          <option value="체크카드">체크카드</option>
         </select>
       </div>
 
       <div class="mb-3">
-        <label class="form-label"><span class="text-danger">*</span> 카테고리</label>
+        <label class="form-label"
+          ><span class="text-danger">*</span> 카테고리</label
+        >
         <select class="form-select" v-model="category" required>
           <option value="" disabled selected>선택</option>
-          <option v-for="option in categoryOptions" :key="option" :value="option">
+          <option
+            v-for="option in categoryOptions"
+            :key="option"
+            :value="option"
+          >
             {{ option }}
           </option>
         </select>
       </div>
 
-
       <div class="mb-3">
         <label class="form-label">메모</label>
-        <textarea class="form-control" v-model="memo" placeholder="내용 설명" rows="3"></textarea>
+        <textarea
+          class="form-control"
+          v-model="memo"
+          placeholder="내용 설명"
+          rows="3"
+        ></textarea>
       </div>
 
       <!-- 버튼 -->
       <div class="fixed-actions">
-        <button type="button" class="btn cancel-btn" @click="handleCancel">닫기</button>
-        <button type="submit" :class="['btn', 'text-white', isExpense ? 'save-expense' : 'save-income']">
+        <button type="button" class="btn cancel-btn" @click="handleCancel">
+          닫기
+        </button>
+        <button
+          type="submit"
+          :class="[
+            'btn',
+            'text-white',
+            isExpense ? 'save-expense' : 'save-income',
+          ]"
+        >
           저장
         </button>
       </div>
@@ -101,14 +134,14 @@ const isFocused = ref(false);
 
 const categoryOptions = computed(() => {
   return isExpense.value
-    ? ['세금', '식비', '주거', '보건','오락','교통','통신','저축']
+    ? ['세금', '식비', '주거', '보건', '오락', '교통', '통신', '저축']
     : ['급여', '용돈', '상여금', '기타 수입'];
 });
 
 // ✅ 거래 정보 불러오기
 const fetchTrade = async () => {
   try {
-    const res = await axios.get(`http://localhost:3000/tradeList/${id}`);
+    const res = await axios.get(`/api/tradeList/${id}`);
     const trade = res.data;
 
     isExpense.value = trade.tradeType === '지출';
@@ -120,23 +153,28 @@ const fetchTrade = async () => {
       paymentMethod.value = trade.tradeMethod;
 
       // 💡 expenseCategory 값 매핑
-      const categoryRes = await axios.get('http://localhost:3000/expenseCategory');
-      const found = categoryRes.data.find(c => String(c.id) === String(trade.expenseCategory) || c.category === trade.expenseCategory);
+      const categoryRes = await axios.get('/api/expenseCategory');
+      const found = categoryRes.data.find(
+        (c) =>
+          String(c.id) === String(trade.expenseCategory) ||
+          c.category === trade.expenseCategory
+      );
       category.value = found?.category || trade.expenseCategory;
-
     } else {
-      const categoryRes = await axios.get('http://localhost:3000/incomeCategory');
-      const found = categoryRes.data.find(c => String(c.id) === String(trade.incomeCategory) || c.category === trade.incomeCategory);
+      const categoryRes = await axios.get('/api/incomeCategory');
+      const found = categoryRes.data.find(
+        (c) =>
+          String(c.id) === String(trade.incomeCategory) ||
+          c.category === trade.incomeCategory
+      );
       category.value = found?.category || trade.incomeCategory;
     }
-
   } catch (err) {
     console.error('[조회 오류]', err);
     alert('거래 내역을 불러올 수 없습니다.');
     router.push('/');
   }
 };
-
 
 // ✅ 수정 제출
 const handleSubmit = async () => {
@@ -147,7 +185,7 @@ const handleSubmit = async () => {
     tradeDate: date.value,
     tradeAmount: amount.value,
     tradeDescription: memo.value,
-    userId: '1'
+    userId: '1',
   };
 
   if (isExpense.value) {
@@ -158,7 +196,7 @@ const handleSubmit = async () => {
   }
 
   try {
-    await axios.put(`http://localhost:3000/tradeList/${id}`, trade);
+    await axios.put(`/api/tradeList/${id}`, trade);
     alert('거래 내역이 수정되었습니다!');
     router.push(`/trade/${id}`); // 수정 후 상세 페이지로 이동
   } catch (err) {
@@ -168,7 +206,9 @@ const handleSubmit = async () => {
 };
 
 const handleCancel = () => {
-  const isConfirmed = confirm('수정 내용이 저장되지 않습니다. 정말 나가시겠습니까?');
+  const isConfirmed = confirm(
+    '수정 내용이 저장되지 않습니다. 정말 나가시겠습니까?'
+  );
   if (isConfirmed) {
     router.push(`/trade/${id}`);
   }
@@ -179,12 +219,11 @@ const handleTabClick = (targetIsExpense) => {
   if (targetIsExpense !== isExpense.value) {
     alert(
       `현재 ${isExpense.value ? '지출' : '수입'} 내역을 수정 중입니다.\n` +
-      `${targetIsExpense ? '지출' : '수입'} 내역은 수정할 수 없습니다.`
+        `${targetIsExpense ? '지출' : '수입'} 내역은 수정할 수 없습니다.`
     );
     return;
   }
 };
-
 
 onMounted(fetchTrade);
 </script>

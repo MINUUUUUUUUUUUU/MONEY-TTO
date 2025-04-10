@@ -183,14 +183,12 @@ const userId = userStore.userId;
 onMounted(async () => {
   try {
     // user 데이터 받아오기
-    const { data } = await axios.get(
-      `http://localhost:3000/users?userId=${userId}`
-    );
+    const { data } = await axios.get(`/api/users?userId=${userId}`);
     userName.value = data[0]?.nickname ?? '이름 없음';
 
     // tradeTotal 데이터 받아오기
     const { data: tradeList } = await axios.get(
-      `http://localhost:3000/tradeList?userId=${userId}`
+      `/api/tradeList?userId=${userId}`
     );
 
     // 현재 월에 맞는 total 금액 찾기
