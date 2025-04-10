@@ -102,7 +102,6 @@ const fetchUserInfo = async () => {
     );
 
     const user = response.data[0]; // 배열에서 첫 번째 사용자 정보 추출
-    console.log(user);
 
     if (!user) {
       triggerAlert('사용자 정보를 찾을 수 없습니다.', 'danger');
@@ -138,7 +137,7 @@ const handleUpdate = async () => {
     }
 
     await axios.patch(`http://localhost:3000/users/${id.value}`, updateData);
-    // showAlert('회원 정보가 성공적으로 수정되었습니다.', 'success');
+    triggerAlert('회원 정보가 성공적으로 수정되었습니다.', 'success');
     setTimeout(() => router.push('/'), 2000);
   } catch (error) {
     triggerAlert('회원 정보 수정 중 오류가 발생했습니다.', 'danger');

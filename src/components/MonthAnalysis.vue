@@ -10,9 +10,6 @@ import {
   renderChart,
 } from '@/utils/month-analysis.js';
 
-import axios from 'axios';
-import Chart from 'chart.js/auto';
-
 const userStore = useUserStore();
 
 const userId = userStore.userId;
@@ -20,7 +17,6 @@ const userId = userStore.userId;
 onMounted(async () => {
   try {
     const data = await fetchTradeData(userId);
-    console.log(data);
     const { incomeData, expenseData } = calculateMonthlySpending(data);
     const canvas = document.getElementById('spendingChart');
     if (canvas instanceof HTMLCanvasElement) {
