@@ -2,7 +2,7 @@
   <canvas id="spendingChart" width="400" height="200"></canvas>
 </template>
 <script setup>
-import { computed, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useUserStore } from '@/stores/user-store';
 import {
   fetchTradeData,
