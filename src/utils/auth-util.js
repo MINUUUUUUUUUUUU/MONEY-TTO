@@ -5,7 +5,7 @@ const API_URL = '/api'; // 로컬 json-server 도메인
 export const login = async (email, password) => {
   try {
     // users 엔드포인트에서 모든 사용자 정보 가져오기
-    const response = await axios.get(`/api/users`);
+    const response = await axios.get(`${API_URL}/users`);
     const users = response.data;
 
     console.log(users);
