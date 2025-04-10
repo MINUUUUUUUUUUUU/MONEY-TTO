@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000'; // 로컬 json-server 도메인
+const API_URL = '/api'; // 로컬 json-server 도메인
 
 export const login = async (email, password) => {
   try {

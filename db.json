@@ -2,8 +2,8 @@
   "users": [
     {
       "userId": "1",
-      "email": "user1@example.com",
-      "password": "password1",
+      "email": "1@ityl.com",
+      "password": "1234",
       "nickname": "사용자1",
       "age": 30,
       "id": "e2c7"
@@ -51,217 +51,163 @@
   ],
   "tradeList": [
     {
+      "tradeId": "1",
+      "tradeType": "수입",
+      "tradeAmount": 3000000,
+      "incomeCategory": "급여",
+      "tradeDate": "2025-01-15",
+      "tradeDescription": "1월 급여 입금",
+      "userId": "1",
+      "id": "a1b2"
+    },
+    {
       "tradeId": "2",
       "tradeType": "지출",
-      "tradeAmount": 15000,
+      "tradeAmount": 50000,
       "expenseCategory": "식비",
-      "tradeDate": "2025-04-02",
-      "tradeMethod": "현금",
-      "tradeDescription": "점심 식사",
+      "tradeMethod": "신용카드",
+      "tradeDate": "2025-01-20",
+      "tradeDescription": "주말 외식",
       "userId": "1",
-      "id": "34c9"
+      "id": "c3d4"
     },
     {
       "tradeId": "3",
-      "tradeType": "지출",
-      "tradeAmount": 30000,
-      "expenseCategory": "교통",
-      "tradeDate": "2025-04-03",
-      "tradeMethod": "현금",
-      "tradeDescription": "택시비",
-      "userId": "2",
-      "id": "43ec"
+      "tradeType": "수입",
+      "tradeAmount": 200000,
+      "incomeCategory": "용돈",
+      "tradeDate": "2025-02-05",
+      "tradeDescription": "부모님 용돈",
+      "userId": "1",
+      "id": "e5f6"
     },
     {
       "tradeId": "4",
-      "tradeType": "수입",
-      "tradeAmount": 300000,
-      "incomeCategory": "급여",
-      "tradeDate": "2025-04-01",
-      "tradeDescription": "3월 급여 입금",
-      "userId": "3",
-      "id": "7844"
+      "tradeType": "지출",
+      "tradeAmount": 1200000,
+      "expenseCategory": "주거",
+      "tradeMethod": "계좌이체",
+      "tradeDate": "2025-02-10",
+      "tradeDescription": "월세 납부",
+      "userId": "1",
+      "id": "g7h8"
     },
     {
       "tradeId": "5",
-      "tradeType": "지출",
-      "tradeAmount": 50000,
-      "expenseCategory": "주거",
-      "tradeDate": "2025-04-04",
-      "tradeMethod": "신용카드",
-      "tradeDescription": "월세 납부",
-      "userId": "4",
-      "id": "767e"
+      "tradeType": "수입",
+      "tradeAmount": 500000,
+      "incomeCategory": "상여금",
+      "tradeDate": "2025-03-01",
+      "tradeDescription": "프로젝트 보너스",
+      "userId": "1",
+      "id": "i9j0"
     },
     {
       "tradeId": "6",
       "tradeType": "지출",
-      "tradeAmount": 25000,
+      "tradeAmount": 30000,
       "expenseCategory": "보건",
-      "tradeDate": "2025-04-05",
-      "tradeMethod": "현금",
-      "tradeDescription": "저녁 식사",
-      "userId": "5",
-      "id": "9f14"
+      "tradeMethod": "체크카드",
+      "tradeDate": "2025-03-05",
+      "tradeDescription": "병원 진료비",
+      "userId": "1",
+      "id": "k1l2"
     },
     {
       "tradeId": "7",
-      "tradeType": "지출",
-      "tradeAmount": 8000,
-      "expenseCategory": "오락",
-      "tradeDate": "2025-04-06",
-      "tradeMethod": "체크 카드",
-      "tradeDescription": "영화 관람",
+      "tradeType": "수입",
+      "tradeAmount": 150000,
+      "incomeCategory": "기타",
+      "tradeDate": "2025-04-10",
+      "tradeDescription": "중고 물품 판매",
       "userId": "1",
-      "id": "71fc"
+      "id": "m3n4"
     },
     {
       "tradeId": "8",
-      "tradeType": "수입",
-      "tradeAmount": 200000,
-      "incomeCategory": "상여금",
-      "tradeDate": "2025-04-07",
-      "tradeDescription": "프로젝트 보너스",
-      "userId": "2",
-      "id": "4713"
+      "tradeType": "지출",
+      "tradeAmount": 100000,
+      "expenseCategory": "오락",
+      "tradeMethod": "현금",
+      "tradeDate": "2025-04-15",
+      "tradeDescription": "게임기 구매",
+      "userId": "1",
+      "id": "o5p6"
     },
     {
       "tradeId": "9",
-      "tradeType": "지출",
-      "tradeAmount": 10000,
-      "expenseCategory": "통신",
-      "tradeDate": "2025-04-08",
-      "tradeMethod": "계좌이체",
-      "tradeDescription": "인터넷 요금",
-      "userId": "3",
-      "id": "5062"
+      "tradeType": "수입",
+      "tradeAmount": 250000,
+      "incomeCategory": "급여",
+      "tradeDate": "2025-05-01",
+      "tradeDescription": "파트타임 급여",
+      "userId": "1",
+      "id": "q7r8"
     },
     {
       "tradeId": "10",
       "tradeType": "지출",
-      "tradeAmount": 12000,
-      "expenseCategory": "세금",
-      "tradeDate": "2025-04-09",
-      "tradeMethod": "카드",
-      "tradeDescription": "아침 식사",
-      "userId": "4",
-      "id": "5728"
+      "tradeAmount": 60000,
+      "expenseCategory": "교통",
+      "tradeMethod": "신용카드",
+      "tradeDate": "2025-05-05",
+      "tradeDescription": "기차표 예매",
+      "userId": "1",
+      "id": "s9t0"
     },
     {
       "tradeId": "11",
       "tradeType": "수입",
-      "tradeAmount": 250000,
-      "incomeCategory": "급여",
-      "tradeDate": "2025-04-01",
-      "tradeDescription": "3월 급여 입금",
-      "userId": "5",
-      "id": "6fdc"
+      "tradeAmount": 180000,
+      "incomeCategory": "용돈",
+      "tradeDate": "2025-06-12",
+      "tradeDescription": "친척 용돈",
+      "userId": "1",
+      "id": "u1v2"
     },
     {
       "tradeId": "12",
       "tradeType": "지출",
-      "tradeAmount": 30000,
-      "expenseCategory": "저축",
-      "tradeDate": "2025-04-10",
-      "tradeMethod": "카드",
-      "tradeDescription": "관리비 납부",
+      "tradeAmount": 45000,
+      "expenseCategory": "통신",
+      "tradeMethod": "계좌이체",
+      "tradeDate": "2025-06-15",
+      "tradeDescription": "인터넷 요금",
       "userId": "1",
-      "id": "4f31"
+      "id": "w3x4"
     },
     {
       "tradeId": "13",
-      "tradeType": "지출",
-      "tradeAmount": 15000,
-      "expenseCategory": "교통",
-      "tradeDate": "2025-04-11",
-      "tradeMethod": "현금",
-      "tradeDescription": "버스카드 충전",
-      "userId": "2",
-      "id": "1bc8"
+      "tradeType": "수입",
+      "tradeAmount": 3200000,
+      "incomeCategory": "급여",
+      "tradeDate": "2025-07-15",
+      "tradeDescription": "7월 급여 입금",
+      "userId": "1",
+      "id": "y5z6"
     },
     {
       "tradeId": "14",
-      "tradeType": "수입",
-      "tradeAmount": 100000,
-      "incomeCategory": "기타 수입",
-      "tradeDate": "2025-04-12",
-      "tradeDescription": "주식 배당금",
-      "userId": "5",
-      "id": "1d08"
-    },
-    {
-      "id": "1744218411570",
-      "tradeId": "1744218411570",
+
       "tradeType": "지출",
-      "tradeDate": "2025-04-09",
-      "tradeAmount": 1234,
-      "tradeDescription": "test",
-      "userId": "1",
-      "expenseCategory": "주거",
-      "tradeMethod": "계좌이체"
-    },
-    {
-      "id": "1744243696052",
-      "tradeId": "1744243696052",
-      "tradeType": "수입",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 100000,
-      "tradeDescription": "test1",
-      "userId": "1",
-      "incomeCategory": "용돈"
-    },
-    {
-      "id": "1744252612183",
-      "tradeId": "1744252612183",
-      "tradeType": "수입",
-      "tradeDate": "2025-04-10",
       "tradeAmount": 200000,
-      "tradeDescription": "",
+      "expenseCategory": "저축",
+      "tradeMethod": "체크카드",
+      "tradeDate": "2025-07-20",
+      "tradeDescription": "적금 납입",
       "userId": "1",
-      "incomeCategory": "상여금"
+      "id": "a7b8"
     },
     {
-      "id": "1744252753704",
-      "tradeId": "1744252753704",
+      "tradeId": "15",
       "tradeType": "수입",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 300000,
-      "tradeDescription": "333",
+      "tradeAmount": 270000,
+      "incomeCategory": "상여금",
+      "tradeDate": "2025-08-05",
+      "tradeDescription": "성과급 지급",
       "userId": "1",
-      "incomeCategory": "용돈"
-    },
-    {
-      "id": "1744258006697",
-      "tradeId": "1744258006697",
-      "tradeType": "지출",
-      "tradeDate": "2025-03-30",
-      "tradeAmount": 1000000,
-      "tradeDescription": "",
-      "userId": "1",
-      "expenseCategory": "보건",
-      "tradeMethod": "계좌이체"
-    },
-    {
-      "id": "1744258227475",
-      "tradeId": "1744258227475",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 230000,
-      "tradeDescription": "",
-      "userId": "1",
-      "expenseCategory": "주거",
-      "tradeMethod": "신용카드"
-    },
-    {
-      "id": "1744258619870",
-      "tradeId": "1744258619870",
-      "tradeType": "지출",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 300000,
-      "tradeDescription": "",
-      "userId": "1",
-      "expenseCategory": "통신",
-      "tradeMethod": "계좌이체"
+      "id": "c9d0"
+
     }
   ],
   "tradeType": [
