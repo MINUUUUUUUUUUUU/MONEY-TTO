@@ -137,7 +137,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { useUserStore } from '@/stores/user-store';
@@ -151,7 +151,7 @@ const isHome = computed(() => route.path === '/');
 
 const isNavShow = ref(false);
 const userName = ref('');
-const monthlyTotal = ref(0);
+// const monthlyTotal = ref(0);
 
 // 금액 포맷 맞추기(3자리 수마다 콤마 추가)
 const formattedMonthlyTotal = computed(() => {
@@ -173,39 +173,41 @@ const currentMonth = new Date().getMonth() + 1;
 // 임의로 user 지정, 로그인 기능 구현 시, 수정 필요
 const userId = userStore.userId;
 
-onMounted(async () => {
+const tradeList = ref([]);
+
+const monthlyTotal = computed(() => {
+  return tradeList.value.reduce((sum, trade) => {
+    const tradeMonth = new Date(trade.tradeDate).getMonth() + 1;
+    if (tradeMonth === currentMonth) {
+      return trade.tradeType === '수입'
+        ? sum + trade.tradeAmount
+        : sum - trade.tradeAmount;
+    }
+    return sum;
+  }, 0);
+});
+
+const fetchUserTotalInfo = async () => {
   try {
-    // user 데이터 받아오기
-    const { data } = await axios.get(
+    // 사용자 데이터 가져오기
+    const { data: users } = await axios.get(
       `http://localhost:3000/users?userId=${userId}`
     );
-    userName.value = data[0]?.nickname ?? '이름 없음';
+    userName.value = users[0]?.nickname ?? '이름 없음';
 
-    // tradeTotal 데이터 받아오기
-    const { data: tradeList } = await axios.get(
+    // 거래 목록 데이터 가져오기
+    const { data: trades } = await axios.get(
       `http://localhost:3000/tradeList?userId=${userId}`
     );
-
-    // 현재 월에 맞는 total 금액 찾기
-    const totalAmountForCurrentMonth = tradeList
-      .filter((trade) => {
-        const tradeMonth = new Date(trade.tradeDate).getMonth() + 1;
-        return tradeMonth === currentMonth;
-      })
-      .reduce((sum, trade) => {
-        if (trade.tradeType === '수입') {
-          return sum + trade.tradeAmount;
-        } else if (trade.tradeType === '지출') {
-          return sum - trade.tradeAmount;
-        }
-        return sum;
-      }, 0);
-
-    monthlyTotal.value = totalAmountForCurrentMonth;
+    tradeList.value = trades;
   } catch (err) {
     console.error('데이터 불러오기 실패:', err);
   }
-});
+};
+
+fetchUserTotalInfo();
+
+watch(route, fetchUserTotalInfo);
 
 // 양수면 초록, 음수면 주황색으로 폰트 색상 변경
 const monthlyTotalColorClass = computed(() => {
