@@ -1,20 +1,37 @@
 <template>
   <div class="container">
-    <!-- 회원 환영 표시 및  -->
     <div class="mb-4">
-      <div style="text-align: start">
-        <div class="fs-5 text-success fw-bold">
-          <a href="/" style="color: #4caf50; text-decoration: underline">
-            {{ nickname }}
-          </a>
-          님, 안녕하세요
+      <div class="card p-4 shadow-sm my-2 border-0 rounded-4">
+        <!-- <div
+        class="card p-4 shadow-sm my-2 border-0 rounded-4"
+        style="background-color: #f9fafb"
+      > -->
+        <!-- 월 정보 -->
+        <div class="fs-6 fw-semibold text-secondary mb-3 text-center">
+          {{ currentMonth }}월 소비 요약
+        </div>
+
+        <!-- 수입/지출 요약 -->
+        <div class="d-flex justify-content-between text-center px-md-5">
+          <!-- 수입 -->
+          <div class="flex-fill">
+            <div class="fs-6 fw-medium text-muted mb-1">수입</div>
+            <div class="fs-4 fw-bold text-success">
+              + {{ tradeSummary.monthlyIncome.toLocaleString() }} 원
+            </div>
+          </div>
+
+          <!-- 지출 -->
+          <div class="flex-fill">
+            <div class="fs-6 fw-medium text-muted mb-1">지출</div>
+            <div class="fs-4 fw-bold text-danger">
+              - {{ tradeSummary.monthlyExpense.toLocaleString() }} 원
+            </div>
+          </div>
         </div>
       </div>
-      <div class="d-flex flex-column card p-3 shadow-sm">
-        <div class="fw-bold fs-4">{{ currentMonth }} 월 소비</div>
-        <hr />
-        <p class="text-success">수입 : {{ tradeSummary.monthlyIncome }} 원</p>
-        <p class="text-danger">지출 : - {{ tradeSummary.monthlyExpense }} 원</p>
+      <div class="text-end mt-3">
+        <button class="btn btn-outline-secondary btn-sm">분석 더 보기</button>
       </div>
     </div>
 
