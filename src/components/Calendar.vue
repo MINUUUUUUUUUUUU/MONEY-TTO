@@ -69,8 +69,9 @@ watch(
 <style>
 /* 🔹 요일 텍스트 (ex. 일, 월, 화...) */
 .fc-col-header-cell-cushion {
-  color: #339f46;
+  color: #808080;
   height: 100%;
+  text-decoration: none;
 }
 
 /* 🔸 날짜 숫자 (ex. 1, 2, 3...) */
@@ -102,7 +103,7 @@ watch(
 
 /* 🔹 왼쪽(prev) 버튼 스타일 */
 .fc-toolbar .fc-prev-button {
-  background-color: #339f46;
+  background-color: #808080;
   color: white;
   border: none;
   border-radius: 6px;
@@ -112,7 +113,7 @@ watch(
 
 /* 🔹 오른쪽(next) 버튼 스타일 */
 .fc-toolbar .fc-next-button {
-  background-color: #339f46;
+  background-color: #808080;
   color: white;
   border: none;
   border-radius: 6px;
@@ -122,14 +123,6 @@ watch(
 
 /* 🔹 버튼 hover 효과 */
 .fc-toolbar .fc-button:hover {
-  background-color: #ff8a3d;
   opacity: 0.9;
-}
-
-/* 🔹 버튼 비활성화 스타일 */
-.fc-toolbar .fc-button:disabled {
-  background-color: #ccc;
-  color: #666;
-  cursor: not-allowed;
 }
 </style>
