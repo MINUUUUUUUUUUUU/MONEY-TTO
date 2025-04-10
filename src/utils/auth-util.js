@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-const API_URL = '/api'; // 로컬 json-server 도메인
+const API_URL = 'https://money-tto.glitch.me'; // 로컬 json-server 도메인
 
 export const login = async (email, password) => {
   try {
     // users 엔드포인트에서 모든 사용자 정보 가져오기
-    const response = await axios.get(`https://money-tto.glitch.me/users`);
+    const response = await axios.get(`${API_URL}/users`);
     const users = response.data;
-
-    console.log(`불러온 데이터 : ${users}`);
 
     // 입력된 이메일과 비밀번호가 일치하는 사용자 찾기
     const user = users.find(

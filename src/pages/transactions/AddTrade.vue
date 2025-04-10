@@ -158,7 +158,7 @@ const handleSubmit = async () => {
   }
 
   try {
-    await axios.post('/api/tradeList', trade);
+    await axios.post('https://money-tto.glitch.me/tradeList', trade);
     alert('거래 내역이 저장되었습니다!');
     router.push('/'); // 저장 후 홈으로 이동!
   } catch (error) {

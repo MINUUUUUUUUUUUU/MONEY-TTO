@@ -174,8 +174,8 @@ const userStore = useUserStore();
 const tradeStore = useTradeStore();
 
 // UrlPrefix
-const incomeUrlPrefix = '/api/incomeCategory/';
-const expenseUrlPrefix = '/api/expenseCategory/';
+const incomeUrlPrefix = 'https://money-tto.glitch.me/incomeCategory/';
+const expenseUrlPrefix = 'https://money-tto.glitch.me/expenseCategory/';
 
 // 시작일 종료일
 const startDate = ref(null);

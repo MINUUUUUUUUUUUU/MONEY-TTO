@@ -141,7 +141,7 @@ const categoryOptions = computed(() => {
 // ✅ 거래 정보 불러오기
 const fetchTrade = async () => {
   try {
-    const res = await axios.get(`/api/tradeList/${id}`);
+    const res = await axios.get(`https://money-tto.glitch.me/tradeList/${id}`);
     const trade = res.data;
 
     isExpense.value = trade.tradeType === '지출';
@@ -153,7 +153,9 @@ const fetchTrade = async () => {
       paymentMethod.value = trade.tradeMethod;
 
       // 💡 expenseCategory 값 매핑
-      const categoryRes = await axios.get('/api/expenseCategory');
+      const categoryRes = await axios.get(
+        'https://money-tto.glitch.me/expenseCategory'
+      );
       const found = categoryRes.data.find(
         (c) =>
           String(c.id) === String(trade.expenseCategory) ||
@@ -161,7 +163,9 @@ const fetchTrade = async () => {
       );
       category.value = found?.category || trade.expenseCategory;
     } else {
-      const categoryRes = await axios.get('/api/incomeCategory');
+      const categoryRes = await axios.get(
+        'https://money-tto.glitch.me/incomeCategory'
+      );
       const found = categoryRes.data.find(
         (c) =>
           String(c.id) === String(trade.incomeCategory) ||
@@ -196,7 +200,7 @@ const handleSubmit = async () => {
   }
 
   try {
-    await axios.put(`/api/tradeList/${id}`, trade);
+    await axios.put(`https://money-tto.glitch.me/tradeList/${id}`, trade);
     alert('거래 내역이 수정되었습니다!');
     router.push(`/trade/${id}`); // 수정 후 상세 페이지로 이동
   } catch (err) {
