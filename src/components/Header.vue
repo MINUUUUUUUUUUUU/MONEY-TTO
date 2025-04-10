@@ -13,10 +13,13 @@
         <i class="fa-solid fa-carrot"></i> 머니또
       </RouterLink>
 
-      <!-- 햄버거 버튼 -->
+      <!-- 햄버거 버튼 (login, register에서는 안 보이지만 공간은 유지) -->
       <button
         class="navbar-toggler ms-auto"
-        :class="isHome ? 'custom-toggler' : 'custom-toggler-orange'"
+        :class="[
+          isHome ? 'custom-toggler' : 'custom-toggler-orange',
+          !showHamburger && 'invisible',
+        ]"
         @click="openOffcanvas"
       >
         <span class="navbar-toggler-icon"></span>
@@ -148,6 +151,10 @@ const userStore = useUserStore();
 
 // 홈 화면인지 확인하는 변수
 const isHome = computed(() => route.path === '/');
+// 현재 경로가 /login, /register 인지 확인해서 햄버거 버튼 숨김
+const showHamburger = computed(() => {
+  return !['/login', '/register'].includes(route.path);
+});
 
 const isNavShow = ref(false);
 const userName = ref('');
@@ -225,6 +232,22 @@ const handleLogout = () => {
 
 .navbar-brand:hover {
   text-decoration: none;
+}
+
+.navbar-brand {
+  text-decoration: none;
+  color: inherit; /* 기본 색상 유지 */
+}
+
+.navbar-brand:focus,
+.navbar-brand:active {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+.navbar-brand.carrot:focus,
+.navbar-brand.carrot:active {
+  color: #ff8a3d !important;
 }
 
 /* 홈 화면이 아닐 때 carrot 색상 유지 */
