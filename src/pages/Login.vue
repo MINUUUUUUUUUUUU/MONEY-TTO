@@ -29,6 +29,7 @@ a {
 
 <template>
   <div class="container m">
+    <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" />
     <div class="row">
       <!-- 로고 이미지 섹션 -->
       <div
