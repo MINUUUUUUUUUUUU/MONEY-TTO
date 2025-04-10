@@ -207,7 +207,6 @@
       "tradeDescription": "성과급 지급",
       "userId": "1",
       "id": "c9d0"
-
     }
   ],
   "tradeType": [
@@ -241,15 +240,15 @@
   "incomeCategory": [
     {
       "id": "1",
-      "category": "💸 급여"
+      "category": "급여"
     },
     {
       "id": "2",
-      "category": "🪙 용돈"
+      "category": "용돈"
     },
     {
       "id": "3",
-      "category": "🏆 상여금"
+      "category": "상여금"
     },
     {
       "id": "4",
@@ -259,35 +258,35 @@
   "expenseCategory": [
     {
       "id": "1",
-      "category": "🧾 세금"
+      "category": "세금"
     },
     {
       "id": "2",
-      "category": "🍰 식비"
+      "category": "식비"
     },
     {
       "id": "3",
-      "category": "🏠 주거"
+      "category": "주거"
     },
     {
       "id": "4",
-      "category": "🚑 보건"
+      "category": "보건"
     },
     {
       "id": "5",
-      "category": "🎮 오락"
+      "category": "오락"
     },
     {
       "id": "6",
-      "category": "🚌 교통"
+      "category": "교통"
     },
     {
       "id": "7",
-      "category": "🛜 통신"
+      "category": "통신"
     },
     {
       "id": "8",
-      "category": "🐖 저축"
+      "category": "저축"
     }
   ]
 }
