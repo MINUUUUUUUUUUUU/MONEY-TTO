@@ -31,49 +31,15 @@
         </div>
       </div>
       <div class="text-end mt-3">
-        <button class="btn btn-outline-secondary btn-sm">분석 더 보기</button>
+        <button class="btn btn-outline-secondary btn-sm" @click="navToAnalysis">
+          분석 더 보기
+        </button>
       </div>
     </div>
 
     <!-- 달력 -->
     <Calender />
 
-    <!-- 분석 탭 -->
-    <div class="mt-4">
-      <div class="tabs mb-3">
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="{ active: showMonthly }"
-              href="#"
-              @click.prevent="showMonthlyAnalysis"
-            >
-              월별 소비 분석
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              :class="{ active: showCategory }"
-              href="#"
-              @click.prevent="showCategoryAnalysis"
-            >
-              카테고리 별 소비 분석
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 월 별 소비 분석 -->
-      <div v-if="showMonthly" class="list-group">
-        <MonthAnalysis />
-      </div>
-      <!-- 카테고리 별 소비 분석 -->
-      <div v-if="showCategory">
-        <CategoryAnalysis />
-      </div>
-    </div>
     <button
       class="btn btn-success btn-lg rounded-circle position-fixed fs-2 size-2 d-flex justify-content-center align-items-center z-3 shadow-sm"
       style="bottom: 3rem; right: 3rem"
@@ -224,6 +190,12 @@ const route = useRouter();
 // 거래 추가 페이지로 이동
 const navToTradeAdd = () => {
   route.push('/trade/add');
+};
+
+// 분석 페이지로 이동
+
+const navToAnalysis = () => {
+  route.push('/analysis');
 };
 
 onMounted(async () => {
