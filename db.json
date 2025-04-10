@@ -210,16 +210,6 @@
       "userId": "1",
       "expenseCategory": "주거",
       "tradeMethod": "계좌이체"
-    },
-    {
-      "id": "1744243696052",
-      "tradeId": "1744243696052",
-      "tradeType": "수입",
-      "tradeDate": "2025-04-10",
-      "tradeAmount": 100000,
-      "tradeDescription": "test1",
-      "userId": "1",
-      "incomeCategory": "용돈"
     }
   ],
   "tradeType": [
