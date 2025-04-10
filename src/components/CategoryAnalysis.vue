@@ -54,13 +54,13 @@
 import { ref, computed, onMounted } from 'vue';
 import { useUserStore } from '@/stores/user-store';
 import { fetchTradeData } from '@/utils/month-analysis.js';
-import Loading from '@/components/Loading.vue'; // ✅ 로딩 컴포넌트 import
+import Loading from '@/components/Loading.vue'; // 로딩 컴포넌트 import
 
 const userStore = useUserStore();
 const userId = userStore.userId;
 
 const tradeList = ref([]);
-const isLoading = ref(true); // ✅ 로딩 상태 추가
+const isLoading = ref(true); // 로딩 상태 추가
 
 onMounted(async () => {
   try {
@@ -69,7 +69,7 @@ onMounted(async () => {
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생:', error);
   } finally {
-    isLoading.value = false; // ✅ 데이터 불러오기 끝나면 로딩 false
+    isLoading.value = false; // 데이터 불러오기 끝나면 로딩 false
   }
 });
 
