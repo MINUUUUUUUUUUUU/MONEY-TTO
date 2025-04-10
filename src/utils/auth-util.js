@@ -104,6 +104,7 @@ export const register = async ({ email, password, nickname, age, userId }) => {
       password,
       nickname,
       age,
+      userId,
     };
 
     await axios.post(`${API_URL}/users`, newUser);
