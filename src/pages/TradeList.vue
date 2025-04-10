@@ -100,7 +100,11 @@
             class="d-flex align-items-center flex-shrink-0 fixed-category-width me-3"
           >
             <span class="fw-semibold text-nowrap">
-              {{ getCategoryName(trade.categoryId, trade.tradeType) }}
+              {{
+                trade.tradeType === '수입'
+                  ? trade.incomeCategory
+                  : trade.expenseCategory
+              }}
             </span>
           </div>
 

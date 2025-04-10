@@ -51,25 +51,6 @@
   ],
   "tradeList": [
     {
-      "tradeId": "1",
-      "tradeType": "수입",
-      "tradeAmount": 500000,
-      "incomeCategory": "급여",
-      "tradeDate": "2025-04-01",
-      "tradeDescription": "3월 급여 입금",
-      "userId": "1",
-      "id": "b9d7"
-    },
-    {
-      "tradeId": "1",
-      "tradeType": "수입",
-      "tradeAmount": 500000,
-      "incomeCategory": "급여",
-      "tradeDate": "2025-03-01",
-      "tradeDescription": "3월 급여 입금",
-      "userId": "1"
-    },
-    {
       "tradeId": "2",
       "tradeType": "지출",
       "tradeAmount": 15000,
@@ -218,6 +199,27 @@
       "userId": "1",
       "expenseCategory": "교통",
       "tradeMethod": "신용카드"
+    },
+    {
+      "id": "1744218411570",
+      "tradeId": "1744218411570",
+      "tradeType": "지출",
+      "tradeDate": "2025-04-09",
+      "tradeAmount": 1234,
+      "tradeDescription": "test",
+      "userId": "1",
+      "expenseCategory": "주거",
+      "tradeMethod": "계좌이체"
+    },
+    {
+      "id": "1744243696052",
+      "tradeId": "1744243696052",
+      "tradeType": "수입",
+      "tradeDate": "2025-04-10",
+      "tradeAmount": 100000,
+      "tradeDescription": "test1",
+      "userId": "1",
+      "incomeCategory": "용돈"
     }
   ],
   "tradeType": [
