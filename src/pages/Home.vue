@@ -128,11 +128,18 @@ const fetchTradeTotal = async (userId) => {
 
 // 월별 수입과 지출 계산
 const tradeSummary = computed(() => {
-  const income = tradeList.value
+  const selectedMonth = currentMonth.value; // getMonth()는 0부터 시작하므로 +1 필요
+
+  const filteredTrades = tradeList.value.filter((trade) => {
+    const [year, month] = trade.tradeDate.split('-').map(Number);
+    return month === selectedMonth;
+  });
+
+  const income = filteredTrades
     .filter((trade) => trade.tradeType === '수입')
     .reduce((sum, trade) => sum + trade.tradeAmount, 0);
 
-  const expense = tradeList.value
+  const expense = filteredTrades
     .filter((trade) => trade.tradeType === '지출')
     .reduce((sum, trade) => sum + trade.tradeAmount, 0);
 

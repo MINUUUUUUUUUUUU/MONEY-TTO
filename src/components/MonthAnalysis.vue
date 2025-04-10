@@ -10,9 +10,6 @@ import {
   renderChart,
 } from '@/utils/month-analysis.js';
 
-import axios from 'axios';
-import Chart from 'chart.js/auto';
-
 const userStore = useUserStore();
 
 const userId = userStore.userId;
