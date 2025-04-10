@@ -136,18 +136,19 @@
       </div>
       <div class="position-fixed bottom-0 end-0 p-4">
         <!-- 지출 폼으로 이동하는 버튼 -->
-        <button
-          class="btn btn-lg fs-2 size-2 d-flex justify-content-center align-items-center z-3 bg-carrot rounded-circle shadow"
-          @click="navToTradeAdd"
-        >
-          +
-        </button>
       </div>
     </div>
   </div>
 
   <!-- 거래 내용이 없는 경우 출력 -->
   <div v-else class="text-center py-5 text-muted">작성된 내용이 없습니다.</div>
+  <button
+    class="btn btn-lg fs-2 size-2 d-flex justify-content-center align-items-center z-3 bg-carrot rounded-circle me-3 mb-3"
+    style="position: fixed; bottom: 20px; right: 20px"
+    @click="navToTradeAdd"
+  >
+    +
+  </button>
 </template>
 
 <script setup>
@@ -212,7 +213,6 @@ const formatDate = (date) => {
 const fetchIncomeList = async () => {
   try {
     const response = await axios.get(incomeUrlPrefix);
-    // console.log(response.data);
     incomeList.value = response.data;
   } catch (err) {
     console.log(err);
@@ -223,18 +223,10 @@ const fetchIncomeList = async () => {
 const fetchExpenseList = async () => {
   try {
     const response = await axios.get(expenseUrlPrefix);
-    // console.log(response.data);
     expenseList.value = response.data;
   } catch (err) {
     console.log(err);
   }
-};
-
-// 카테고리 이름 가져오기(카테고리ID와 거래 타입에 따라 변경)
-const getCategoryName = (categoryId, tradeType) => {
-  const list = tradeType === '수입' ? incomeList.value : expenseList.value;
-  const found = list.find((cat) => cat.id === categoryId);
-  return found ? found.category : '기타';
 };
 
 // 반환 값 dailyTradeList 생성 [날짜: , 오늘 수입: , 오늘 지출: , 오늘 거래 항목목: {}]
@@ -352,6 +344,6 @@ const navToTradeDetail = (tradeId) => {
   color: white;
 }
 .mb-6 {
-  margin-bottom: 4.5rem !important;
+  margin-bottom: 5.5rem !important;
 }
 </style>
