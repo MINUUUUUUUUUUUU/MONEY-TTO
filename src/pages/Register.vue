@@ -16,18 +16,9 @@ button:hover {
 </style>
 
 <template>
-  <div
-    class="container min-vh-100 mb-5 d-flex justify-content-center align-items-center"
-  >
+  <div class="container mb-5 d-flex justify-content-center align-items-center">
     <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" />
     <div class="w-100 mt-5">
-      <div class="text-center mb-4">
-        <img
-          src="https://placehold.co/300x300"
-          alt="샘플이미지"
-          class="img-fluid"
-        />
-      </div>
       <h2 class="text-center mb-4">회원가입</h2>
       <form @submit.prevent="handleRegister">
         <div class="mb-3">
