@@ -125,7 +125,7 @@ const handleRegister = async () => {
     return;
   }
 
-  if (age.value < 0 || age.value > 120) {
+  if (age.value < 1 || age.value > 120) {
     triggerAlert('나이는 1세 이상 120세 이하로 입력해주세요', 'danger');
     return;
   }
