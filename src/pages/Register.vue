@@ -77,6 +77,8 @@ button:hover {
             id="age"
             class="form-control"
             v-model="age"
+            min="1"
+            max="120"
             required
           />
         </div>
