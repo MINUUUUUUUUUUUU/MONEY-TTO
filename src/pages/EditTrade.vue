@@ -262,6 +262,11 @@ const handleSubmit = async () => {
     userId: userStore.userId,
   };
 
+  if (amount.value <= 0 || amount.value > 1000000000) {
+    triggerAlert('금액은 1 이상 10억 이하로 입력해주세요.', 'danger');
+    return;
+  }
+
   if (isExpense.value) {
     trade.expenseCategory = category.value;
     trade.tradeMethod = paymentMethod.value;
