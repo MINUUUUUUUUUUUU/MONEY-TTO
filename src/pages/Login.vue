@@ -15,7 +15,8 @@ button:hover {
 }
 
 img {
-  max-height: 300px;
+  max-height: 200px;
+  margin : 15% 15%;
 }
 
 a {

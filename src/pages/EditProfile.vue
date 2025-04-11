@@ -1,7 +1,9 @@
 <template>
   <div
-    class="container min-vh-100 mb-5 d-flex justify-content-center align-items-center"
-  >
+  class="container d-flex justify-content-center align-items-center"
+  style="height: 80vh; overflow: hidden;"
+>
+
     <Alert v-if="alertMessage" :message="alertMessage" :type="alertType" />
     <div class="w-100 mt-5">
       <h2 class="text-center mb-4">회원 정보 수정</h2>

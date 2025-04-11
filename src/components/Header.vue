@@ -27,7 +27,7 @@
         class="navbar-brand position-absolute top-50 start-50 translate-middle fw-bold"
         :class="isHome ? 'text-white' : 'carrot'"
       >
-        <i class="fa-solid fa-carrot"></i> 머니또
+<i class="fa-solid fa-carrot"></i> <span style="font-size: 25px;">머니또</span>
       </RouterLink>
 
       <!-- 햄버거 버튼 (login, register에서는 안 보이지만 공간은 유지) -->

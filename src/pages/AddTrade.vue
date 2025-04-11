@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-2">
     <Alert
       v-if="alertMessage"
       :message="alertMessage"
@@ -69,17 +69,16 @@
       </div>
 
       <!-- 지출일 경우에만 결제 수단 선택 -->
-      <div v-if="isExpense" class="mb-3">
+      <div class="mb-3">
         <label class="form-label"
-          ><span class="text-danger">* </span>결제 수단</label
+          ><span class="text-danger">* </span>자산</label
         >
 
         <select class="form-select" v-model="paymentMethod" required>
           <option value="" disabled selected>선택</option>
           <option value="현금">현금</option>
-          <option value="신용카드">신용카드</option>
-          <option value="계좌이체">계좌이체</option>
-          <option value="체크카드">체크카드</option>
+          <option value="신용카드">카드</option>
+          <option value="계좌이체">은행</option>
         </select>
       </div>
 
@@ -215,6 +214,7 @@ const handleSubmit = async () => {
     tradeAmount: amount.value,
     tradeDescription: memo.value,
     userIndex: userStore.userIndex,
+    tradeMethod: paymentMethod.value,
   };
 
   if (amount.value > 1000000000) {
@@ -224,7 +224,6 @@ const handleSubmit = async () => {
 
   if (isExpense.value) {
     trade.expenseCategory = category.value;
-    trade.tradeMethod = paymentMethod.value;
   } else {
     trade.incomeCategory = category.value;
   }
