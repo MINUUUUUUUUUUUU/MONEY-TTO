@@ -89,7 +89,7 @@
         v-for="trade in dailyTrade.trades"
         :key="trade.tradeId"
         @click="navToTradeDetail(trade.id)"
-        class="d-flex justify-content-between align-items-center py-2 border-bottom"
+        class="btn d-flex justify-content-between align-items-center py-2 border-bottom"
       >
         <div
           class="d-flex align-items-center me-3 flex-grow-1"
