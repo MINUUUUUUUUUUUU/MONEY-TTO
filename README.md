@@ -33,8 +33,8 @@
 ### 로그인 및 회원가입
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
-  <img src="./README_assets/로그인.png" alt="로그인 화면" style="width: 23%; height: auto;" />
-  <img src="./README_assets/회원가입.png" alt="회원가입 화면" style="width: 23%; height: auto;" />
+  <img src="./README_assets/로그인.png" alt="로그인 화면" style="width: 23%; height: auto;" />
+  <img src="./README_assets/회원가입.png" alt="회원가입 화면" style="width: 23%; height: auto;" />
 </div>
 
 ### 프로필 수정
