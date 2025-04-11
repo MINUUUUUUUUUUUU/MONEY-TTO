@@ -77,9 +77,8 @@
         <select class="form-select" v-model="paymentMethod" required>
           <option value="" disabled selected>선택</option>
           <option value="현금">현금</option>
-          <option value="신용카드">신용카드</option>
-          <option value="계좌이체">계좌이체</option>
-          <option value="체크카드">체크카드</option>
+          <option value="신용카드">카드</option>
+          <option value="계좌이체">은행</option>
         </select>
       </div>
 
