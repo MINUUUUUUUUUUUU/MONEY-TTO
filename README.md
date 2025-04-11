@@ -33,37 +33,36 @@
 ### 로그인 및 회원가입
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
-  <img src="./README_assets/로그인.png" alt="로그인 화면" style="width: 40%; height: auto;" />
-  <img src="./README_assets/회원가입.png" alt="회원가입 화면" style="width: 40%; height: auto;" />
+  <img src="./README_assets/로그인.png" alt="로그인 화면" style="width: 23%; height: auto;" />
+  <img src="./README_assets/회원가입.png" alt="회원가입 화면" style="width: 23%; height: auto;" />
 </div>
 
 ### 프로필 수정
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
-  <img src="./README_assets/회원정보수정.png" alt="회원정보 수정 화면" style="width: 40%; height: auto;" />
+  <img src="./README_assets/회원정보수정.png" alt="회원정보 수정 화면" style="width: 23%; height: auto;" />
 </div>
 
 ### 메인 화면
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
-  <img src="./README_assets/메인.png" alt="홈 화면" style="width: 40%; height: auto;" />
-  <img src="./README_assets/사이드 패널.png" alt="사이드패널" style="width: 40%; height: auto;" />
+  <img src="./README_assets/메인.png" alt="홈 화면" style="width: 23%; height: auto;" />
+  <img src="./README_assets/사이드 패널.png" alt="사이드패널" style="width: 23%; height: auto;" />
 </div>
 
 ### 거래 내역 관리
 
-<div style="display: flex; justify-content: space-around; align-items: center;">
-  <img src="./README_assets/추가.png" alt="추가 화면" style="width: 40%; height: auto;" />
-  <img src="./README_assets/삭제.png" alt="삭제 화면" style="width: 40%; height: auto;" />
-  <img src="./README_assets/수정.png" alt="수정 화면" style="width: 40%; height: auto;" />
-  <img src="./README_assets/전체내역.png" alt="전체 내역 화면" style="width: 40%; height: auto;" />
-
-</div>
+<p align="center">
+  <img src="./README_assets/추가.png" alt="추가 화면" width="23%" />
+  <img src="./README_assets/삭제.png" alt="삭제 화면" width="23%" />
+  <img src="./README_assets/수정.png" alt="수정 화면" width="23%" />
+  <img src="./README_assets/전체내역.png" alt="전체 내역 화면" width="23%" />
+</p>
 
 ### 월별 거래 분석 조회
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
-  <img src="./README_assets/분석.png" alt="분석" style="width: 40%; height: auto;" />
+  <img src="./README_assets/분석.png" alt="분석" style="width: 23%; height: auto;" />
 </div>
 
 ---
