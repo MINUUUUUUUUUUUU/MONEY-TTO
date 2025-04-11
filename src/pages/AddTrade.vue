@@ -7,8 +7,7 @@
       :duration="2000"
     />
     <!-- 탭: 지출 / 수입 -->
-    <div class="custom-tab-line">
-      <div
+<div class="custom-tab-line mb-1">      <div
         class="tab-item"
         :class="{ active: isExpense, orange: isExpense }"
         @click="isExpense = true"
@@ -69,16 +68,17 @@
       </div>
 
       <!-- 지출일 경우에만 결제 수단 선택 -->
-      <div class="mb-3">
+      <div v-if="isExpense" class="mb-3">
         <label class="form-label"
-          ><span class="text-danger">* </span>자산</label
+          ><span class="text-danger">* </span>결제 수단</label
         >
 
         <select class="form-select" v-model="paymentMethod" required>
           <option value="" disabled selected>선택</option>
           <option value="현금">현금</option>
-          <option value="신용카드">카드</option>
-          <option value="계좌이체">은행</option>
+          <option value="신용카드">신용카드</option>
+          <option value="계좌이체">계좌이체</option>
+          <option value="체크카드">체크카드</option>
         </select>
       </div>
 
@@ -104,7 +104,7 @@
           class="form-control"
           v-model="memo"
           placeholder="내용 설명"
-          rows="3"
+          rows="2"
         ></textarea>
       </div>
 
@@ -214,7 +214,6 @@ const handleSubmit = async () => {
     tradeAmount: amount.value,
     tradeDescription: memo.value,
     userIndex: userStore.userIndex,
-    tradeMethod: paymentMethod.value,
   };
 
   if (amount.value > 1000000000) {
@@ -224,6 +223,7 @@ const handleSubmit = async () => {
 
   if (isExpense.value) {
     trade.expenseCategory = category.value;
+    trade.tradeMethod = paymentMethod.value;
   } else {
     trade.incomeCategory = category.value;
   }
