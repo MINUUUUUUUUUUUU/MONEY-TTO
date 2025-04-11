@@ -193,8 +193,6 @@ onMounted(() => {
   tradeStore.fetchTradeList(); // id 필터링 된 tradeList 가져오기(tradeStore.tradeList)
   userStore.hydrate(); // 세션에서 사용자 정보 불러오기
   // console.log('userIndex:', userStore.userIndex); // state 사용
-  fetchIncomeList(); // 수입 리스트 가져오기
-  fetchExpenseList(); // 지출 리스트 가져오기
 });
 
 // 날짜 포맷 지정 (YYYY-MM-DD)
@@ -207,26 +205,6 @@ const formatDate = (date) => {
     2,
     '0'
   )}`;
-};
-
-// axios로 수입 리스트 가져오기
-const fetchIncomeList = async () => {
-  try {
-    const response = await axios.get(incomeUrlPrefix);
-    incomeList.value = response.data;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// axios로 지출 리스트 가져오기
-const fetchExpenseList = async () => {
-  try {
-    const response = await axios.get(expenseUrlPrefix);
-    expenseList.value = response.data;
-  } catch (err) {
-    console.log(err);
-  }
 };
 
 // 반환 값 dailyTradeList 생성 [날짜: , 오늘 수입: , 오늘 지출: , 오늘 거래 항목목: {}]

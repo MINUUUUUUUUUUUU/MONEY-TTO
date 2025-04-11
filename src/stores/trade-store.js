@@ -12,7 +12,7 @@ export const useTradeStore = defineStore('trade', () => {
   const fetchTradeList = async () => {
     try {
       const response = await axios.get(tradeUrlPrefix);
-      // console.log(response.data);
+      console.log(response.data);
 
       // userIndex가 일치하는 항목만 필터링
       tradeList.value = response.data.filter(
