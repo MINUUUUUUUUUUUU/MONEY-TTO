@@ -89,7 +89,7 @@
         v-for="trade in dailyTrade.trades"
         :key="trade.tradeId"
         @click="navToTradeDetail(trade.id)"
-        class="btn d-flex justify-content-between align-items-center py-2 border-bottom"
+        class="d-flex justify-content-between align-items-center py-2 border-bottom trade-hover"
       >
         <div
           class="d-flex align-items-center me-3 flex-grow-1"
@@ -323,5 +323,9 @@ const navToTradeDetail = (tradeId) => {
 }
 .mb-6 {
   margin-bottom: 5.5rem !important;
+}
+.trade-hover {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 </style>
