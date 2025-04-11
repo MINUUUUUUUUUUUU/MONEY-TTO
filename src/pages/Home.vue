@@ -1,18 +1,14 @@
 <template>
   <div class="container">
-    <div class="mb-4">
-      <div class="card p-2 shadow-sm my-2 border-0 rounded-4">
-        <!-- <div
-        class="card p-4 shadow-sm my-2 border-0 rounded-4"
-        style="background-color: #f9fafb"
-      > -->
+    <div class="mb-3">
+      <div class="card p-3 shadow-sm my-1 border-0 rounded-4">
         <!-- 월 정보 -->
-        <div class="fs-6 fw-semibold text-secondary mb-3 text-center">
+        <div class="fs-5 fw-semibold text-secondary mb-1 text-center">
           {{ currentMonth }}월 소비 요약
         </div>
 
         <!-- 수입/지출 요약 -->
-        <div class="d-flex justify-content-between text-center px-md-5">
+        <div class="d-flex justify-content-between text-center px-md-3">
           <!-- 수입 -->
           <div class="flex-fill">
             <div class="fs-6 fw-medium text-muted mb-1">수입</div>
@@ -30,15 +26,23 @@
           </div>
         </div>
       </div>
-      <div class="text-end mt-3">
+      <!-- <div class="text-end mt-3">
         <button class="btn btn-outline-secondary btn-sm" @click="navToAnalysis">
           분석 더 보기
         </button>
-      </div>
+      </div> -->
     </div>
 
     <!-- 달력 -->
     <Calender />
+    <!-- 기존 + 버튼 왼쪽에 새 버튼 추가 -->
+    <button
+      class="btn btn-warning rounded-circle position-fixed fs-4 d-flex justify-content-center align-items-center z-3 shadow-sm"
+      style="bottom: 3rem; right: 7rem; width: 3.5rem; height: 3.5rem"
+      @click="navToAnalysis"
+    >
+      <i class="fa-solid fa-magnifying-glass-chart"></i>
+    </button>
 
     <button
       class="btn btn-success btn-lg rounded-circle position-fixed fs-2 size-2 d-flex justify-content-center align-items-center z-3 shadow-sm"
