@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="mb-4">
-      <div class="card p-4 shadow-sm my-2 border-0 rounded-4">
+      <div class="card p-2 shadow-sm my-2 border-0 rounded-4">
         <!-- <div
         class="card p-4 shadow-sm my-2 border-0 rounded-4"
         style="background-color: #f9fafb"
