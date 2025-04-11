@@ -87,7 +87,7 @@ const alertMessage = ref('');
 const alertType = ref('info');
 
 const id = ref('');
-const userId = ref('');
+const userIndex = ref('');
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
@@ -97,10 +97,10 @@ const age = ref('');
 // 사용자 정보 불러오기
 const fetchUserInfo = async () => {
   try {
-    userId.value = userStore.userId;
+    userIndex.value = userStore.userIndex;
 
     const response = await axios.get(
-      `https://money-tto.glitch.me/users?userId=${userId.value}`
+      `https://money-tto.glitch.me/users?userIndex=${userIndex.value}`
     );
 
     const user = response.data[0]; // 배열에서 첫 번째 사용자 정보 추출

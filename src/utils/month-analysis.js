@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export async function fetchTradeData(userId) {
+export async function fetchTradeData(userIndex) {
   try {
     const response = await axios.get(
-      `https://money-tto.glitch.me/tradeList?userId=${userId}`
+      `https://money-tto.glitch.me/tradeList?userIndex=${userIndex}`
     );
     return response.data;
   } catch (error) {

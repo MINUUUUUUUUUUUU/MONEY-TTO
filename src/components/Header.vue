@@ -244,16 +244,16 @@ const monthlyTotal = computed(() => {
 
 const fetchUserTotalInfo = async () => {
   try {
-    const userId = userStore.userId;
+    const userIndex = userStore.userIndex;
     // 사용자 데이터 가져오기
     const { data: users } = await axios.get(
-      `https://money-tto.glitch.me/users?userId=${userId}`
+      `https://money-tto.glitch.me/users?userIndex=${userIndex}`
     );
     userName.value = users[0]?.nickname ?? '이름 없음';
 
     // 거래 목록 데이터 가져오기
     const { data: trades } = await axios.get(
-      `https://money-tto.glitch.me/tradeList?userId=${userId}`
+      `https://money-tto.glitch.me/tradeList?userIndex=${userIndex}`
     );
     tradeList.value = trades;
   } catch (err) {

@@ -114,7 +114,7 @@ const password = ref('');
 const confirmPassword = ref('');
 const nickname = ref('');
 const age = ref('');
-const userId = ref(Date.now() - Math.floor(Math.random() * 10000));
+const userIndex = ref(Date.now() - Math.floor(Math.random() * 10000));
 
 const handleEmailCheck = async () => {
   const result = await emailCheck(email.value);
@@ -132,7 +132,7 @@ const handleRegister = async () => {
     password: password.value,
     nickname: nickname.value,
     age: age.value,
-    userId: userId.value,
+    userIndex: userIndex.value,
   });
 
   triggerAlert(result.message, 'light');

@@ -57,14 +57,14 @@ import { fetchTradeData } from '@/utils/month-analysis.js';
 import Loading from '@/components/Loading.vue'; // 로딩 컴포넌트 import
 
 const userStore = useUserStore();
-const userId = userStore.userId;
+const userIndex = userStore.userIndex;
 
 const tradeList = ref([]);
 const isLoading = ref(true); // 로딩 상태 추가
 
 onMounted(async () => {
   try {
-    const data = await fetchTradeData(userId);
+    const data = await fetchTradeData(userIndex);
     tradeList.value = data;
   } catch (error) {
     console.error('데이터를 가져오는 중 오류 발생:', error);

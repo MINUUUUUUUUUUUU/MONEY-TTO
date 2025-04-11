@@ -12,11 +12,11 @@ import {
 
 const userStore = useUserStore();
 
-const userId = userStore.userId;
+const userIndex = userStore.userIndex;
 
 onMounted(async () => {
   try {
-    const data = await fetchTradeData(userId);
+    const data = await fetchTradeData(userIndex);
     const { incomeData, expenseData } = calculateMonthlySpending(data);
     const canvas = document.getElementById('spendingChart');
     if (canvas instanceof HTMLCanvasElement) {
