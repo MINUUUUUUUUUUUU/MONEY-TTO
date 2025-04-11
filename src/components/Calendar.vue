@@ -127,21 +127,21 @@ watch(
 
 /* 🔹 왼쪽(prev) 버튼 스타일 */
 .fc-toolbar .fc-prev-button {
-  background-color: #808080;
+  background-color: #a2a1a1;
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 4px 8px;
+  padding: 3px 6px;
   font-weight: 600;
 }
 
 /* 🔹 오른쪽(next) 버튼 스타일 */
 .fc-toolbar .fc-next-button {
-  background-color: #808080;
+  background-color: #a2a1a1;
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 4px 8px;
+  padding: 4px 6px;
   font-weight: 600;
 }
 
