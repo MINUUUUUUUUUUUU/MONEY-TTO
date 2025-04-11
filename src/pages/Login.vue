@@ -110,7 +110,7 @@ const handleLogin = async () => {
   console.log(result);
 
   if (result.success) {
-    userStore.userId = result.userId;
+    userStore.userIndex = result.userIndex;
     await router.push('/');
   } else {
     triggerAlert(result.message, 'danger');

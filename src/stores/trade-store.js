@@ -14,9 +14,9 @@ export const useTradeStore = defineStore('trade', () => {
       const response = await axios.get(tradeUrlPrefix);
       // console.log(response.data);
 
-      // userId가 일치하는 항목만 필터링
+      // userIndex가 일치하는 항목만 필터링
       tradeList.value = response.data.filter(
-        (trade) => trade.userId === userStore.userId
+        (trade) => trade.userIndex === userStore.userIndex
       );
     } catch (err) {
       console.error('fetchTradeList error:', err);

@@ -2,23 +2,23 @@ import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    userId: null,
+    userIndex: null,
   }),
   getters: {
     isLoggedIn: (state) => {
-      return state.userId != null;
+      return state.userIndex != null;
     },
   },
   actions: {
     hydrate() {
-      const storedUserId = sessionStorage.getItem('userId');
-      if (storedUserId) {
-        this.userId = storedUserId;
+      const storeduserIndex = sessionStorage.getItem('userIndex');
+      if (storeduserIndex) {
+        this.userIndex = storeduserIndex;
       }
     },
     logout() {
-      this.userId = null;
-      sessionStorage.removeItem('userId');
+      this.userIndex = null;
+      sessionStorage.removeItem('userIndex');
     },
   },
 });

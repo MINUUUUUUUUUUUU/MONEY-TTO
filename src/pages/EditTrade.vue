@@ -259,7 +259,7 @@ const handleSubmit = async () => {
     tradeDate: date.value,
     tradeAmount: amount.value,
     tradeDescription: memo.value,
-    userId: userStore.userId,
+    userIndex: userStore.userIndex,
   };
 
   if (amount.value <= 0 || amount.value > 1000000000) {

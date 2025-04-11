@@ -15,9 +15,9 @@ export const login = async (email, password) => {
 
     if (user) {
       // 로그인 성공: 세션 스토리지에 사용자 ID 저장
-      sessionStorage.setItem('userId', user.userId);
+      sessionStorage.setItem('userIndex', user.userIndex);
       return {
-        userId: user.userId,
+        userIndex: user.userIndex,
         email: email,
         nickname: user.nickname,
         age: user.age,
@@ -76,7 +76,13 @@ export const emailCheck = async (email) => {
   }
 };
 
-export const register = async ({ email, password, nickname, age, userId }) => {
+export const register = async ({
+  email,
+  password,
+  nickname,
+  age,
+  userIndex,
+}) => {
   try {
     // 이메일 형식 유효성 검사
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -105,7 +111,7 @@ export const register = async ({ email, password, nickname, age, userId }) => {
       password,
       nickname,
       age,
-      userId,
+      userIndex,
     };
 
     await axios.post(`${API_URL}/users`, newUser);
