@@ -58,6 +58,8 @@
             id="age"
             class="form-control"
             v-model="age"
+            min="1"
+            max="120"
             required
           />
         </div>
@@ -123,11 +125,6 @@ const fetchUserInfo = async () => {
 const handleUpdate = async () => {
   if (password.value && password.value !== confirmPassword.value) {
     triggerAlert('비밀번호가 일치하지 않습니다.', 'danger');
-    return;
-  }
-
-  if (age.value < 1 || age.value > 120) {
-    triggerAlert('나이는 1세 이상 120세 이하로 입력해주세요', 'danger');
     return;
   }
 
